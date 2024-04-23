@@ -28,19 +28,14 @@ export default function App() {
       isBordered
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
-      className='lg:w-[80rem] w-full rounded-3xl  lg:mt-5 mt-1 isolate   bg-white/20 shadow-lg ring-1 ring-black/5 absolute lg:left-[8rem] left-0'>
-      <NavbarContent className='sm:hidden' justify='start'>
-        {/* <NavbarMenuToggle
-          className='text-white/85'
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        /> */}
-      </NavbarContent>
+      className='lg:w-[60rem] w-full rounded-3xl  lg:mt-5 mt-1 isolate   bg-white/20 shadow-lg ring-1 ring-black/5  lg:left-[18rem]  fixed '>
+      
       <NavbarContent
-        className='sm:hidden   text-white/90 text-xl flex justify-between w-[20rem]' >
+        className=' sm:hidden  text-white/90 flex justify-evenly gap-4 items-center w-[25rem]' >
         <NavbarBrand>
-          <p className='font-bold text-inherit text-2xl pr-10'>NORO-CODER</p>
+          <p className='font-bold  text-inherit text-2xl '>NORO-CODER</p>
         </NavbarBrand>
-        <NavbarBrand className=" w-[5rem] flex justify-between items-center">
+        <NavbarBrand className=" w-[5rem] flex justify-around items-center">
           <PersonIcon/>
           <Pencil2Icon/>
           <CubeIcon/>
