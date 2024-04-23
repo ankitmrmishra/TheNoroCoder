@@ -10,9 +10,9 @@ export default function Home() {
         {/* Radial gradient for the container to give a faded look */}
 
         <div className='absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]'></div>
-        <p className='lg:text-7xl text-4xl p-5 font-extrabold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-orange-700  text-center'>
+        <p className='lg:text-7xl text-4xl p-5 font-extrabold relative z-20 bg-clip-text text-transparent bg-gradient-to-r from-white/95 via-white/55 to-white  text-center'>
           A Noob Coder Who Thinks he is Pro <br />
-          <Highlight className='bg-gradient-to-r from-orange-600 via-orange-500 to-white inline-block text-transparent bg-clip-text '>
+          <Highlight className='bg-gradient-to-r from-white/95 via-white/55 to-white inline-block text-transparent text-3xl bg-clip-text lg:text-7xl '>
             THE NORO-CODER
           </Highlight>
         </p>

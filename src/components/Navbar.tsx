@@ -11,6 +11,8 @@ import {
   Link,
   Button,
 } from "@nextui-org/react";
+import { PersonIcon, Pencil2Icon, CubeIcon} from "@radix-ui/react-icons";
+
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -28,43 +30,49 @@ export default function App() {
       onMenuOpenChange={setIsMenuOpen}
       className='lg:w-[80rem] w-full rounded-3xl  lg:mt-5 mt-1 isolate   bg-white/20 shadow-lg ring-1 ring-black/5 absolute lg:left-[8rem] left-0'>
       <NavbarContent className='sm:hidden' justify='start'>
-        <NavbarMenuToggle
-          className='text-green-600'
+        {/* <NavbarMenuToggle
+          className='text-white/85'
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        />
+        /> */}
       </NavbarContent>
-      <NavbarContent className='sm:hidden pr-20 text-green-600 text-xl' justify='start'>
+      <NavbarContent
+        className='sm:hidden   text-white/90 text-xl flex justify-between w-[20rem]' >
         <NavbarBrand>
-         
-          <p className='font-bold text-inherit text-2xl'>NORO-CODER</p>
+          <p className='font-bold text-inherit text-2xl pr-10'>NORO-CODER</p>
+        </NavbarBrand>
+        <NavbarBrand className=" w-[5rem] flex justify-between items-center">
+          <PersonIcon/>
+          <Pencil2Icon/>
+          <CubeIcon/>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent
-        className='hidden sm:flex text-green-600 gap-4 '
+        className='hidden sm:flex text-white gap-4 '
         justify='start'>
         <NavbarBrand>
           {/* <AcmeLogo /> */}
           <p className='font-bold text-2xl text-inherit '>NORO-CODER</p>
         </NavbarBrand>
         <NavbarItem>
-          <Link color='success' href='#'>
+          <Link className='text-white/75' href='#'>
             ABOUT
           </Link>
         </NavbarItem>
-        <NavbarItem isActive>
-          <Link color='success' href='#' aria-current='page'>
+        <NavbarItem>
+          <Link href='#' className='text-white/75'>
             BLOG
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color='success' href='#'>
+          <Link href='#' className='text-white/75'>
             THE NORO-MUSEUM
           </Link>
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu style={{ height: '1rem' }}
+      {/* <NavbarMenu
+        style={{ height: "1rem" }}
         hidden
         className='rounded-sm  h-40 isolate   bg-white/20 shadow-lg ring-1 ring-black/5 '>
         {menuItems.map((item, index) => (
@@ -84,7 +92,7 @@ export default function App() {
             </Link>
           </NavbarMenuItem>
         ))}
-      </NavbarMenu>
+      </NavbarMenu> */}
     </Navbar>
   );
 }
