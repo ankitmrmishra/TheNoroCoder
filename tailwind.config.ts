@@ -9,7 +9,6 @@ const {
 } = require("tailwindcss/lib/util/flattenColorPalette");
 
 const config = {
- 
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -63,15 +62,45 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
+        },
+        moveBackwardForward: {
+          "0%, 100%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(-10%)" },
+        },
+        shimmer: {
+          from: {
+            backgroundPosition: "0 0",
+          },
+          to: {
+            backgroundPosition: "-200% 0",
+          },
+        },
+        moveBorderColor: {
+          "0%": { borderColor: "#ff0000" },
+          "33%": { borderColor: "#00ff00" },
+          "66%": { borderColor: "#0000ff" },
+          "100%": { borderColor: "#ff0000" },
+        },
+        moveGradientBorder: {
+          "0%": { "background-position": "0% 50%" },
+          "50%": { "background-position": "100% 50%" },
+          "100%": { "background-position": "0% 50%" },
+        },
+        "border-spin": {
+          "100%": {
+            transform: "rotate(-360deg)",
+          },
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
@@ -81,6 +110,11 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        shimmer: "shimmer 2s linear ",
+        moveBackwardForward: "moveBackwardForward 1s ease-in-out infinite",
+        moveGradientBorder: "moveGradientBorder 4s ease infinite",
+        moveBorderColor: "moveBorderColor 6s linear infinite",
+        "border-spin": "border-spin 7s linear infinite",
       },
     },
   },
