@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { HeroHighlight, Highlight } from "../components/ui/highlight";
 import Navbar from "../components/Navbar"
 import SocialMedia from "@/components/ui/SocialMedia";
+import About from "@/components/About";
+import Showcase from "@/components/About";
 export default function Home() {
   const socialMediaLinks = {
     twitter: "https://twitter.com/AnkitMishraexe",
@@ -20,17 +22,18 @@ export default function Home() {
           A Noob Coder Who Thinks he is Pro <br />
           <Highlight className='bg-gradient-to-r from-white/95 via-white/55 to-white inline-block text-transparent text-3xl bg-clip-text lg:text-7xl  '>
             THE NORO-CODER
-          </Highlight>{" "}
+          </Highlight>
           <br />
-          <p className='text-xs text-[#DA0037] lg:text-lg pt-8 '>
-            Confidently coding my way into a world of bugs and broken layouts,
-            but hey, at least it looks good(ish).
-          </p>
+        </p>
+        <p className='text-xs text-[#DA0037] font-bold lg:text-lg p-4 text-center '>
+          Confidently coding my way into a world of bugs and broken layouts, but
+          hey, at least it looks good(ish).
         </p>
         <div className=''>
           <SocialMedia links={socialMediaLinks} />
         </div>
       </div>
+      <Showcase />
     </div>
   );
 }
