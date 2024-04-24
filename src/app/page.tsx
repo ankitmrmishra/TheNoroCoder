@@ -20,9 +20,9 @@ export default function Home() {
         <div className='absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]'></div>
         <p className='lg:text-7xl text-3xl p-5 font-extrabold relative z-20 bg-clip-text text-transparent bg-gradient-to-r from-white/95 via-white/55 to-white  text-center'>
           A Noob Coder Who Thinks he is Pro <br />
-          <Highlight className='bg-gradient-to-r from-white/95 via-white/55 to-white inline-block text-transparent text-3xl bg-clip-text lg:text-7xl  '>
+          <span className='bg-gradient-to-r from-white/95 via-white/55 to-white inline-block text-transparent text-3xl bg-clip-text lg:text-7xl  '>
             THE NORO-CODER
-          </Highlight>
+          </span>
           <br />
         </p>
         <p className='text-xs text-[#DA0037] font-bold lg:text-lg p-4 text-center '>
