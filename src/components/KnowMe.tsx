@@ -24,11 +24,11 @@ function KnowMe() {
           <div className='flex flex-col justify-center items-center text-start'>
             <div className='bg-gradient-to-r from-indigo-200 via-red-200 to-yellow-100 text-transparent bg-clip-text p-5 font-bold text-sm md:text-xl gap-4 flex flex-col'>
               <div>
-                Hi there! I'm the so-called "pro" coder behind this questionable
+                Hi there! I am the so-called "pro" coder behind this questionable
                 website.
               </div>
               <div>
-                In reality, I'm just a scrappy self-taught developer with more
+                In reality, I am just a scrappy self-taught developer with more
                 enthusiasm than skills.
               </div>
               <div>
