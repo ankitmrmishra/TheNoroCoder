@@ -44,7 +44,7 @@ display,
         boxShadow:
           "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
       }}
-      className='max-w-5xl -mt-12 mx-auto h-[10rem] md:rounded-[30px] rounded-[18px] md:h-[25rem]  md:w-[40rem] border-2 border-[#6C6C6C] md:p-2 p-1 bg-[#000000]  shadow-2xl m-14 hover:border-4 '>
+      className='max-w-5xl -mt-12 mx-auto h-[10rem] md:rounded-[30px] rounded-[23px] md:h-[25rem]  md:w-[40rem] border-2 border-[#6C6C6C] md:p-2 p-1 bg-[#000000]  shadow-2xl m-14 hover:border-4 '>
       <div className=' h-full w-full  overflow-hidden rounded-xl bg-transparent dark:bg-zinc-900 md:rounded-2xl  '>
         <Image
           src={display}

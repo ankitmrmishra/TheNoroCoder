@@ -7,6 +7,7 @@ import About from "@/components/About";
 import Showcase from "@/components/About";
 
 import { IoArrowForward } from "react-icons/io5";
+import KnowMe from "@/components/KnowMe";
 export default function Home() {
   const socialMediaLinks = {
     twitter: "https://twitter.com/AnkitMishraexe",
@@ -44,6 +45,7 @@ export default function Home() {
         ;
       </div>
       <Showcase />
+      <KnowMe/>
     </div>
   );
 }
