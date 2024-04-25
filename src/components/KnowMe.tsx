@@ -19,7 +19,7 @@ function KnowMe() {
       <div className='mt-6 lg:bg-gradient-to-l bg-gradient-to-r from-gray-700 via-gray-900 to-black w-[80%] p-4 rounded-2xl lg:flex lg:p-8'>
         <div className='leftIntro lg:w-[50%]'>
           <p className='lg:w-[40rem] mt-5 font-extrabold md:text-4xl text-xl lg:p-4 text-white'>
-            Who Is This 'Pro' Anyway?
+            Who Is This PRO Anyway?
           </p>
           <div className='flex flex-col justify-center items-center text-start'>
             <div className='bg-gradient-to-r from-indigo-200 via-red-200 to-yellow-100 text-transparent bg-clip-text p-5 font-bold text-sm md:text-xl gap-4 flex flex-col'>
