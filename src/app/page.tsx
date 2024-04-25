@@ -26,7 +26,7 @@ export default function Home() {
           </Highlight>
           <br />
         </p>
-        <p className='text-xs text-[#DA0037] font-bold lg:text-lg pl-10 pr-10 text-center '>
+        <p className='text-xs text-[#DA0037] font-bold lg:text-lg pl-10 pr-10 text-center z-[100] '>
           Confidently coding my way into a world of bugs and broken layouts, but
           hey, at least it looks good(ish).
         </p>

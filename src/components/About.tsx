@@ -1,5 +1,6 @@
 import React from "react";
 import { Highlight } from "./ui/highlight";
+import ProjectCard from "./ui/ProjectCard";
 
 function Showcase() {
   return (
@@ -16,7 +17,9 @@ function Showcase() {
         unleashed so far. Don&apos;t judge too harshly - amateur hour is a
         process!
       </p>
-      <div className='showcaselist'></div>
+      <div className='showcaselist'>
+        <ProjectCard/>
+      </div>
     </div>
   );
 }
