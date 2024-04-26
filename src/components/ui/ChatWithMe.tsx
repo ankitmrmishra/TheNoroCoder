@@ -21,7 +21,7 @@ export const GoogleGeminiEffect = ({
   className?: string;
 }) => {
   return (
-    <div className={cn("sticky top-48", className)}>
+    <div className={cn("sticky  top-48", className)}>
       <p className='text-lg md:text-7xl font-bold pb-4 text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-300'>
         {title || `Want to have an amazing Webpage`}
       </p>

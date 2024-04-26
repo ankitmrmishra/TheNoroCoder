@@ -18,7 +18,7 @@ export function GoogleGeminiEffectDemo() {
 
   return (
     <div
-      className='h-[800vh] bg-black w-full dark:border dark:border-white/[0.1] relative pt-40 overflow-clip'
+      className='lg:h-[800vh] h-[290vh]  bg-black w-full dark:border dark:border-white/[0.1] relative pt-40 overflow-clip'
       ref={ref}>
       <GoogleGeminiEffect
         pathLengths={[

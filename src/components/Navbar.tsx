@@ -41,7 +41,7 @@ export default function App() {
           </div>
           <div className='animation animate-bounce text-green-600'>
             <Link
-              className='text-white/75'
+              className='text-green-600'
               href="https://wa.me/918437153991?text=hey%20ANKIT%20I%20want%20to%20work%20on%20a%20project%20with%20you">
               <MobileIcon />
             </Link>
