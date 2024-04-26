@@ -10,14 +10,14 @@ function KnowMe() {
 
 
   return (
-    <div className='bg-black perspective-800 flex align-middle flex-col justify-center items-center md:mt-[-5rem] mt-[-5rem]'>
-      <ContainerScroll 
+    <div className='h-[45rem] w-full dark:bg-black bg-black  dark:bg-grid-white/[0.8] bg-grid-white/20 relative flex items-center  lg:pt-2 pt-1 lg:items-center flex-col justify-start'>
+      <div className='absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]'></div>
+      <ContainerScroll
         titleComponent={
           <>
             <div className=' text-white inline-block text-transparent text-2xl bg-clip-text lg:text-8xl font-semibold text-center '>
               The Underdog <span className='text-[#DA0037]'>DEV</span>
               <br />
-              
             </div>
           </>
         }>
@@ -46,14 +46,14 @@ function KnowMe() {
               </div>
             </div>
           </div>
-          <div className='Image flex align-middle items-center justify-center md:w-[50%] md:p-8 '>
-            <BackgroundGradient className='w-[18rem]'>
+          <div className='Image md:flex align-middle  hidden items-center justify-center md:w-[50%] md:p-8 '>
+            <BackgroundGradient className='w-[18rem] '>
               <Image
                 src={MyPhoto}
                 alt='jordans'
                 height='400'
                 width='400'
-                className='object-fill w-[30rem] rounded-3xl'
+                className='object-fill w-[30rem]  rounded-3xl'
               />
             </BackgroundGradient>
           </div>
