@@ -10,12 +10,12 @@ function KnowMe() {
 
 
   return (
-    <div className='h-[45rem] w-full dark:bg-black bg-black  dark:bg-grid-white/[0.8] bg-grid-white/20 relative flex items-center  lg:pt-2 pt-1 lg:items-center flex-col justify-start'>
+    <div className='lg:h-[80rem] h-[40rem] w-full dark:bg-black bg-black  dark:bg-grid-white/[0.8] bg-grid-white/20 relative flex items-center  lg:pt-2 pt-20 lg:items-center flex-col justify-start '>
       <div className='absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]'></div>
       <ContainerScroll
         titleComponent={
           <>
-            <div className=' text-white inline-block text-transparent text-2xl bg-clip-text lg:text-8xl font-semibold text-center '>
+            <div className=' text-white inline-block text-transparent text-2xl bg-clip-text lg:text-8xl font-semibold text-center -mt-40 '>
               The Underdog <span className='text-[#DA0037]'>DEV</span>
               <br />
             </div>
