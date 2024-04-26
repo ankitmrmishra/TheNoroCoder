@@ -21,15 +21,15 @@ function KnowMe() {
             </div>
           </>
         }>
-        <div className=' bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-orange-600 via-gray-900 to-blue-900 w-full p-4 rounded-2xl lg:flex h-full'>
+        <div className=' bg-black w-full p-4 rounded-2xl lg:flex h-full'>
           <div className='leftIntro lg:w-[50%]'>
             <p className='lg:w-[40rem] mt-5 font-extrabold md:text-4xl text-xl lg:p-4 text-white'></p>
             <div className='flex flex-col justify-center items-center text-start'>
               <div className='bg-gradient-to-r from-indigo-200 via-red-200 to-yellow-100 text-transparent bg-clip-text p-5 font-bold text-sm md:text-xl gap-4 flex flex-col'>
                 <div>
                   {" "}
-                  Hi there! I am the so-called PRO coder behind this
-                  questionable website.{" "}
+                  Hi there! I am <span className="text-[#da0037]">ANKIT MISHRA, </span> the so-called PRO
+                  coder behind this questionable website.{" "}
                 </div>
                 <div>
                   {" "}
