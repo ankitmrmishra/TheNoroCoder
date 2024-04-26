@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar"
 import SocialMedia from "@/components/ui/SocialMedia";
 
 import Showcase from "@/components/ShowCase";
-
+import {GoogleGeminiEffectDemo }from '../components/whatspp'
 import { IoArrowForward } from "react-icons/io5";
 import KnowMe from "@/components/KnowMe";
 import TechStack from "@/components/TechStack";
@@ -48,6 +48,7 @@ export default function Home() {
       <Showcase />
       <KnowMe/>
       <TechStack/>
+      <GoogleGeminiEffectDemo/>
     </div>
   );
 }
