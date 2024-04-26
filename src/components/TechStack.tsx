@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const TechStack: React.FC = () => {
   return (
-    <div className='bg-black text-white w-full flex flex-col justify-center items-center align-middle lg:-mt-72 z-[200] relative md:p-12 pb-12'>
+    <div className='bg-black text-white w-full flex flex-col justify-center items-center align-middle lg:-mt-72 z-[10] relative md:p-12 pb-12'>
       <h3 className=' font-bold mb-4 lg:text-4xl text-2xl text-center'>
         I Put the &quot;<span className='text-green-500'>Stack</span>&quot; in
         Tech Stack

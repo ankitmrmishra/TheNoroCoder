@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { HeroHighlight, Highlight } from "../components/ui/highlight";
 import Navbar from "../components/Navbar"
 import SocialMedia from "@/components/ui/SocialMedia";
-
+import Link from "next/link";
 import Showcase from "@/components/ShowCase";
 import {GoogleGeminiEffectDemo }from '../components/whatspp'
 import { IoArrowForward } from "react-icons/io5";
@@ -39,7 +39,10 @@ export default function Home() {
         <button className='relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 w-[10rem] mt-5'>
           <span className='absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]' />
           <span className='flex h-full w-full cursor-pointer items-center justify-center align-middle text-center  rounded-full bg-black px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl gap-3'>
-            <p className=' z-[80] font-medium text-lg'>Hire me</p>
+            <p className=' z-[80] font-medium text-lg'><Link
+            href={
+              "https://wa.me/918437153991?text=hey%20ANKIT%20I%20want%20to%20work%20on%20a%20project%20with%20you"
+            }>Hire Me </Link></p>
             <IoArrowForward className='animate-moveBackwardForward' />
           </span>
         </button>

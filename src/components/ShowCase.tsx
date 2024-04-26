@@ -4,7 +4,7 @@ import ProjectCard from "./ui/ProjectCard";
 
 function Showcase() {
   return (
-    <div className='bg-black text-white flex flex-col justify-center items-center p-8 text-center w-full'>
+    <div id="Showcase" className='bg-black text-white flex flex-col justify-center items-center p-8 text-center w-full'>
       <span className=' text-white inline-block text-transparent text-2xl bg-clip-text lg:text-4xl font-semibold '>
         Questionable Creations: <br />A{" "}
         <span className='font-bold bg-gradient-to-r text-transparent bg-clip-text from-[#DA0037] via-[#da0037] to-[#DA0037]'>

@@ -34,7 +34,7 @@ export const GoogleGeminiEffect = ({
             href={
               "https://wa.me/918437153991?text=hey%20ANKIT%20I%20want%20to%20work%20on%20a%20project%20with%20you"
             }>
-            Let's Chat On WhatsApp
+            Let&apos;s Chat On WhatsApp
           </Link>
         </button>
       </div>

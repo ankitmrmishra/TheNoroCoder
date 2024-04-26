@@ -10,7 +10,7 @@ function KnowMe() {
 
 
   return (
-    <div className='lg:h-[80rem] h-[40rem] w-full dark:bg-black bg-black  dark:bg-grid-white/[0.8] bg-grid-white/20 relative flex items-center  lg:pt-2 pt-20 lg:items-center flex-col justify-start '>
+    <div id="KnowMe" className='lg:h-[80rem] h-[40rem] w-full dark:bg-black bg-black  dark:bg-grid-white/[0.8] bg-grid-white/20 relative flex items-center  lg:pt-2 pt-20 lg:items-center flex-col justify-start '>
       <div className='absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]'></div>
       <ContainerScroll
         titleComponent={

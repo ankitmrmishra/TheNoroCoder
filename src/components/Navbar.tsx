@@ -11,7 +11,7 @@ import {
   Link,
   Button,
 } from "@nextui-org/react";
-import { PersonIcon, Pencil2Icon, CubeIcon} from "@radix-ui/react-icons";
+import { PersonIcon, MobileIcon, CubeIcon} from "@radix-ui/react-icons";
 
 
 export default function App() {
@@ -29,16 +29,24 @@ export default function App() {
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
       className='lg:w-[60rem] w-full rounded-3xl  lg:mt-5 mt-1 isolate   bg-white/20 shadow-lg ring-1 ring-black/5  lg:left-[18rem]  fixed '>
-      
-      <NavbarContent
-        className=' sm:hidden  text-white/90 flex justify-evenly gap-4 items-center w-[25rem]' >
+      <NavbarContent className=' sm:hidden  text-white/90 flex justify-evenly gap-4 items-center w-[25rem]'>
         <NavbarBrand>
           <p className='font-bold  text-inherit text-2xl '>NORO-CODER</p>
         </NavbarBrand>
-        <NavbarBrand className=" w-[5rem] flex justify-around items-center">
-          <PersonIcon/>
-          <Pencil2Icon/>
-          <CubeIcon/>
+        <NavbarBrand  className='  gap-2 align-middle flex justify-evenly items-center'>
+          <div>
+            <Link className='text-white/75' href='#KnowMe'>
+              <PersonIcon />
+            </Link>
+          </div>
+          <div className="animation animate-bounce text-green-600">
+            <MobileIcon />
+          </div>
+          <div>
+            <Link href='#Showcase' className='text-white/75'>
+              <CubeIcon />
+            </Link>
+          </div>
         </NavbarBrand>
       </NavbarContent>
 
@@ -50,17 +58,19 @@ export default function App() {
           <p className='font-bold text-2xl text-inherit '>NORO-CODER</p>
         </NavbarBrand>
         <NavbarItem>
-          <Link className='text-white/75' href='#'>
+          <Link className='text-white/75' href='#KnowMe'>
             ABOUT
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link href='#' className='text-white/75'>
-            BLOG
+          <Link
+            href='https://wa.me/918437153991?text=hey%20ANKIT%20I%20want%20to%20work%20on%20a%20project%20with%20you'
+            className='text-green-600 font-bold'>
+            BOOK A CALL
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link href='#' className='text-white/75'>
+          <Link href='#Showcase' className='text-white/75'>
             THE NORO-MUSEUM
           </Link>
         </NavbarItem>
