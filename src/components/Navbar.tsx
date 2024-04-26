@@ -33,14 +33,18 @@ export default function App() {
         <NavbarBrand>
           <p className='font-bold  text-inherit text-2xl '>NORO-CODER</p>
         </NavbarBrand>
-        <NavbarBrand  className='  gap-2 align-middle flex justify-evenly items-center'>
+        <NavbarBrand className='  gap-2 align-middle flex justify-evenly items-center'>
           <div>
             <Link className='text-white/75' href='#KnowMe'>
               <PersonIcon />
             </Link>
           </div>
-          <div className="animation animate-bounce text-green-600">
-            <MobileIcon />
+          <div className='animation animate-bounce text-green-600'>
+            <Link
+              className='text-white/75'
+              href="https://wa.me/918437153991?text=hey%20ANKIT%20I%20want%20to%20work%20on%20a%20project%20with%20you">
+              <MobileIcon />
+            </Link>
           </div>
           <div>
             <Link href='#Showcase' className='text-white/75'>
