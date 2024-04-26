@@ -121,6 +121,7 @@ const config = {
   },
   plugins: [
     require("tailwindcss-animate"),
+     require("@xpd/tailwind-3dtransforms"),
     nextui(),
     function ({ matchUtilities, theme }: any) {
       matchUtilities(

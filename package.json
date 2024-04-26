@@ -33,6 +33,7 @@
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
     "@types/three": "^0.163.0",
+    "@xpd/tailwind-3dtransforms": "^1.0.3",
     "eslint": "^8",
     "eslint-config-next": "14.2.2",
     "postcss": "^8",
