@@ -46,7 +46,7 @@ function KnowMe() {
               </div>
             </div>
           </div>
-          <div className='Image md:flex align-middle items-center justify-center md:w-[50%] md:p-8 hidden'>
+          <div className='Image flex align-middle items-center justify-center md:w-[50%] md:p-8 '>
             <BackgroundGradient className='w-[18rem]'>
               <Image
                 src={MyPhoto}
