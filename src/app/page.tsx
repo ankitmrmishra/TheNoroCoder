@@ -3,11 +3,12 @@ import { motion } from "framer-motion";
 import { HeroHighlight, Highlight } from "../components/ui/highlight";
 import Navbar from "../components/Navbar"
 import SocialMedia from "@/components/ui/SocialMedia";
-import About from "@/components/About";
-import Showcase from "@/components/About";
+
+import Showcase from "@/components/ShowCase";
 
 import { IoArrowForward } from "react-icons/io5";
 import KnowMe from "@/components/KnowMe";
+import TechStack from "@/components/TechStack";
 export default function Home() {
   const socialMediaLinks = {
     twitter: "https://twitter.com/AnkitMishraexe",
@@ -46,6 +47,7 @@ export default function Home() {
       </div>
       <Showcase />
       <KnowMe/>
+      <TechStack/>
     </div>
   );
 }
