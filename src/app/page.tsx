@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#E8E6E3]">
       <main className="max-w-6xl mx-auto px-4">
-        <section className="p-20 mb-32">
+        <section className="md:p-20 p-5 mb-32">
           <div className="relative">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
