@@ -1,57 +1,83 @@
-"use client"
+"use client";
+
 import { motion } from "framer-motion";
-import { HeroHighlight, Highlight } from "../components/ui/highlight";
-import Navbar from "../components/Navbar"
-import SocialMedia from "@/components/ui/SocialMedia";
 import Link from "next/link";
-import Showcase from "@/components/ShowCase";
-import {GoogleGeminiEffectDemo }from '../components/whatspp'
+import Image from "next/image";
 import { IoArrowForward } from "react-icons/io5";
+import Navbar from "@/components/Navbar";
+import SocialMedia from "@/components/ui/SocialMedia";
+import Showcase from "@/components/ShowCase";
+import { GoogleGeminiEffectDemo } from "@/components/whatspp";
 import KnowMe from "@/components/KnowMe";
 import TechStack from "@/components/TechStack";
+
 export default function Home() {
   const socialMediaLinks = {
     twitter: "https://twitter.com/AnkitMishraexe",
     linkedin: "https://www.linkedin.com/in/ankitmishra1106",
     github: "https://github.com/ankitmrmishra",
   };
+
   return (
-    <div className=''>
-      <Navbar />
-      <div className='h-screen w-full dark:bg-black bg-black  dark:bg-grid-white/[0.2] bg-grid-white/5 relative flex items-center  lg:pt-72 pt-52 lg:items-center flex-col justify-start'>
-        {/* Radial gradient for the container to give a faded look */}
-        <div className='absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]'></div>
-        <p className='lg:text-7xl text-3xl p-5 font-extrabold relative z-20 bg-clip-text text-transparent bg-gradient-to-r from-white/95 via-white/55 to-white  text-center'>
-          A Noob Coder Who Thinks he is Pro <br />
-          <Highlight className='bg-gradient-to-r from-white/95 via-white/55 to-white inline-block text-transparent text-3xl bg-clip-text lg:text-7xl  '>
-            THE NORO-CODER
-          </Highlight>
-          <br />
-        </p>
-        <p className='text-xs text-[#DA0037] font-bold lg:text-lg pl-10 pr-10 text-center z-[100] '>
-          Confidently coding my way into a world of bugs and broken layouts, but
-          hey, at least it looks good(ish).
-        </p>
-        <div className='pt-11'>
-          <SocialMedia links={socialMediaLinks} />
-        </div>
-       
-        <button className='relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 w-[10rem] mt-5'>
-          <span className='absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]' />
-          <span className='flex h-full w-full cursor-pointer items-center justify-center align-middle text-center  rounded-full bg-black px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl gap-3'>
-            <p className=' z-[80] font-medium text-lg'><Link
-            href={
-              "https://wa.me/918437153991?text=hey%20ANKIT%20I%20want%20to%20work%20on%20a%20project%20with%20you"
-            }>Hire Me </Link></p>
-            <IoArrowForward className='animate-moveBackwardForward' />
-          </span>
-        </button>
-        ;
-      </div>
-      <Showcase />
-      <KnowMe/>
-      <TechStack/>
-      <GoogleGeminiEffectDemo/>
+    <div className="min-h-screen bg-[#E8E6E3]">
+      <main className="max-w-6xl mx-auto px-4">
+        <section className="p-20 mb-32">
+          <div className="relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="max-w-4xl"
+            >
+              <h1 className="text-[#1A2B3B] text-5xl md:text-7xl font-medium leading-tight tracking-tight mb-6">
+                A Noob Coder Who
+                <br />
+                Thinks he is{" "}
+                <span className="text-[#FF4D4D] font-normal">Pro</span>
+              </h1>
+              <h2 className="text-[#1A2B3B] text-4xl md:text-6xl font-medium leading-tight">
+                THE NORO-CODER
+              </h2>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="mt-8 max-w-2xl"
+            >
+              <p className="text-[#1A2B3B]/60 text-lg leading-relaxed">
+                Confidently coding my way into a world of bugs and broken
+                layouts, but hey, at least it looks good(ish).
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="mt-12 space-y-6"
+            >
+              <SocialMedia links={socialMediaLinks} />
+
+              <button className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-[#1A2B3B]/20 focus:ring-offset-2 focus:ring-offset-[#E8E6E3]">
+                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#1A2B3B_0%,#FF4D4D_50%,#1A2B3B_100%)]" />
+                <span className="flex h-full w-full items-center justify-center rounded-full bg-[#E8E6E3] px-6 py-1 text-lg font-medium text-[#1A2B3B] backdrop-blur-3xl gap-3">
+                  <Link href="https://wa.me/918437153991?text=hey%20ANKIT%20I%20want%20to%20work%20on%20a%20project%20with%20you">
+                    Hire Me
+                  </Link>
+                  <IoArrowForward className="animate-moveBackwardForward" />
+                </span>
+              </button>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* <Showcase />
+        <KnowMe />
+        <TechStack />
+        <GoogleGeminiEffectDemo /> */}
+      </main>
     </div>
   );
 }
