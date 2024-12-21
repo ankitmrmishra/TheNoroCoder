@@ -2,14 +2,10 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
 import { IoArrowForward } from "react-icons/io5";
-import Navbar from "@/components/Navbar";
+// import Navbar from "@/components/Navbar";
 import SocialMedia from "@/components/ui/SocialMedia";
-import Showcase from "@/components/ShowCase";
-import { GoogleGeminiEffectDemo } from "@/components/whatspp";
-import KnowMe from "@/components/KnowMe";
-import TechStack from "@/components/TechStack";
 
 export default function Home() {
   const socialMediaLinks = {
