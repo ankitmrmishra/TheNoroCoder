@@ -1,6 +1,6 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 import { nextui } from "@nextui-org/react";
- 
+
 const svgToDataUri = require("mini-svg-data-uri");
 
 const colors = require("tailwindcss/colors");
@@ -27,8 +27,13 @@ const config = {
       },
     },
     extend: {
-      
+      fontFamily: {
+        raleaway500: ["Raleway500"],
+        NeueMachina: ["NeueMachina"],
+        NeueMachinaRegular: ["NeueMachinaRegular"],
+      },
       colors: {
+        mainColour: "#FF4D4D",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -121,7 +126,7 @@ const config = {
   },
   plugins: [
     require("tailwindcss-animate"),
-     require("@xpd/tailwind-3dtransforms"),
+    require("@xpd/tailwind-3dtransforms"),
     nextui(),
     function ({ matchUtilities, theme }: any) {
       matchUtilities(
@@ -171,4 +176,4 @@ function addVariablesForColors({ addBase, theme }: any) {
   });
 }
 
-export default config
+export default config;
