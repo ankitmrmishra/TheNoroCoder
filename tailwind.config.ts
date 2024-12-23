@@ -31,6 +31,7 @@ const config = {
         raleaway500: ["Raleway500"],
         NeueMachina: ["NeueMachina"],
         NeueMachinaRegular: ["NeueMachinaRegular"],
+        firacode: ["Fira_code"],
       },
       colors: {
         mainColour: "#FF4D4D",
