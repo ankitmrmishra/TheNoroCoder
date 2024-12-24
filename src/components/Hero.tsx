@@ -22,20 +22,18 @@ const Hero = () => {
   };
   return (
     <div>
-      <main className="min-w-6xl mx-auto px-4">
-        <section className="md:p-20 p-5 mb-32 text-center">
-          <div className="">
+      <main className="min-w-6xl mx-auto px-4 ">
+        <section className="md:p-20 p-5 md:pt-1 pt-10  text-center">
+          <div className="flex flex-col justify-centera align-middle items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className={`max-w-7xl font-semibold ${poppins.className} text-center`}
+              className={`max-w-4xl  font-semibold ${poppins.className} text-center flex flex-col justify-center align-middle items-center`}
             >
               <h1 className="text-[#1A2B3B] text-5xl md:text-8xl leading-tight tracking-tight mb-6 ">
                 Ankit,
-                <span className="text-mainColour"> Developer</span>
-              </h1>
-              <h1 className="text-[#1A2B3B] text-5xl md:text-8xl  leading-tight">
+                <span className="text-mainColour"> Developer </span>
                 Based in India
               </h1>
             </motion.div>
@@ -44,7 +42,7 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="mt-8 "
+              className="md:mt-8 mt-0 "
             >
               <p className="text-[#1A2B3B]/60 text-lg leading-relaxed">
                 Confidently coding my way into a world of bugs and broken
