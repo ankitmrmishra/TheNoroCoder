@@ -1,5 +1,5 @@
 import React from "react";
-import { Highlight } from "./ui/highlight";
+
 import ProjectCard from "./ui/ProjectCard";
 import { Poppins } from "next/font/google";
 
@@ -11,17 +11,17 @@ const poppins = Poppins({
 
 function Showcase() {
   return (
-    <div className="md:px-5 px-1 py-5">
+    <div className="  flex justify-center align-middle items-center ">
       <div
         id="Showcase"
-        className=" flex flex-col justify-center items-center md:p-8 p-2 text-center w-full min-h-screen bg-mainColour rounded-3xl "
+        className=" flex flex-col justify-center items-center  text-center lg:min-w-[50rem] lg:max-w-[80rem] w-screen p-5 min-h-screen  rounded-3xl bg-white  "
       >
         <div
-          className={` md:text-6xl text-4xl  font-semibold ${poppins.className}  flex gap-2 justify-center align-middle items-center`}
+          className={` md:text-6xl text-4xl  font-semibold ${poppins.className}   flex gap-2 justify-center align-middle items-center`}
         >
-          My <span className="text-white">Creations</span>
+          My <span className="text-mainColour">Creations</span>
         </div>
-        <div className="this_is_showcase_section">
+        <div className="this_is_showcase_section mt-3 ">
           <ProjectCard />
         </div>
       </div>

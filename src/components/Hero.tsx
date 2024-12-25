@@ -21,7 +21,7 @@ const Hero = () => {
     github: "https://github.com/ankitmrmishra",
   };
   return (
-    <div className="h-[90vh] flex justify-center align-middle items-center">
+    <div className="h-[90vh]  flex justify-center align-middle items-center">
       <main className="min-w-6xl mx-auto px-4 ">
         <section className="md:p-20 p-5  pt-10 md:pt-44  text-center">
           <div className="flex flex-col justify-centera align-middle items-center">

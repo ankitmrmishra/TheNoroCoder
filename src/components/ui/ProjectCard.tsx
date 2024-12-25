@@ -1,21 +1,21 @@
 import { cn } from "@/lib/utils";
 import React from "react";
-import { motion, MotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
 import LawgicalInsights from "../../app/assets/Li.png";
 import Studinity from "../../app/assets/st.png";
 import hackforBloom from "../../app/assets/hfb.png";
 import duggup from "../../app/assets/du.png";
-import Link from "next/link";
+// import Link from "next/link";
 import { Poppins } from "next/font/google";
 import { Button } from "./button";
 import { useRouter } from "next/navigation";
 
-const poppins = Poppins({
-  subsets: ["latin"],
+// const poppins = Poppins({
+//   subsets: ["latin"],
 
-  weight: ["600"],
-});
+//   weight: ["600"],
+// });
 const poppinslight = Poppins({
   subsets: ["latin"],
 
@@ -25,7 +25,7 @@ function ProjectCard({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        " mt-16 lg:mt-24  grid md:grid-cols-2 grid-cols-1 gap-3 md:pt-12 w-full",
+        "    grid lg:grid-cols-2 grid-cols-1 gap-3 md:pt-12 w-full",
         className
       )}
     >
@@ -82,14 +82,8 @@ export const Card = ({
 }) => {
   const router = useRouter();
   return (
-    <motion.div
-      style={{
-        boxShadow:
-          "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
-      }}
-      className="bg-white md:w-[500px] w-full px-2 py-2 rounded-3xl md:h-[35rem] h-[34rem] text-black group overflow-hidden hover:cursor-pointer"
-    >
-      <div className="relative overflow-hidden rounded-3xl transition-[height] duration-500 ease-in-out group-hover:h-[250px] h-[20rem] ">
+    <motion.div className=" shadow-2xl border border-gray-300 md:w-[510px] w-full md:p-5 p-2 rounded-3xl md:h-[35rem] h-[32rem] text-black group overflow-hidden hover:cursor-pointer ">
+      <div className="relative  overflow-hidden rounded-3xl transition-[height] duration-500 ease-in-out md:group-hover:h-[230px] h-[200px] md:h-[300px] ">
         {/* Image container that stays fixed */}
         <div className="absolute top-0 left-0 w-full ">
           <Image
@@ -97,13 +91,13 @@ export const Card = ({
             width={500}
             height={500}
             alt={title}
-            className="h-[20rem] w-full object-fill rounded-2xl "
+            className="md:h-[20rem] h-[15rem] w-full object-fill rounded-2xl "
           />
         </div>
       </div>
-      <div className="w-full py-5 flex flex-col justify-center align-middle items-start  px-4  md:h-[20rem] h-[18rem] gap-3    ">
+      <div className="w-full md:mt-1 mt-5  flex flex-col md:justify-center justify-start align-middle items-start  px-4  md:h-[20rem] h-[10rem] md:gap-3 gap-1    ">
         <span
-          className={` md:text-2xl   font-semibold ${poppins.className}  flex gap-2 justify-start align-middle items-start text-start`}
+          className={` md:text-4xl text-xl  font-semibold ${poppinslight.className}  flex gap-2 justify-start align-middle items-start text-start`}
         >
           {title}
         </span>
