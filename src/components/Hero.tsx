@@ -21,9 +21,9 @@ const Hero = () => {
     github: "https://github.com/ankitmrmishra",
   };
   return (
-    <div>
+    <div className="h-[90vh] flex justify-center align-middle items-center">
       <main className="min-w-6xl mx-auto px-4 ">
-        <section className="md:p-20 p-5 md:pt-1 pt-10  text-center">
+        <section className="md:p-20 p-5  pt-10 md:pt-44  text-center">
           <div className="flex flex-col justify-centera align-middle items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -32,7 +32,7 @@ const Hero = () => {
               className={`max-w-4xl  font-semibold ${poppins.className} text-center flex flex-col justify-center align-middle items-center`}
             >
               <h1 className="text-[#1A2B3B] text-5xl md:text-8xl leading-tight tracking-tight mb-6 ">
-                Ankit,
+                Hi! I am Ankit,
                 <span className="text-mainColour"> Developer </span>
                 Based in India
               </h1>
@@ -42,11 +42,11 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="md:mt-8 mt-0 "
+              className="md:mt-1 mt-0 "
             >
               <p className="text-[#1A2B3B]/60 text-lg leading-relaxed">
-                Confidently coding my way into a world of bugs and broken
-                layouts, but hey, at least it looks good(ish).
+                I connect with Builders to Design and Develop Websites, Reaching
+                Goals and Delivering the message.
               </p>
             </motion.div>
 

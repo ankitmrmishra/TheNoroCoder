@@ -1,24 +1,29 @@
 import React from "react";
 import { Highlight } from "./ui/highlight";
 import ProjectCard from "./ui/ProjectCard";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+
+  weight: ["600"],
+});
 
 function Showcase() {
   return (
-    <div id="Showcase" className='bg-black text-white flex flex-col justify-center items-center p-8 text-center w-full'>
-      <span className=' text-white inline-block text-transparent text-2xl bg-clip-text lg:text-4xl font-semibold '>
-        Questionable Creations: <br />A{" "}
-        <span className='font-bold bg-gradient-to-r text-transparent bg-clip-text from-[#DA0037] via-[#da0037] to-[#DA0037]'>
-          Showcase
-        </span>
-      </span>
-      <p className='lg:w-[40rem] text-sm mt-5 text-white/40'>
-        
-        This is a glimpse into the digital abominations...err...masterpieces
-        unleashed so far. Don&apos;t judge too harshly - amateur hour is a
-        process!
-      </p>
-      <div className='showcaselist'>
-        <ProjectCard/>
+    <div className="md:px-5 px-1 py-5">
+      <div
+        id="Showcase"
+        className=" flex flex-col justify-center items-center md:p-8 p-2 text-center w-full min-h-screen bg-mainColour rounded-3xl "
+      >
+        <div
+          className={` md:text-6xl text-4xl  font-semibold ${poppins.className}  flex gap-2 justify-center align-middle items-center`}
+        >
+          My <span className="text-white">Creations</span>
+        </div>
+        <div className="this_is_showcase_section">
+          <ProjectCard />
+        </div>
       </div>
     </div>
   );
