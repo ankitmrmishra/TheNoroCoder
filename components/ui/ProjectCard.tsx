@@ -3,13 +3,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
 import LawgicalInsights from "../../app/assets/Li.png";
-import Studinity from "../../app/assets/st.png";
-import hackforBloom from "../../app/assets/hfb.png";
-import duggup from "../../app/assets/du.png";
-// import Link from "next/link";
+import KN from "../../app/assets/KalaNamak.png";
+import JK from "../../app/assets/jobkonnect.png";
+import khelo from "../../app/assets/khelo.png";
+import dcex from "../../app/assets/dcex.png";
 import { Poppins } from "next/font/google";
 import { Button } from "./button";
 import { useRouter } from "next/navigation";
+import display from "../../app/assets/github.png";
+import { BackgroundBeamsWithCollision } from "./BeamCollison";
 
 // const poppins = Poppins({
 //   subsets: ["latin"],
@@ -21,7 +23,55 @@ const poppinslight = Poppins({
 
   weight: ["400"],
 });
+
+const projects = [
+  {
+    title: "KheloYaha",
+    display: khelo,
+    link: "https://kheloyaha.vercel.app/",
+    companyType: "Prediction Betting App",
+    timeOfwork: "June 2024",
+    details:
+      "Turn Your Predictions into Profits Trade on your convictions, earn from your insights. India's first social prediction market where opinions have real value.",
+  },
+  {
+    title: "DCEX",
+    display: dcex,
+    link: "https://dcex.vercel.app/",
+    companyType: "Web Based Crypto Wallet",
+    timeOfwork: "July 2024",
+    details:
+      "A web based crypto wallet, BharatWallet makes it more easier to use cryptowallet",
+  },
+  {
+    title: "JobKonnect",
+    display: JK,
+    link: "https://jobkonnect.vercel.app/",
+    companyType: "Job Search Platform",
+    timeOfwork: "August 2024",
+    details:
+      "At JobConnect, we are not just another job board. We are your career catalyst, bringing together ambitious professionals and visionary companies.",
+  },
+  {
+    title: "LawGical Insights",
+    display: LawgicalInsights,
+    link: "https://lawgical-insights-page.vercel.app/",
+    companyType: "Legal Platform",
+    timeOfwork: "April 2024",
+    details: "LawGical Insights is an Portfolio Website and a Law info Page ",
+  },
+  {
+    title: "Kalanamak",
+    display: KN,
+    link: "https://kalanamak.vercel.app/",
+    companyType: "E-commerce Platform",
+    timeOfwork: "May 2024",
+    details:
+      "Kalanamak is a specialized e-commerce platform focusing on authentic, high-quality KalaNamak rice.",
+  },
+];
 function ProjectCard({ className }: { className?: string }) {
+  const router = useRouter();
   return (
     <div
       className={cn(
@@ -29,38 +79,21 @@ function ProjectCard({ className }: { className?: string }) {
         className
       )}
     >
-      <Card
-        title="LawGical Insights"
-        display={LawgicalInsights}
-        link="https://lawgicalinsights.vercel.app/"
-        companyType="This is CompanyType"
-        timeOfwork="April 2024"
-        details="this is detail and i am doing this detail shit and writing this abolute crap aboyut the website and i am working on it and i am not going to stop here"
-      ></Card>
-      <Card
-        title="Studinity"
-        display={Studinity}
-        link="https://studinity.vercel.app/"
-        companyType="This is CompanyType"
-        timeOfwork="April 2024"
-        details="this is detail and i am doing this detail shit and writing this abolute crap aboyut the website and i am working on it and i am not going to stop here"
-      ></Card>
-      <Card
-        title="Hack-FOR-Bloom"
-        display={hackforBloom}
-        link="https://hfb-rho.vercel.app/"
-        companyType="This is CompanyType"
-        timeOfwork="April 2024"
-        details="this is detail and i am doing this detail shit and writing this abolute crap aboyut the website and i am working on it and i am not going to stop here"
-      ></Card>
-      <Card
-        title="Duggup"
-        display={duggup}
-        link="https://duggup-assignment-ankitmishra.vercel.app/"
-        companyType="This is CompanyType"
-        timeOfwork="April 2024"
-        details="this is detail and i am doing this detail shit and writing this abolute crap aboyut the website and i am working on it and i am not going to stop here"
-      ></Card>
+      {projects.map((project, map) => (
+        <Card {...project} />
+      ))}
+      <BackgroundBeamsWithCollision className="shadow-2xl border border-gray-300 md:w-[510px] w-full md:p-5 p-2 rounded-3xl md:h-[35rem] h-[32rem] text-black group overflow-hidden hover:cursor-pointer">
+        <div className="relative  flex justify-center align-middle items-center h-full  ">
+          {/* Image container that stays fixed */}
+
+          <Button
+            onClick={() => router.push("https://github.com/ankitmrmishra")}
+            className="py-6 px-6 text-lg mt-5  "
+          >
+            More Projects
+          </Button>
+        </div>
+      </BackgroundBeamsWithCollision>
     </div>
   );
 }
