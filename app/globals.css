@@ -10,71 +10,71 @@ body {
   @font-face {
     font-family: "Raleway";
     font-weight: 100;
-    src: url("../../public/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf")
+    src: url("../public/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf")
       format("truetype");
   }
   @font-face {
     font-family: "Raleway200";
     font-weight: 200;
-    src: url("../../public/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf")
+    src: url("../public/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf")
       format("truetype");
   }
   @font-face {
     font-family: "Raleway300";
     font-weight: 300;
-    src: url("../../public/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf")
+    src: url("../public/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf")
       format("truetype");
   }
   @font-face {
     font-family: "Raleway400";
     font-weight: 400;
-    src: url("../../public/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf")
+    src: url("../public/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf")
       format("truetype");
   }
   @font-face {
     font-family: "Raleway500";
     font-weight: 500;
-    src: url("../../public/fonts/Raleway/Raleway-VariableFont_wght.ttf")
+    src: url("../public/fonts/Raleway/Raleway-VariableFont_wght.ttf")
       format("truetype");
   }
   @font-face {
     font-family: "Raleway600";
     font-weight: 600;
-    src: url("../../public/fonts/Raleway/Raleway-VariableFont_wght.ttf")
+    src: url("../public/fonts/Raleway/Raleway-VariableFont_wght.ttf")
       format("truetype");
   }
   @font-face {
     font-family: "Raleway700";
     font-weight: 700;
-    src: url("../../public/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf")
+    src: url("../public/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf")
       format("truetype");
   }
   @font-face {
     font-family: "Raleway800";
     font-weight: 800;
-    src: url("../../public/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf")
+    src: url("../public/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf")
       format("truetype");
   }
   @font-face {
     font-family: "Raleway900";
     font-weight: 900;
-    src: url("../../public/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf")
+    src: url("../public/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf")
       format("truetype");
   }
   @font-face {
     font-family: "NeueMachina";
-    src: url("../../public/fonts/neuemachina/NeueMachina-Ultrabold.otf")
+    src: url("../public/fonts/neuemachina/NeueMachina-Ultrabold.otf")
       format("opentype");
   }
   @font-face {
     font-family: "NeueMachinaRegular";
-    src: url("../../public/fonts/neuemachina/NeueMachina-Regular.otf")
+    src: url("../public/fonts/neuemachina/NeueMachina-Regular.otf")
       format("opentype");
   }
   @font-face {
     font-family: "Fira_code";
     font-weight: 600;
-    src: url("../../public/fonts/Fira_Code/FiraCode-VariableFont_wght.ttf")
+    src: url("../public/fonts/Fira_Code/FiraCode-VariableFont_wght.ttf")
       format("truetype");
   }
 }

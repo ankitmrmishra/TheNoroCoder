@@ -6,7 +6,7 @@ import Link from "next/link";
 // import Image from "next/image";
 import { IoArrowForward } from "react-icons/io5";
 // import Navbar from "@/components/Navbar";
-import SocialMedia from "@/components/ui/SocialMedia";
+import SocialMedia from "../components/ui/SocialMedia";
 import { Poppins } from "next/font/google";
 
 const poppins = Poppins({
