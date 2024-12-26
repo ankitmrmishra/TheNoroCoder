@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Showcase from "@/components/ShowCase";
 import Provide from "@/components/Provide";
+import Pricing from "@/components/Pricing";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Hero />
       <Showcase />
       <Provide />
+      <Pricing />
     </div>
   );
 }
