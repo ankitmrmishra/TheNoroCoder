@@ -3,6 +3,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Showcase from "@/components/ShowCase";
+import Provide from "@/components/Provide";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Showcase />
+      <Provide />
     </div>
   );
 }

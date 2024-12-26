@@ -123,6 +123,9 @@ const config = {
         moveBorderColor: "moveBorderColor 6s linear infinite",
         "border-spin": "border-spin 7s linear infinite",
       },
+      backgroundImage: {
+        "mesh-bg": "url('/assets/Hypercolor.jpeg')",
+      },
     },
   },
   plugins: [
