@@ -80,7 +80,7 @@ function ProjectCard({ className }: { className?: string }) {
       )}
     >
       {projects.map((project, map) => (
-        <Card {...project} />
+        <Card key={map} {...project} />
       ))}
       <BackgroundBeamsWithCollision className="shadow-2xl border border-gray-300 md:w-[510px] w-full md:p-5 p-2 rounded-3xl md:h-[35rem] h-[32rem] text-black group overflow-hidden hover:cursor-pointer">
         <div className="relative  flex justify-center align-middle items-center h-full  ">
