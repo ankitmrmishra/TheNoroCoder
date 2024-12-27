@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     description:
       "Full Stack Developer based in India, specializing in building modern web applications with React, Next.js, and Node.js",
     images: ["https://ankitmishra.xyz/og-image.jpg"],
-    creator: "@AnkitMishra",
+    creator: "@AnkitMishraexe",
   },
   robots: {
     index: true,
