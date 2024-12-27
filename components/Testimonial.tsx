@@ -22,7 +22,7 @@ const Testimonials: TestimonialData[] = [
       "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     description:
       "This platform has transformed the way I manage my business, providing exceptional insights and tools to grow.",
-    name: "John Doe",
+    name: "Mark Depp",
     title: "CEO, Tech Innovators",
   },
   {
@@ -30,7 +30,7 @@ const Testimonials: TestimonialData[] = [
       "https://images.unsplash.com/photo-1535295972055-1c762f4483e5?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     description:
       "The user experience is seamless, and the customer support is outstanding. Highly recommend it!",
-    name: "Jane Smith",
+    name: "Priya Williams",
     title: "Marketing Manager, Bright Future Co.",
   },
   {
@@ -38,7 +38,7 @@ const Testimonials: TestimonialData[] = [
       "https://plus.unsplash.com/premium_photo-1669703777437-27602d656c27?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     description:
       "Thanks to this service, our team has been able to achieve our goals faster and more efficiently.",
-    name: "Alex Johnson",
+    name: "Mitchell Vaugh",
     title: "Product Manager, Solutions Hub",
   },
 ];
