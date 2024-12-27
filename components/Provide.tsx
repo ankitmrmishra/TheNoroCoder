@@ -69,7 +69,10 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="py-20 flex w-full justify-center align-middle items-center">
+    <section
+      id="service"
+      className="py-20 flex w-full justify-center align-middle items-center"
+    >
       <div className="md:max-w-7xl flex justify-center align-middle items-center gap-3 flex-col">
         {/* heading */}
         <div
