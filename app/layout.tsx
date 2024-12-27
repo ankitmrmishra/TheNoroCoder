@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     title: "Ankit Mishra | Full Stack Developer",
     description:
       "Full Stack Developer based in India, specializing in building modern web applications with React, Next.js, and Node.js",
-    images: ["https://ankitmishra.xyz/og-image.jpg"],
+    images: ["https://winniesresort.vercel.app/og-image.jpg"],
     creator: "@AnkitMishraexe",
   },
   robots: {
