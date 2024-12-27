@@ -11,7 +11,10 @@ const poppins = Poppins({
 
 function Showcase() {
   return (
-    <div className="  flex justify-center align-middle items-center ">
+    <div
+      id="projects"
+      className="  flex justify-center align-middle items-center "
+    >
       <div
         id="Showcase"
         className=" flex flex-col justify-center items-center  text-center lg:min-w-[50rem] lg:max-w-[80rem] w-screen p-5 min-h-screen  rounded-3xl bg-white  "

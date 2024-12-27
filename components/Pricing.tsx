@@ -56,8 +56,9 @@ const FAQItem = ({
 }) => {
   return (
     <motion.div
+      id="faqs"
       initial={false}
-      className="border-b border-gray-200 last:border-none"
+      className="border-b border-gray-200 last:border-none "
     >
       <button
         onClick={onClick}
@@ -96,7 +97,7 @@ const FAQs = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="py-20 px-4 md:px-6 w-full max-w-4xl mx-auto">
+    <div className="flex flex-col min-h-screen justify-center align-middle items-center">
       <div className="text-center mb-12">
         <h2
           className={`md:text-6xl text-4xl font-semibold ${poppins.className}`}

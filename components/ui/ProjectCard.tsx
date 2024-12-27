@@ -50,7 +50,7 @@ const projects = [
     companyType: "Job Search Platform",
     timeOfwork: "August 2024",
     details:
-      "At JobConnect, we are not just another job board. We are your career catalyst, bringing together ambitious professionals and visionary companies.",
+      "At JobKonnect, we are not just another job board. We are your career catalyst, bringing together ambitious professionals and visionary companies.",
   },
   {
     title: "LawGical Insights",

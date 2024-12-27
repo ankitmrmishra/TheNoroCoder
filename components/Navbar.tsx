@@ -11,7 +11,12 @@ const Navbar = () => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const menuItems = ["About Me", "Projects", "Testimonials", "FAQs"];
+  const menuItems = [
+    { name: "About Me", href: "#about" },
+    { name: "Projects", href: "#projects" },
+    { name: "Testimonials", href: "#testimonials" },
+    { name: "FAQs", href: "#faqs" },
+  ];
 
   const menuVariants = {
     open: {
@@ -42,7 +47,12 @@ const Navbar = () => {
             key={index}
             className="cursor-pointer hover:text-mainColour transition-colors"
           >
-            {item}
+            <Link
+              href={item.href}
+              className="text-gray-600 hover:text-mainColour transition-colors duration-200"
+            >
+              {item.name}
+            </Link>
           </div>
         ))}
       </div>
@@ -110,7 +120,12 @@ const Navbar = () => {
                 className="text-2xl mb-6 cursor-pointer hover:text-mainColour transition-colors"
                 custom={index}
               >
-                {item}
+                <Link
+                  href={item.href}
+                  className="text-gray-600 hover:text-mainColour transition-colors duration-200"
+                >
+                  {item.name}
+                </Link>
               </motion.div>
             ))}
             <motion.div

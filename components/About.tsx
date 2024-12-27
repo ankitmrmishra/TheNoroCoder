@@ -11,7 +11,10 @@ const poppins = Poppins({
 
 const About = () => {
   return (
-    <div className="flex flex-col justify-center align-middle items-center w-full">
+    <div
+      id="about"
+      className="flex flex-col justify-center align-middle items-center w-full"
+    >
       <div className="text-center">
         <h2
           className={`md:text-6xl text-4xl font-semibold ${poppins.className}`}
