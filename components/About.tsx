@@ -31,8 +31,8 @@ const About = () => {
         </div>
         <div className="aboutme max-w-2xl md:text-2xl text-lg flex flex-col justify-center align-middle items-start gap-4 font-semibold text-justify">
           <p className="">
-            Hi, I'm Ankit Mishra, a passionate Software Developer with expertise
-            in crafting responsive, scalable, and user-friendly web
+            Hi, I&apos;m Ankit Mishra, a passionate Software Developer with
+            expertise in crafting responsive, scalable, and user-friendly web
             applications. With a solid foundation in front-end and back-end
             technologies, I excel in solving complex coding challenges and
             delivering innovative solutions.
@@ -40,15 +40,15 @@ const About = () => {
           <p className="">
             My journey in tech is driven by a love for continuous learning,
             staying ahead with emerging technologies, and exploring creative
-            problem-solving approaches. Whether it's building dynamic e-commerce
-            platforms, blockchain-based solutions, or interactive job portals, I
-            bring precision and creativity to every project.
+            problem-solving approaches. Whether it&apos;s building dynamic
+            e-commerce platforms, blockchain-based solutions, or interactive job
+            portals, I bring precision and creativity to every project.
           </p>
           <p className="">
-            When I'm not coding, you'll find me writing blogs, diving into
-            books, or enjoying a game of cricket. Explore my work and connect
-            with me as I continue to innovate and grow in the ever-evolving tech
-            landscape.
+            When I&apos;m not coding, you&apos;ll find me writing blogs, diving
+            into books, or enjoying a game of cricket. Explore my work and
+            connect with me as I continue to innovate and grow in the
+            ever-evolving tech landscape.
           </p>
         </div>
       </div>
