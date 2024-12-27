@@ -124,7 +124,7 @@ export const Card = ({
             width={500}
             height={500}
             alt={title}
-            className="md:h-[20rem] h-[15rem] w-full object-fill rounded-2xl "
+            className="h-full w-full object-fill rounded-2xl "
           />
         </div>
       </div>
