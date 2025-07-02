@@ -107,7 +107,7 @@ const FAQs = () => {
       </div>
 
       <motion.div
-        className="bg-white rounded-2xl shadow-sm p-6 md:p-8"
+        className="bg-white rounded-2xl shadow-sm p-6 md:p-8 max-w-xl"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
