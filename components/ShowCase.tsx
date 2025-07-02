@@ -17,7 +17,7 @@ function Showcase() {
     >
       <div
         id="Showcase"
-        className=" flex flex-col justify-center items-center  text-center lg:min-w-[50rem] lg:max-w-[80rem] w-screen p-5 min-h-screen  rounded-3xl bg-white  "
+        className=" flex flex-col justify-center items-center  text-center lg:min-w-[50rem] lg:max-w-[90rem] w-screen p-5 min-h-screen  rounded-3xl bg-white  "
       >
         <div
           className={` md:text-6xl text-4xl  font-semibold ${poppins.className}   flex gap-2 justify-center align-middle items-center`}

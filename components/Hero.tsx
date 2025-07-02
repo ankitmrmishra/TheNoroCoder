@@ -8,6 +8,7 @@ import { IoArrowForward } from "react-icons/io5";
 // import Navbar from "@/components/Navbar";
 import SocialMedia from "../components/ui/SocialMedia";
 import { Poppins } from "next/font/google";
+import InfiniteProjectsShowcase from "./ui/infinite-carousel-hero";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -21,7 +22,7 @@ const Hero = () => {
     github: "https://github.com/ankitmrmishra",
   };
   return (
-    <div className="h-[90vh]  flex justify-center align-middle items-center">
+    <div className="min-h-[90vh]  flex flex-col justify-center align-middle items-center overflow-hidden">
       <main className="min-w-6xl mx-auto px-4 ">
         <section className="md:p-20 p-5  pt-10 md:pt-44  text-center">
           <div className="flex flex-col justify-centera align-middle items-center">
@@ -31,7 +32,7 @@ const Hero = () => {
               transition={{ duration: 0.8 }}
               className={`max-w-4xl  font-semibold ${poppins.className} text-center flex flex-col justify-center align-middle items-center`}
             >
-              <h1 className="text-[#1A2B3B] text-5xl md:text-8xl leading-tight tracking-tight mb-6 ">
+              <h1 className="text-[#1A2B3B] text-4xl md:text-8xl leading-tight tracking-tight mb-6 ">
                 Hi! I am Ankit,
                 <span className="text-mainColour"> Developer </span>
                 Based in India
@@ -71,6 +72,7 @@ const Hero = () => {
           </div>
         </section>
       </main>
+      <InfiniteProjectsShowcase />
     </div>
   );
 };

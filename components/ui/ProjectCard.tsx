@@ -75,14 +75,14 @@ function ProjectCard({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "    grid lg:grid-cols-2 grid-cols-1 gap-3 md:pt-12 w-full",
+        "    grid lg:grid-cols-3 grid-cols-1 gap-3 md:pt-12 w-full",
         className
       )}
     >
       {projects.map((project, map) => (
         <Card key={map} {...project} />
       ))}
-      <BackgroundBeamsWithCollision className="shadow-2xl border border-gray-300 md:w-[510px] w-full md:p-5 p-2 rounded-3xl md:h-[35rem] h-[32rem] text-black group overflow-hidden hover:cursor-pointer">
+      <BackgroundBeamsWithCollision className="shadow-2xl border border-gray-300 md:w-[450px] w-full md:p-5 p-2 rounded-3xl md:h-[30rem] h-[32rem] text-black group overflow-hidden hover:cursor-pointer">
         <div className="relative  flex justify-center align-middle items-center h-full  ">
           {/* Image container that stays fixed */}
 
@@ -115,8 +115,8 @@ export const Card = ({
 }) => {
   const router = useRouter();
   return (
-    <motion.div className=" shadow-2xl border border-gray-300 md:w-[510px] w-full md:p-5 p-2 rounded-3xl md:h-[35rem] h-[32rem] text-black group overflow-hidden hover:cursor-pointer ">
-      <div className="relative  overflow-hidden rounded-3xl transition-[height] duration-500 ease-in-out md:group-hover:h-[230px] h-[200px] md:h-[300px] ">
+    <motion.div className=" shadow-2xl border border-gray-300 md:w-[450px] w-full md:p-5 p-2 rounded-3xl md:h-[30rem] h-[32rem] text-black group overflow-hidden hover:cursor-pointer ">
+      <div className="relative  overflow-hidden rounded-3xl transition-[height] duration-500 ease-in-out md:group-hover:h-[200px] h-[200px] md:h-[300px] ">
         {/* Image container that stays fixed */}
         <div className="absolute top-0 left-0 w-full ">
           <Image
@@ -128,7 +128,7 @@ export const Card = ({
           />
         </div>
       </div>
-      <div className="w-full md:mt-1 mt-5  flex flex-col md:justify-center justify-start align-middle items-start  px-4  md:h-[20rem] h-[10rem] md:gap-3 gap-1    ">
+      <div className="w-full md:mt-1 mt-5  flex flex-col md:justify-center justify-start align-middle items-start  px-4  md:h-[10rem] h-[10rem] md:gap-3 gap-1    ">
         <span
           className={` md:text-4xl text-xl  font-semibold ${poppinslight.className}  flex gap-2 justify-start align-middle items-start text-start`}
         >
