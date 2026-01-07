@@ -5,6 +5,7 @@ import { Ghost } from "lucide-react";
 import { Button } from "./ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { cn } from "../lib/utils";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,71 +21,58 @@ const Navbar = () => {
   ];
 
   const menuVariants = {
-    open: {
+    open: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: { type: "spring", stiffness: 300, damping: 24 },
-    },
-    closed: {
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 24,
+        delay: i * 0.17,
+      },
+    }),
+    closed: (i: number) => ({
       opacity: 0,
-      y: 20,
-      transition: { duration: 0.2 },
-    },
+      y: -40,
+      x: -40,
+      transition: {
+        duration: 0.5,
+        ease: [0.76, 0, 0.24, 1],
+        delay: i * 0.05,
+      },
+    }),
   };
 
   return (
-    <nav className="relative h-20 w-full flex justify-between items-center md:px-4 px-6 lg:px-16 md:py-4 py-6 lg:py-8">
-      <div className="Logo flex justify-center items-center">
-        <Ghost className="text-mainColour size-8 sm:size-10" />
-        <span className="text-xl sm:text-2xl font-firacode ml-2">
-          Ankit Mishra
+    <nav
+      className={cn(
+        " w-full flex justify-between items-center align-middle   relative py-3",
+        isOpen && ""
+      )}
+    >
+      <div className="Logo   w-full px-[6%]">
+        <span className="font-GalgoCondesed text-5xl sm:text-6xl lg:text-8xl ml-2 text-black">
+          NORO<span className="text-secondary-foreground">.</span>WORK
         </span>
       </div>
 
-      {/* Desktop Menu */}
-      <div className="hidden lg:flex justify-between items-center gap-6 rounded-full border-mainColour border px-8 py-3">
-        {menuItems.map((item, index) => (
-          <div
-            key={index}
-            className="cursor-pointer hover:text-mainColour transition-colors"
-          >
-            <Link
-              href={item.href}
-              className="text-gray-600 hover:text-mainColour transition-colors duration-200"
-            >
-              {item.name}
-            </Link>
-          </div>
-        ))}
-      </div>
-
-      <div className="hidden lg:block">
-        <button className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-[#1A2B3B]/20 focus:ring-offset-2 focus:ring-offset-[#E8E6E3]">
-          <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#1A2B3B_0%,#FF4D4D_50%,#1A2B3B_100%)]" />
-          <span className="flex h-full w-full items-center justify-center rounded-full bg-[#E8E6E3] px-6 py-1 text-lg font-medium text-[#1A2B3B] backdrop-blur-3xl gap-3">
-            <Link href="https://wa.me/918437153991?text=hey%20ANKIT%20I%20want%20to%20work%20on%20a%20project%20with%20you">
-              Get in Touch
-            </Link>
-          </span>
-        </button>
-      </div>
-
-      {/* Mobile Menu Button */}
+      {/* Menu Button - Now visible on all screen sizes */}
       <motion.div
-        className="lg:hidden z-50 cursor-pointer"
+        className={cn("z-50 cursor-pointer px-10 ", isOpen && " ")}
         onClick={toggleMenu}
         animate={isOpen ? "open" : "closed"}
       >
         <motion.div
-          className="w-6 h-0.5 bg-mainColour mb-1.5"
+          className={cn("w-8 h-0.5 bg-black mb-2", isOpen && "bg-white")}
           variants={{
-            open: { rotate: 45, y: 6 },
+            open: { rotate: 45, y: 9 },
             closed: { rotate: 0, y: 0 },
           }}
           transition={{ duration: 0.3 }}
         />
         <motion.div
-          className="w-6 h-0.5 bg-mainColour mb-1.5"
+          className="w-8 h-0.5 bg-black mb-2"
           variants={{
             open: { opacity: 0 },
             closed: { opacity: 1 },
@@ -92,24 +80,27 @@ const Navbar = () => {
           transition={{ duration: 0.3 }}
         />
         <motion.div
-          className="w-6 h-0.5 bg-mainColour"
+          className={cn("w-8 h-0.5 bg-black mb-2", isOpen && "bg-white")}
           variants={{
-            open: { rotate: -45, y: -6 },
+            open: { rotate: -45, y: -9 },
             closed: { rotate: 0, y: 0 },
           }}
           transition={{ duration: 0.3 }}
         />
       </motion.div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
+      {/* Full-Screen Menu */}
+      <AnimatePresence mode="wait">
         {isOpen && (
           <motion.div
-            className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center"
-            initial={{ opacity: 0, y: "-100%" }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: "-100%" }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="fixed inset-0 bg-black z-40 flex flex-col items-center justify-center "
+            initial={{ clipPath: "circle(0% at 100% 0%)" }}
+            animate={{ clipPath: "circle(150% at 100% 0%)" }}
+            exit={{ clipPath: "circle(0% at 100% 0%)" }}
+            transition={{
+              duration: 0.9,
+              ease: [0, 0, 0.24, 1],
+            }}
           >
             {menuItems.map((item, index) => (
               <motion.div
@@ -118,12 +109,13 @@ const Navbar = () => {
                 initial="closed"
                 animate="open"
                 exit="closed"
-                className="text-2xl mb-6 cursor-pointer hover:text-mainColour transition-colors"
+                className="text-7xl sm:text-6xl lg:text-9xl text-white hover:bg-white transfor font-Galgo700 group sm:border-b border-white w-full px-10   ease-in-out"
                 custom={index}
               >
                 <Link
                   href={item.href}
-                  className="text-gray-600 hover:text-mainColour transition-colors duration-200"
+                  onClick={toggleMenu}
+                  className="text-white group-hover:text-black transition-colors duration-200"
                 >
                   {item.name}
                 </Link>
@@ -135,12 +127,15 @@ const Navbar = () => {
               animate="open"
               exit="closed"
               custom={menuItems.length}
+              className="mt-8"
             >
               <Button
                 variant={"outline"}
-                className="border-mainColour rounded-full px-6 py-2 text-lg text-mainColour bg-transparent hover:bg-mainColour hover:text-white transition-colors mt-4"
+                className="border-primary rounded-full px-8 py-6 text-xl text-primary bg-secondary hover:bg-primary hover:text-white transition-colors"
               >
-                Get In Touch
+                <Link href="https://wa.me/918437153991?text=hey%20ANKIT%20I%20want%20to%20work%20on%20a%20project%20with%20you">
+                  Get In Touch
+                </Link>
               </Button>
             </motion.div>
           </motion.div>

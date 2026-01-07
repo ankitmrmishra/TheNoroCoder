@@ -30,6 +30,10 @@ const config = {
       fontFamily: {
         raleaway500: ["Raleway500"],
         NeueMachina: ["NeueMachina"],
+        GalgoCondesed: ["GalgoCondensed"],
+        GalgoCondenseditalic: ["GalgoCondenseditalic"],
+        Galgo700: ["Galgo700"],
+        Galgo400: ["Galgo400"],
         NeueMachinaRegular: ["NeueMachinaRegular"],
         firacode: ["Fira_code"],
       },
