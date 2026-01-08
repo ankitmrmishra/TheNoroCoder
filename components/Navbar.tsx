@@ -51,7 +51,7 @@ const Navbar = () => {
         isOpen && ""
       )}
     >
-      <div className="Logo   w-full px-[6%]">
+      <div className="Logo   w-full px-[7%]">
         <span className="font-GalgoCondesed text-5xl sm:text-6xl lg:text-8xl ml-2 text-black">
           NORO<span className="text-secondary-foreground">.</span>WORK
         </span>

@@ -1,30 +1,39 @@
-import { cn } from "../../lib/utils";
-import React from "react";
-import { motion } from "framer-motion";
+"use client";
+
+import React, { useRef, useEffect } from "react";
 import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
+import { Poppins } from "next/font/google";
+import { cn } from "../../lib/utils";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowRight } from "lucide-react";
+import { BackgroundBeamsWithCollision } from "./BeamCollison";
+
+// Import your assets
 import LawgicalInsights from "../../app/assets/Li.png";
 import KN from "../../app/assets/KalaNamak.png";
 import JK from "../../app/assets/jobkonnect.png";
 import khelo from "../../app/assets/khelo.png";
 import dcex from "../../app/assets/dcex.png";
-import { Poppins } from "next/font/google";
-import { Button } from "./button";
-import { useRouter } from "next/navigation";
-import display from "../../app/assets/github.png";
-import { BackgroundBeamsWithCollision } from "./BeamCollison";
 
-// const poppins = Poppins({
-//   subsets: ["latin"],
+gsap.registerPlugin(ScrollTrigger);
 
-//   weight: ["600"],
-// });
-const poppinslight = Poppins({
-  subsets: ["latin"],
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600"] });
 
-  weight: ["400"],
-});
+// --- Types ---
+interface Project {
+  title: string;
+  display?: StaticImageData;
+  link: string;
+  companyType: string;
+  timeOfwork: string;
+  details: string;
+  isSpecial?: boolean;
+}
 
-const projects = [
+// --- Data ---
+const projects: Project[] = [
   {
     title: "KheloYaha",
     display: khelo,
@@ -32,7 +41,7 @@ const projects = [
     companyType: "Prediction Betting App",
     timeOfwork: "June 2024",
     details:
-      "Turn Your Predictions into Profits Trade on your convictions, earn from your insights. India's first social prediction market where opinions have real value.",
+      "Turn Your Predictions into Profits. India's first social prediction market where opinions have real value.",
   },
   {
     title: "DCEX",
@@ -41,7 +50,7 @@ const projects = [
     companyType: "Web Based Crypto Wallet",
     timeOfwork: "July 2024",
     details:
-      "A web based crypto wallet, BharatWallet makes it more easier to use cryptowallet",
+      "A web based crypto wallet, BharatWallet makes it easier to use crypto wallets with seamless integration.",
   },
   {
     title: "JobKonnect",
@@ -50,7 +59,7 @@ const projects = [
     companyType: "Job Search Platform",
     timeOfwork: "August 2024",
     details:
-      "At JobKonnect, we are not just another job board. We are your career catalyst, bringing together ambitious professionals and visionary companies.",
+      "We are your career catalyst, bringing together ambitious professionals and visionary companies.",
   },
   {
     title: "LawGical Insights",
@@ -58,7 +67,8 @@ const projects = [
     link: "https://lawgical-insights-page.vercel.app/",
     companyType: "Legal Platform",
     timeOfwork: "April 2024",
-    details: "LawGical Insights is an Portfolio Website and a Law info Page ",
+    details:
+      "LawGical Insights is a Portfolio Website and a Law info Page designed for legal professionals.",
   },
   {
     title: "Kalanamak",
@@ -69,89 +79,165 @@ const projects = [
     details:
       "Kalanamak is a specialized e-commerce platform focusing on authentic, high-quality KalaNamak rice.",
   },
+  {
+    title: "More Projects",
+    link: "https://github.com/ankitmrmishra",
+    companyType: "Github",
+    timeOfwork: "Ongoing",
+    details: "Explore the rest of my open source work and contributions.",
+    isSpecial: true,
+  },
 ];
-function ProjectCard({ className }: { className?: string }) {
-  const router = useRouter();
-  return (
-    <div
-      className={cn(
-        "    grid lg:grid-cols-3 grid-cols-1 gap-3 md:pt-12 w-full",
-        className
-      )}
-    >
-      {projects.map((project, map) => (
-        <Card key={map} {...project} />
-      ))}
-      <BackgroundBeamsWithCollision className="shadow-2xl border border-gray-300 md:w-[450px] w-full md:p-5 p-2 rounded-3xl md:h-[30rem] h-[32rem] text-black group overflow-hidden hover:cursor-pointer">
-        <div className="relative  flex justify-center align-middle items-center h-full  ">
-          {/* Image container that stays fixed */}
 
-          <Button
-            onClick={() => router.push("https://github.com/ankitmrmishra")}
-            className="py-6 px-6 text-lg mt-5  "
-          >
-            More Projects
-          </Button>
+export default function HorizontalProjectScroll() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const trigger = triggerRef.current;
+
+    // GSAP Match Media: Only runs animation on Desktop (min-width: 768px)
+    let mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+      if (!section || !trigger) return;
+
+      const pin = gsap.fromTo(
+        section,
+        {
+          translateX: 0,
+        },
+        {
+          translateX: `-${section.scrollWidth - window.innerWidth}px`,
+          ease: "none",
+          duration: 1,
+          scrollTrigger: {
+            trigger: trigger,
+            start: "top top",
+            end: "+=3000",
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+          },
+        }
+      );
+
+      return () => {
+        pin.kill();
+      };
+    });
+
+    return () => mm.revert(); // Clean up GSAP when component unmounts
+  }, []);
+
+  return (
+    <section className="overflow-hidden bg-red-100">
+      <div ref={triggerRef}>
+        {/* LAYOUT LOGIC:
+            Mobile: flex-col, h-auto, w-full, padding-y (vertical stack)
+            Desktop (md): flex-row, h-screen, w-max (horizontal strip)
+        */}
+        <div
+          ref={sectionRef}
+          className="relative flex flex-col gap-8  w-screen md:max-h-max md:w-max md:flex-row md:items-start md:gap-10 md:px-10 md:py-0"
+        >
+          {projects.map((project, index) => (
+            <ParallaxCard key={index} project={project} />
+          ))}
         </div>
-      </BackgroundBeamsWithCollision>
-    </div>
+      </div>
+    </section>
   );
 }
 
-export const Card = ({
-  title,
-  display,
-  companyType,
-  link,
-  timeOfwork,
-  details,
-}: {
-  title: string;
-  display: StaticImageData;
-  companyType: string;
-  timeOfwork: string;
-  link: string;
-  details: string;
-}) => {
-  const router = useRouter();
-  return (
-    <motion.div className=" shadow-2xl border border-gray-300 md:w-[450px] w-full md:p-5 p-2 rounded-3xl md:h-[30rem] h-[32rem] text-black group overflow-hidden hover:cursor-pointer ">
-      <div className="relative  overflow-hidden rounded-3xl transition-[height] duration-500 ease-in-out md:group-hover:h-[200px] h-[200px] md:h-[300px] ">
-        {/* Image container that stays fixed */}
-        <div className="absolute top-0 left-0 w-full ">
-          <Image
-            src={display}
-            width={500}
-            height={500}
-            alt={title}
-            className="h-full w-full object-fill rounded-2xl "
-          />
-        </div>
-      </div>
-      <div className="w-full md:mt-1 mt-5  flex flex-col md:justify-center justify-start align-middle items-start  px-4  md:h-[10rem] h-[10rem] md:gap-3 gap-1    ">
-        <span
-          className={` md:text-4xl text-xl  font-semibold ${poppinslight.className}  flex gap-2 justify-start align-middle items-start text-start`}
-        >
-          {title}
-        </span>
-        <div className="flex flex-col justify-center align-middle items-start">
-          <p
-            className={` md:text-xl    ${poppinslight.className}  flex gap-2 justify-start align-middle items-center`}
+// --- Individual Card Component ---
+const ParallaxCard = ({ project }: { project: Project }) => {
+  // Special Card Logic (More Projects)
+  if (project.isSpecial) {
+    return (
+      <div className="relative  w-full shrink-0 overflow-hidden rounded-3xl border border-white/10 shadow-2xl md:h-[60vh] md:w-[40vw] md:min-w-[350px]">
+        <BackgroundBeamsWithCollision className="flex h-full w-full flex-col items-center justify-center p-5 text-center">
+          <h3
+            className={`mb-5 text-3xl font-bold text-white ${poppins.className}`}
           >
-            {companyType}
-          </p>
-          <span className="text-gray-500">{timeOfwork}</span>
-        </div>
-        <p className="details text-start text-gray-800">{details}</p>
-        <Button
-          onClick={() => router.push(link)}
-          className="py-6 px-6 text-lg mt-5  "
-        >
-          Learn More
-        </Button>
+            {project.title}
+          </h3>
+          <Link href={project.link} target="_blank">
+            <button className="rounded-full bg-white px-8 py-3 font-semibold text-black transition-colors hover:bg-gray-200">
+              View GitHub
+            </button>
+          </Link>
+        </BackgroundBeamsWithCollision>
       </div>
-    </motion.div>
+    );
+  }
+
+  // Standard Project Card
+  return (
+    <div
+      className={cn(
+        "group relative shrink-0 overflow-hidden rounded-3xl  shadow-2xl border border-white/10",
+        // Mobile Dimensions:
+        "h-[500px] w-full",
+        // Desktop Dimensions:
+        "md:h-[60vh] md:w-[50vw] md:min-w-[500px]",
+        poppins.className
+      )}
+    >
+      {/* 1. Background Image */}
+      <div className="absolute inset-0 h-full w-full transition-transform duration-700 ease-out md:group-hover:scale-110">
+        {project.display && (
+          <Image
+            src={project.display}
+            alt={project.title}
+            fill
+            className="object-cover opacity-80 md:opacity-100" // Slightly darker image on mobile by default
+            sizes="(max-width: 768px) 100vw, 50vw"
+            quality={90}
+          />
+        )}
+      </div>
+
+      {/* 2. Dark Vignette Overlay 
+          - Mobile: Always visible (opacity-100) so text pops
+          - Desktop: Hidden (md:opacity-0), fades in on hover (md:hover:opacity-100)
+      */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent transition-opacity duration-500 opacity-100 " />
+
+      {/* 3. Top Content (Title)
+          - Mobile: Always in position (translate-y-0)
+          - Desktop: Hidden above (md:translate-y-[-100%]), slides down on hover
+      */}
+      <div className="absolute top-0 left-0 w-full p-6 transition-transform duration-500 z-20  md:p-8 md:group-hover:translate-y-0">
+        <div className="flex justify-between items-start">
+          <h3 className="text-3xl font-bold text-white md:text-4xl">
+            {project.title}
+          </h3>
+          <span className="rounded-full border border-white/20 px-3 py-1 text-xs font-light text-gray-300 md:text-sm">
+            {project.timeOfwork}
+          </span>
+        </div>
+        <p className="mt-1 text-base font-light text-gray-300 md:text-lg">
+          {project.companyType}
+        </p>
+      </div>
+
+      {/* 4. Bottom Content (Desc + Button)
+          - Mobile: Always in position (translate-y-0)
+          - Desktop: Hidden below (md:translate-y-[100%]), slides up on hover
+      */}
+      <div className="absolute bottom-0 left-0 w-full p-6 transition-transform duration-500 z-20 ">
+        <p className="mb-6 line-clamp-3 text-sm leading-relaxed text-gray-300 md:text-base">
+          {project.details}
+        </p>
+
+        <Link href={project.link} target="_blank">
+          <button className="flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-transform hover:scale-105 active:scale-95">
+            View Case Study <ArrowRight className="h-4 w-4" />
+          </button>
+        </Link>
+      </div>
+    </div>
   );
 };
-
-export default ProjectCard;

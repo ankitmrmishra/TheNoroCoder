@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import SmoothScroll from "../components/ui/SmoothScroll";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -82,7 +83,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} antialiased bg-[#F5F5F5]`}>
-        <main>{children}</main>
+        <SmoothScroll>
+          {" "}
+          <main>{children}</main>
+        </SmoothScroll>
       </body>
     </html>
   );
