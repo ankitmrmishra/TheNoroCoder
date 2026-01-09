@@ -109,7 +109,7 @@ const Navbar = () => {
                 initial="closed"
                 animate="open"
                 exit="closed"
-                className="text-7xl sm:text-6xl lg:text-9xl text-white hover:bg-white transfor font-Galgo700 group sm:border-b border-white w-full px-10   ease-in-out"
+                className="text-5xl sm:text-6xl lg:text-9xl text-white hover:bg-white transfor font-Galgo700 group sm:border-b border-white w-full px-10   ease-in-out"
                 custom={index}
               >
                 <Link
