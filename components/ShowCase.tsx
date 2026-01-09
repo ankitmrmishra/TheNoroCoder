@@ -171,9 +171,9 @@ const Showcase: React.FC = () => {
 
           <p className="text-lg sm:text-xl md:text-2xl font-light text-white/60 max-w-3xl leading-relaxed">
             Pretty sites are easy. Sites that{" "}
-            <span className="text-white">perform</span> are rare. Here's what
-            happened when brands trusted us with their most important digital
-            asset.
+            <span className="text-white">perform</span> are rare. Here&apos;s
+            what happened when brands trusted us with their most important
+            digital asset.
           </p>
         </motion.div>
       </motion.div>

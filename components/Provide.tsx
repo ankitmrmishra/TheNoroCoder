@@ -128,9 +128,11 @@ const ServiceCard = ({
           </ul>
 
           <div className="pt-6 border-t border-white/10">
-            <p className="text-xs font-mono text-[#D4654C] mb-2">/// OUTCOME</p>
+            <p className="text-xs font-mono text-[#D4654C] mb-2">
+              {"///"} OUTCOME
+            </p>
             <p className="text-white/90 italic text-sm md:text-base">
-              "{service.outcome}"
+              &quot;{service.outcome} &quot;
             </p>
           </div>
         </div>
@@ -175,7 +177,9 @@ const CTACard = ({ scrollProgress }: { scrollProgress: any }) => {
           <div className="w-24 h-24 rounded-full bg-[#D4654C] flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
             <ArrowUpRight className="w-10 h-10 text-white" />
           </div>
-          <h3 className="text-4xl font-bold text-white mb-4">Let's Talk</h3>
+          <h3 className="text-4xl font-bold text-white mb-4">
+            Let&apos;s Talk
+          </h3>
           <p className="text-white/60">Ready to start your project?</p>
         </a>
       </div>
@@ -223,8 +227,8 @@ export default function ServicesHorizontal() {
               </h2>
 
               <p className="text-white/60 text-lg max-w-xs hidden lg:block leading-relaxed">
-                We don't just write code. We build digital infrastructure that
-                scales revenue.
+                We don&apos;t just write code. We build digital infrastructure
+                that scales revenue.
               </p>
 
               <a

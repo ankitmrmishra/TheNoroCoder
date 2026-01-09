@@ -61,7 +61,8 @@ export default function TestimonialGrid() {
                   ))}
                 </div>
                 <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                  "{highlightText(testimonial.text, testimonial.highlight)}"
+                  &quot;{highlightText(testimonial.text, testimonial.highlight)}
+                  &quot;
                 </p>
               </div>
               <div>
