@@ -48,6 +48,8 @@ const services = [
   },
 ];
 
+// --- Desktop Components ---
+
 const ServiceCard = ({
   service,
   index,
@@ -187,6 +189,44 @@ const CTACard = ({ scrollProgress }: { scrollProgress: any }) => {
   );
 };
 
+// --- Mobile Component (Vertically Stacked) ---
+const MobileServiceCard = ({ service }: { service: any }) => {
+  return (
+    <div className="w-full bg-[#0a0a0a] border border-white/10 rounded-2xl p-6 sm:p-8 mb-6 last:mb-0">
+      <div className="flex justify-between items-start mb-6">
+        <span className="text-[#D4654C] font-mono text-lg tracking-widest">
+          /{service.id}
+        </span>
+      </div>
+
+      <h3 className="text-2xl font-bold text-white mb-3 leading-tight">
+        {service.title}
+      </h3>
+      <p className="text-base text-white/60 font-light mb-8">
+        {service.subtitle}
+      </p>
+
+      <ul className="space-y-3 mb-8">
+        {service.metrics.map((metric: string, i: number) => (
+          <li key={i} className="flex items-start gap-3 text-sm text-white/80">
+            <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#D4654C] shrink-0" />
+            {metric}
+          </li>
+        ))}
+      </ul>
+
+      <div className="pt-6 border-t border-white/10">
+        <p className="text-xs font-mono text-[#D4654C] mb-2">{"///"} OUTCOME</p>
+        <p className="text-white/90 italic text-sm">
+          &quot;{service.outcome}&quot;
+        </p>
+      </div>
+    </div>
+  );
+};
+
+// --- Main Layout ---
+
 export default function ServicesHorizontal() {
   const targetRef = useRef<HTMLDivElement>(null);
 
@@ -196,7 +236,7 @@ export default function ServicesHorizontal() {
   });
 
   return (
-    <section className="bg-[#050505] text-white relative">
+    <section className="bg-[#050505] text-white relative w-full">
       {/* --- Grain Texture Overlay --- */}
       <div className="fixed inset-0 z-0 opacity-[0.04] pointer-events-none mix-blend-overlay">
         <div
@@ -207,12 +247,64 @@ export default function ServicesHorizontal() {
         />
       </div>
 
-      {/* Scroll Container - height determines scroll duration */}
-      <div ref={targetRef} className="relative h-[400vh]">
-        {/* Sticky Container */}
-        <div className="sticky top-0 h-screen flex flex-col lg:flex-row overflow-hidden">
+      {/* ---------------------------------------------------------
+        MOBILE LAYOUT (Visible on < lg screens)
+        Vertically stacked, no horizontal animation
+        ---------------------------------------------------------
+      */}
+      <div className="relative z-10 block lg:hidden px-6 py-20 sm:px-10">
+        {/* Header Content */}
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="h-px w-8 bg-[#D4654C]"></span>
+            <span className="text-[#D4654C] uppercase tracking-[0.2em] text-sm">
+              Services
+            </span>
+          </div>
+
+          <h2 className="text-5xl sm:text-6xl font-bold leading-[0.9] mb-6">
+            What We Build
+            <span className="text-[#D4654C]">.</span>
+          </h2>
+
+          <p className="text-white/60 text-lg leading-relaxed max-w-md">
+            We don&apos;t just write code. We build digital infrastructure that
+            scales revenue.
+          </p>
+        </div>
+
+        {/* Vertical Stacked Cards */}
+        <div className="flex flex-col gap-6">
+          {services.map((service, index) => (
+            <MobileServiceCard key={index} service={service} />
+          ))}
+
+          {/* Mobile CTA */}
+          <div className="w-full bg-[#0a0a0a] border border-white/10 rounded-2xl p-8 mt-6 flex flex-col items-center justify-center text-center">
+            <a href="https://wa.me/918437153991" className="group">
+              <div className="w-20 h-20 rounded-full bg-[#D4654C] flex items-center justify-center mx-auto mb-6 group-active:scale-95 transition-transform">
+                <ArrowUpRight className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-3xl font-bold text-white mb-2">
+                Let&apos;s Talk
+              </h3>
+              <p className="text-white/60 text-sm">
+                Ready to start your project?
+              </p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* ---------------------------------------------------------
+        DESKTOP LAYOUT (Visible on >= lg screens)
+        Sticky header + Horizontal Framer Motion Scroll
+        ---------------------------------------------------------
+      */}
+      <div ref={targetRef} className="relative hidden lg:block h-[400vh]">
+        <div className="sticky top-0 h-screen flex flex-row overflow-hidden">
           {/* --- Left Side: Fixed Content --- */}
-          <div className="w-full lg:w-[35%] h-[20vh] lg:h-full p-8 lg:p-20 flex flex-col justify-center relative z-10 bg-[#050505] lg:bg-transparent lg:border-r border-white/5">
+          <div className="w-[35%] h-full p-20 flex flex-col justify-center relative z-10 border-r border-white/5 bg-[#050505]/50 backdrop-blur-sm">
             <div className="relative">
               <div className="flex items-center gap-3 mb-6">
                 <span className="h-px w-8 bg-[#D4654C]"></span>
@@ -221,19 +313,19 @@ export default function ServicesHorizontal() {
                 </span>
               </div>
 
-              <h2 className="text-4xl sm:text-6xl lg:text-8xl xl:text-9xl font-bold leading-[0.9] mb-8">
+              <h2 className="text-8xl xl:text-9xl font-bold leading-[0.9] mb-8">
                 What We Build
                 <span className="text-[#D4654C] text-6xl">.</span>
               </h2>
 
-              <p className="text-white/60 text-lg max-w-xs hidden lg:block leading-relaxed">
+              <p className="text-white/60 text-lg max-w-xs leading-relaxed">
                 We don&apos;t just write code. We build digital infrastructure
                 that scales revenue.
               </p>
 
               <a
                 href="https://wa.me/918437153991"
-                className="hidden lg:inline-flex items-center gap-2 mt-12 text-sm font-bold uppercase tracking-wider hover:text-[#D4654C] transition-colors group"
+                className="inline-flex items-center gap-2 mt-12 text-sm font-bold uppercase tracking-wider hover:text-[#D4654C] transition-colors group"
               >
                 Start a Project
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -242,7 +334,7 @@ export default function ServicesHorizontal() {
           </div>
 
           {/* --- Right Side: Stacking Cards --- */}
-          <div className="w-full lg:w-[65%] h-[80vh] lg:h-full relative">
+          <div className="w-[65%] h-full relative">
             {services.map((service, index) => (
               <ServiceCard
                 key={index}

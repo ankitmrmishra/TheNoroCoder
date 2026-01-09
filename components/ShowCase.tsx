@@ -114,7 +114,10 @@ const Showcase: React.FC = () => {
   const headerOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 1]);
 
   useEffect(() => {
+    // Only run the scroll spy logic on desktop where the refs are attached
     const handleScroll = () => {
+      if (window.innerWidth < 1024) return; // Skip logic for mobile layout
+
       const container = containerRef.current;
       if (!container) return;
 
@@ -143,15 +146,15 @@ const Showcase: React.FC = () => {
   return (
     <div className="relative bg-black min-h-screen">
       {/* Subtle Background Pattern */}
-      <div className="fixed inset-0 z-0 opacity-5">
+      <div className="fixed inset-0 z-0 opacity-5 pointer-events-none">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
 
-      {/* Fixed Heading Section with Scroll Fade */}
+      {/* Header Section (Shared) */}
       <motion.div
         ref={headerRef}
         style={{ opacity: headerOpacity }}
-        className=" top-0 z-10 px-6 sm:px-12 lg:px-24 xl:px-32 py-16 sm:py-20 bg-black/80 backdrop-blur-sm border-b border-white/10"
+        className="top-0 z-10 px-6 sm:px-12 lg:px-24 xl:px-32 py-16 sm:py-20 bg-black/80 backdrop-blur-sm border-b border-white/10"
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -178,13 +181,137 @@ const Showcase: React.FC = () => {
         </motion.div>
       </motion.div>
 
-      {/* Main Content Grid */}
+      {/* ========================================================= */}
+      {/* MOBILE LAYOUT (Stacked Cards like Philosophy Page)        */}
+      {/* Hidden on Large Screens (lg:hidden)                       */}
+      {/* ========================================================= */}
+      <div className="relative z-20 flex flex-col gap-12 px-6 py-12 lg:hidden">
+        {projects.map((project, index) => (
+          <div
+            key={index}
+            className="group relative  bg-white/5 border border-white/10 overflow-hidden backdrop-blur-sm"
+          >
+            {/* Mobile Image */}
+            <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-white/10">
+              <img
+                src={project.display}
+                alt={project.title}
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-100 group-hover:scale-105"
+              />
+              {/* Overlay Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+
+              {/* Number Badge */}
+              <div className="absolute top-4 left-4 w-10 h-10  border border-white/20 bg-black/50 backdrop-blur-md flex items-center justify-center">
+                <span className="text-sm font-bold text-white">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </div>
+            </div>
+
+            {/* Mobile Content */}
+            <div className="p-6 sm:p-8">
+              {/* Title Header */}
+              <div className="flex flex-col gap-2 mb-6">
+                <div className="flex justify-between items-start gap-4">
+                  <h2 className="text-3xl font-bold text-white leading-tight">
+                    {project.title}
+                  </h2>
+                  <span className="text-xs font-mono text-[#D4654C] border border-[#D4654C]/30 bg-[#D4654C]/10 px-2 py-1  whitespace-nowrap">
+                    {project.timeOfwork}
+                  </span>
+                </div>
+                <p className="text-[#D4654C] text-sm font-medium tracking-wide">
+                  {project.companyType}
+                </p>
+              </div>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2 mb-8">
+                {project.tags?.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="px-3 py-1 text-xs text-white/70 bg-white/5 border border-white/10 "
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Metrics Grid */}
+              {project.metrics && (
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  {project.metrics.map((metric, i) => (
+                    <div
+                      key={i}
+                      className="p-4 rounded-xl bg-black/40 border border-white/10"
+                    >
+                      <p className="text-2xl font-bold text-white mb-1">
+                        {metric.value}
+                      </p>
+                      <p className="text-xs text-white/50 uppercase tracking-wider">
+                        {metric.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Description */}
+              <p className="text-white/70 leading-relaxed mb-8 text-sm sm:text-base">
+                {project.details}
+              </p>
+
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2  bg-[#D4654C] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[#bf5a43]"
+                >
+                  Case Study <ArrowRight className="w-4 h-4" />
+                </a>
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2  border border-white/20 bg-transparent px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-white/5"
+                >
+                  Live Site <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {/* More Projects Link - Mobile */}
+        <div className="mt-8 text-center px-4 py-12 border border-white/10 rounded-3xl bg-white/5">
+          <h2 className="text-2xl font-bold text-white mb-4">More Projects</h2>
+          <p className="text-white/60 text-sm mb-6">
+            Check out my open source contributions.
+          </p>
+          <a
+            href="https://github.com/ankitmrmishra"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2  bg-[#D4654C] px-8 py-3 text-sm font-semibold text-white"
+          >
+            GitHub Profile <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+
+      {/* ========================================================= */}
+      {/* DESKTOP LAYOUT (Sticky Image + Scroll)                    */}
+      {/* Hidden on Mobile (hidden lg:grid)                         */}
+      {/* ========================================================= */}
       <div
         ref={containerRef}
-        className="relative z-20 grid lg:grid-cols-2 gap-8 lg:gap-16 px-6 sm:px-12 lg:px-24 xl:px-32 pb-20 pt-12"
+        className="relative z-20 hidden lg:grid lg:grid-cols-2 gap-8 lg:gap-16 px-6 sm:px-12 lg:px-24 xl:px-32 pb-20 pt-12"
       >
-        {/* Left Side - Image Container - UPDATED FOR MOBILE STICKY */}
-        <div className="sticky top-0 lg:top-32 h-[40vh] sm:h-[50vh] lg:h-[75vh] relative z-30 bg-black">
+        {/* Left Side - Sticky Image Container */}
+        <div className="sticky top-32 h-[75vh] relative z-30 bg-black">
           <div className="absolute inset-0 overflow-hidden">
             <AnimatePresence mode="sync">
               <motion.div
@@ -206,22 +333,22 @@ const Showcase: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
                 {/* Project Number */}
-                <div className="absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-8">
+                <div className="absolute top-8 left-8">
                   <motion.div
                     key={`number-${activeIndex}`}
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full border-2 border-white/30 backdrop-blur-md bg-black/30 flex items-center justify-center"
+                    className="w-16 h-16  border-2 border-white/30 backdrop-blur-md bg-black/30 flex items-center justify-center"
                   >
-                    <span className="text-lg sm:text-xl lg:text-2xl font-bold text-white">
+                    <span className="text-2xl font-bold text-white">
                       {String(activeIndex + 1).padStart(2, "0")}
                     </span>
                   </motion.div>
                 </div>
 
                 {/* Tags */}
-                <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 lg:bottom-8 lg:left-8 lg:right-8">
+                <div className="absolute bottom-8 left-8 right-8">
                   <motion.div
                     key={`tags-${activeIndex}`}
                     initial={{ y: 10, opacity: 0 }}
@@ -232,7 +359,7 @@ const Showcase: React.FC = () => {
                     {projects[activeIndex].tags?.map((tag, i) => (
                       <span
                         key={i}
-                        className="px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm rounded-full bg-white/10 backdrop-blur-md text-white border border-white/20"
+                        className="px-3 py-1 text-sm  bg-white/10 backdrop-blur-md text-white border border-white/20"
                       >
                         {tag}
                       </span>
@@ -245,14 +372,14 @@ const Showcase: React.FC = () => {
         </div>
 
         {/* Right Side - Scrolling Content */}
-        <div className="space-y-24 sm:space-y-32 lg:space-y-40 pt-8">
+        <div className="space-y-40 pt-8">
           {projects.map((project, index) => (
             <div
               key={index}
               ref={(el) => {
                 imageRefs.current[index] = el;
               }}
-              className="min-h-[50vh] sm:min-h-[60vh] lg:min-h-[70vh] flex flex-col justify-center"
+              className="min-h-[70vh] flex flex-col justify-center"
             >
               <AnimatePresence mode="popLayout">
                 {activeIndex === index && (
@@ -262,39 +389,39 @@ const Showcase: React.FC = () => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="space-y-2 py-4  px-2 sm:space-y-6  flex justify-start flex-col min-h-[60vh] relative"
+                    className="space-y-6 flex justify-start flex-col min-h-[60vh] relative"
                   >
                     {/* Header */}
-                    <div className="flex  justify-between sm:items-start items-center gap-3 sm:gap-4 mb-4 sm:mb-6 h-full">
+                    <div className="flex justify-between items-start gap-4 mb-6 h-full">
                       <div>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2">
+                        <h2 className="text-5xl lg:text-6xl font-bold text-white mb-2">
                           {project.title}
                         </h2>
-                        <p className="text-base sm:text-lg lg:text-xl text-[#D4654C] font-light">
+                        <p className="text-xl text-[#D4654C] font-light">
                           {project.companyType}
                         </p>
                       </div>
-                      <span className="inline-flex items-center gap-2 max-h-max rounded-full max-w-max border border-white/20 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm text-white/70 whitespace-nowrap ">
-                        <div className="w-2 h-2 rounded-full bg-[#D4654C]" />
+                      <span className="inline-flex items-center gap-2  border border-white/20 px-4 py-2 text-sm text-white/70 whitespace-nowrap ">
+                        <div className="w-2 h-2  bg-[#D4654C]" />
                         {project.timeOfwork}
                       </span>
                     </div>
 
                     {/* Metrics */}
                     {project.metrics && (
-                      <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <div className="grid grid-cols-2 gap-4 mb-6">
                         {project.metrics.map((metric, i) => (
                           <motion.div
                             key={i}
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 + i * 0.1 }}
-                            className="p-3 sm:p-4 lg:p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm hover:border-[#D4654C]/50 transition-colors"
+                            className="p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm hover:border-[#D4654C]/50 transition-colors"
                           >
-                            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-1">
+                            <p className="text-3xl lg:text-4xl font-bold text-white mb-1">
                               {metric.value}
                             </p>
-                            <p className="text-xs sm:text-sm text-white/50 font-light">
+                            <p className="text-sm text-white/50 font-light">
                               {metric.label}
                             </p>
                           </motion.div>
@@ -303,22 +430,22 @@ const Showcase: React.FC = () => {
                     )}
 
                     {/* Description */}
-                    <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/70 leading-relaxed mb-6 sm:mb-8">
+                    <p className="text-lg lg:text-xl text-white/70 leading-relaxed mb-8">
                       {project.details}
                     </p>
 
                     {/* CTA Buttons */}
-                    <div className="flex  gap-3 sm:gap-4  bottom-0">
+                    <div className="flex gap-4 bottom-0">
                       <motion.a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="inline-flex items-center justify-center  gap-1   bg-[#D4654C] px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold text-white transition-all hover:bg-[#bf5a43] group"
+                        className="inline-flex items-center justify-center gap-1 bg-[#D4654C] px-8 py-4 text-base font-semibold text-white transition-all hover:bg-[#bf5a43] group"
                       >
                         View Case Study
-                        <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1" />
+                        <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                       </motion.a>
 
                       <motion.a
@@ -327,10 +454,10 @@ const Showcase: React.FC = () => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="inline-flex items-center justify-center gap-2  border-2 border-white/20 bg-white/5 backdrop-blur-sm px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold text-white transition-all hover:bg-white/10 hover:border-white/30 group"
+                        className="inline-flex items-center justify-center gap-2 border-2 border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/10 hover:border-white/30 group"
                       >
                         Live Site
-                        <ExternalLink className="h-3.5 w-3.5 sm:h-4 sm:w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                        <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                       </motion.a>
                     </div>
                   </motion.div>
@@ -339,26 +466,26 @@ const Showcase: React.FC = () => {
             </div>
           ))}
 
-          {/* Final Section - More Projects */}
+          {/* Final Section - More Projects Desktop */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="min-h-[50vh] sm:min-h-[60vh] lg:min-h-[70vh] flex flex-col justify-center"
+            className="min-h-[70vh] flex flex-col justify-center"
           >
-            <div className="text-center py-12 sm:py-16 lg:py-20 px-4 sm:px-6 border border-white/10 rounded-2xl sm:rounded-3xl bg-white/5 backdrop-blur-sm">
-              <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 sm:mb-6 border border-white/20 rounded-full">
-                <div className="w-2 h-2 rounded-full bg-[#D4654C] animate-pulse" />
-                <span className="text-xs sm:text-sm text-white/70 font-light tracking-widest uppercase">
+            <div className="text-center py-20 px-6 border border-white/10 rounded-3xl bg-white/5 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-white/20 ">
+                <div className="w-2 h-2  bg-[#D4654C] animate-pulse" />
+                <span className="text-sm text-white/70 font-light tracking-widest uppercase">
                   Open Source
                 </span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-4 sm:mb-6">
+              <h2 className="text-5xl lg:text-7xl font-bold text-white mb-6">
                 More Projects
               </h2>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/60 mb-8 sm:mb-10 max-w-2xl mx-auto px-4">
+              <p className="text-xl lg:text-2xl text-white/60 mb-10 max-w-2xl mx-auto px-4">
                 Explore the rest of my open source work and contributions to the
                 developer community.
               </p>
@@ -369,10 +496,10 @@ const Showcase: React.FC = () => {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 sm:gap-3 rounded-full bg-[#D4654C] px-8 py-4 sm:px-10 sm:py-5 text-sm sm:text-base lg:text-lg font-semibold text-white transition-all hover:bg-[#bf5a43] group"
+                className="inline-flex items-center gap-3  bg-[#D4654C] px-10 py-5 text-lg font-semibold text-white transition-all hover:bg-[#bf5a43] group"
               >
                 View GitHub Profile
-                <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </motion.a>
             </div>
           </motion.div>
