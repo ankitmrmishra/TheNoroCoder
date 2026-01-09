@@ -241,12 +241,6 @@ const PhilosophySection: React.FC = () => {
       className="relative bg-black py-20 sm:py-28 overflow-hidden"
     >
       {/* Background grid */}
-      <div
-        ref={bgRef}
-        className="absolute inset-0 opacity-5 pointer-events-none"
-      >
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-      </div>
 
       <div className="relative z-10 px-6 sm:px-10 lg:px-24 xl:px-32">
         {/* Header */}

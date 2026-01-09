@@ -47,12 +47,12 @@ const Navbar = () => {
   return (
     <nav
       className={cn(
-        " w-full flex justify-between items-center align-middle   relative py-3",
+        " w-full flex justify-between items-center align-middle bg-black  relative py-3",
         isOpen && ""
       )}
     >
       <div className="Logo   w-full px-[7%]">
-        <span className="font-GalgoCondesed text-5xl sm:text-6xl lg:text-8xl ml-2 text-black">
+        <span className="font-GalgoCondesed text-5xl sm:text-6xl lg:text-8xl ml-2 text-white">
           NORO<span className="text-secondary-foreground">.</span>WORK
         </span>
       </div>
@@ -64,7 +64,7 @@ const Navbar = () => {
         animate={isOpen ? "open" : "closed"}
       >
         <motion.div
-          className={cn("w-8 h-0.5 bg-black mb-2", isOpen && "bg-white")}
+          className={cn("w-8 h-0.5 bg-white mb-2", isOpen && "bg-white")}
           variants={{
             open: { rotate: 45, y: 9 },
             closed: { rotate: 0, y: 0 },
@@ -72,7 +72,7 @@ const Navbar = () => {
           transition={{ duration: 0.3 }}
         />
         <motion.div
-          className="w-8 h-0.5 bg-black mb-2"
+          className="w-8 h-0.5 bg-white mb-2"
           variants={{
             open: { opacity: 0 },
             closed: { opacity: 1 },
@@ -80,7 +80,7 @@ const Navbar = () => {
           transition={{ duration: 0.3 }}
         />
         <motion.div
-          className={cn("w-8 h-0.5 bg-black mb-2", isOpen && "bg-white")}
+          className={cn("w-8 h-0.5 bg-white mb-2", isOpen && "bg-white")}
           variants={{
             open: { rotate: -45, y: -9 },
             closed: { rotate: 0, y: 0 },
@@ -109,7 +109,7 @@ const Navbar = () => {
                 initial="closed"
                 animate="open"
                 exit="closed"
-                className="text-5xl sm:text-6xl lg:text-9xl text-white hover:bg-white transfor font-Galgo700 group sm:border-b border-white w-full px-10   ease-in-out"
+                className="text-6xl lg:text-9xl text-white hover:bg-white transfor font-Galgo700 group sm:border-b border-white w-full px-10   ease-in-out"
                 custom={index}
               >
                 <Link

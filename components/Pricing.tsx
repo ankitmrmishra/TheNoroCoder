@@ -1,129 +1,426 @@
 "use client";
 
-import { useState } from "react";
-import { Poppins } from "next/font/google";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import React, { useRef, useLayoutEffect, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-});
+// Register GSAP plugins
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
-const faqs = [
+// SVG Icons
+const PlusIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
+  <svg
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M12 4v16m8-8H4"
+    />
+  </svg>
+);
+
+const MinusIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
+  <svg
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M20 12H4"
+    />
+  </svg>
+);
+
+const SparklesIcon = () => (
+  <svg
+    className="w-3 h-3"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+    />
+  </svg>
+);
+
+const CheckCircleIcon = () => (
+  <svg
+    className="w-5 h-5"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+    />
+  </svg>
+);
+
+// --- Types ---
+interface FAQ {
+  id: string;
+  question: string;
+  answer: string;
+  highlights?: string[];
+}
+
+// --- Data ---
+const faqs: FAQ[] = [
   {
-    question: "What technologies do you specialize in?",
+    id: "startups",
+    question: "Do you work with startups?",
     answer:
-      "I specialize in modern web technologies including React, Next.js, TypeScript, and Node.js. I have extensive experience with full-stack development and creating responsive, performant web applications.",
+      "Yes, but only if you're funded or generating revenue. We don't do equity deals or \"pay later\" arrangements. Our minimum project is $75K, which makes sense for companies with:",
+    highlights: [
+      "Seed funding ($500K+)",
+      "Product-market fit",
+      "Revenue of $1M+/year",
+    ],
   },
   {
-    question: "How do you handle project communication?",
-    answer:
-      "I maintain clear and consistent communication throughout the project via your preferred channels (email, Slack, etc.). I provide regular updates on progress and am always available for questions or discussions.",
+    id: "timeline",
+    question: "How long does a typical project take?",
+    answer: "10–18 weeks for most projects. Breakdown:",
+    highlights: [
+      "Brand Elevation (10–12 weeks)",
+      "Digital Product (14–18 weeks)",
+      "Enterprise Platform (20–26 weeks)",
+    ],
   },
   {
-    question: "What is your typical project timeline?",
-    answer:
-      "Project timelines vary based on scope and complexity. I provide detailed estimates during our initial consultation and keep you updated on progress. I'm committed to delivering high-quality work within agreed timeframes.",
+    id: "payment",
+    question: "Do you offer payment plans?",
+    answer: "Yes. Standard terms:",
+    highlights: [
+      "50% deposit to start",
+      "25% at design approval",
+      "25% at launch",
+      "For projects over $200K, we can discuss milestone-based payments or monthly retainers.",
+    ],
   },
   {
-    question: "Do you provide ongoing support after project completion?",
+    id: "design",
+    question: "What if we're not happy with the design?",
     answer:
-      "Yes, I offer post-launch support and maintenance services to ensure your project continues to run smoothly. This includes bug fixes, updates, and feature enhancements as needed.",
+      "We include 2 rounds of revisions in every project. If after 2 rounds you're still not happy, we'll: (1) Have an honest conversation about why, (2) Explore 1–2 new directions, (3) If it's still not working, we'll part ways and refund 50% of the remaining balance. This has happened twice in 5 years. Our discovery process eliminates most misalignment upfront.",
   },
   {
-    question: "How do you approach responsive design?",
-    answer:
-      "I follow a mobile-first approach to ensure your website works flawlessly across all devices. I use modern CSS techniques and thorough testing to guarantee a consistent user experience.",
+    id: "maintenance",
+    question: "Do you do ongoing maintenance?",
+    answer: "Yes. Three options:",
+    highlights: [
+      "Pay-as-you-go: $200/hour",
+      "Monthly retainer: $3K–$10K/month (includes hosting, updates, small tweaks, analytics monitoring)",
+      "Self-managed: We train your team and hand off everything",
+    ],
   },
   {
-    question: "What is your development process?",
+    id: "seo",
+    question: "Can you help with SEO and marketing?",
     answer:
-      "My development process includes thorough planning, regular client communication, iterative development with feedback loops, comprehensive testing, and careful deployment with post-launch monitoring.",
+      "We handle technical SEO (site speed, structure, schema markup). For content strategy and link building, we partner with specialized agencies. We'll introduce you if needed.",
+  },
+  {
+    id: "different",
+    question: "What makes you different from other agencies?",
+    answer:
+      "Honest answer? We're not that different. Most good agencies have talented designers and developers, follow similar processes, and charge similar rates. Where we differ:",
+    highlights: [
+      "We're obsessed with performance (sub-1.2s load times)",
+      "We use modern tech (Next.js, not WordPress)",
+      "We're transparent (no hidden fees, clear timelines)",
+      "We turn down bad-fit projects (even if we need the money)",
+    ],
+  },
+  {
+    id: "pricing",
+    question: "Why are you more expensive than [other agency]?",
+    answer:
+      "If another agency is offering similar services at half our price, they're either cutting corners or undervaluing their work. Both are red flags. You get what you pay for in web development. Cheap sites end up costing more in the long run through maintenance issues, poor performance, and lost revenue.",
   },
 ];
 
-const FAQItem = ({
-  question,
-  answer,
-  isOpen,
-  onClick,
-}: {
-  question: string;
-  answer: string;
-  isOpen: boolean;
-  onClick: () => void;
-}) => {
-  return (
-    <motion.div
-      id="faqs"
-      initial={false}
-      className="border-b border-gray-200 last:border-none "
-    >
-      <button
-        onClick={onClick}
-        className="flex justify-between items-center w-full py-4 text-left"
-      >
-        <span className={`text-lg ${poppins.className}`}>{question}</span>
-        <motion.div
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
-        >
-          <ChevronDown className="w-5 h-5 text-mainColour" />
-        </motion.div>
-      </button>
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="overflow-hidden"
-          >
-            <p
-              className={`pb-4 text-gray-600 ${poppins.className} font-normal`}
-            >
-              {answer}
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-};
-
-const FAQs = () => {
+const FAQ = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const faqItemsRef = useRef<(HTMLDivElement | null)[]>([]);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // Heading animation
+      gsap.from(headingRef.current, {
+        scrollTrigger: {
+          trigger: headingRef.current,
+          start: "top 85%",
+        },
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      // FAQ items stagger animation
+      gsap.from(faqItemsRef.current, {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 70%",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 0.2,
+        stagger: 0.1,
+        ease: "power3.out",
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const toggleFAQ = (index: number) => {
+    // 1. Close any currently open item (if it's not the one we just clicked)
+    if (openIndex !== null && openIndex !== index) {
+      const prevItem = faqItemsRef.current[openIndex];
+      if (prevItem) {
+        const prevAnswer = prevItem.querySelector(".faq-answer");
+        const prevIcon = prevItem.querySelector(".faq-icon");
+        const prevQuestion = prevItem.querySelector(".faq-question-text");
+
+        // Close animation
+        gsap.to(prevAnswer, {
+          height: 0,
+          opacity: 0,
+          duration: 0.25, // Fast close
+          ease: "power2.out",
+        });
+        gsap.to(prevIcon, {
+          rotate: 0,
+          duration: 0.25,
+        });
+        gsap.to(prevQuestion, {
+          color: "rgba(255, 255, 255, 0.9)",
+          duration: 0.25,
+        });
+      }
+    }
+
+    // 2. Toggle the clicked item
+    const currentItem = faqItemsRef.current[index];
+    if (!currentItem) return;
+
+    const answer = currentItem.querySelector(".faq-answer");
+    const icon = currentItem.querySelector(".faq-icon");
+    const question = currentItem.querySelector(".faq-question-text");
+
+    if (openIndex === index) {
+      // Case: Clicking the already open item -> Close it
+      gsap.to(answer, {
+        height: 0,
+        opacity: 0,
+        duration: 0.25,
+        ease: "power2.out",
+      });
+      gsap.to(icon, {
+        rotate: 0,
+        duration: 0.25,
+      });
+      gsap.to(question, {
+        color: "rgba(255, 255, 255, 0.9)",
+        duration: 0.25,
+      });
+      setOpenIndex(null);
+    } else {
+      // Case: Clicking a closed item -> Open it
+      setOpenIndex(index);
+      gsap.to(answer, {
+        height: "auto", // GSAP handles auto height calculation
+        opacity: 1,
+        duration: 0.35, // Snappy open
+        ease: "power2.out",
+      });
+      gsap.to(icon, {
+        rotate: 180,
+        duration: 0.35,
+        ease: "back.out(1.7)",
+      });
+      gsap.to(question, {
+        color: "#D4654C",
+        duration: 0.35,
+      });
+    }
+  };
+
   return (
-    <div className="flex flex-col min-h-screen justify-center align-middle items-center">
-      <div className="text-center mb-12">
-        <h2
-          className={`md:text-6xl text-4xl font-semibold ${poppins.className}`}
-        >
-          FA<span className="text-mainColour">Qs</span>
-        </h2>
+    <section
+      ref={containerRef}
+      className="relative bg-[#0a0a0a] text-white py-24 sm:py-32 overflow-hidden"
+    >
+      {/* Background Texture */}
+      <div className="absolute inset-0 z-0 opacity-[0.02] pointer-events-none">
+        <div
+          className="absolute inset-0 bg-repeat"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        />
       </div>
 
-      <motion.div
-        className="bg-white rounded-2xl shadow-sm p-6 md:p-8 max-w-xl"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        {faqs.map((faq, index) => (
-          <FAQItem
-            key={index}
-            question={faq.question}
-            answer={faq.answer}
-            isOpen={openIndex === index}
-            onClick={() => setOpenIndex(openIndex === index ? null : index)}
-          />
-        ))}
-      </motion.div>
-    </div>
+      {/* Gradient Accent */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#D4654C]/5 rounded-full blur-[150px] pointer-events-none" />
+
+      <div className="relative z-10 px-6 sm:px-12 lg:px-24 xl:px-32 max-w-5xl mx-auto">
+        {/* Heading Section */}
+        <div ref={headingRef} className="mb-16 sm:mb-20">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="h-[2px] w-12 bg-gradient-to-r from-[#D4654C] to-transparent"></span>
+            <span className="text-[#D4654C] uppercase tracking-[0.25em] text-xs font-semibold flex items-center gap-2">
+              <SparklesIcon />
+              FAQ
+            </span>
+          </div>
+
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[0.95] mb-6">
+            Questions We Get Asked
+            <br />
+            <span className="text-[#D4654C]">(And Honest Answers)</span>
+          </h2>
+
+          <p className="text-lg sm:text-xl text-white/60 max-w-2xl leading-relaxed">
+            No marketing fluff. Just straightforward answers to help you decide
+            if we're the right fit.
+          </p>
+        </div>
+
+        {/* FAQ Accordion */}
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <div
+              key={faq.id}
+              ref={(el) => {
+                faqItemsRef.current[index] = el;
+              }}
+              className="faq-item group relative bg-[#050505] border border-white/10 rounded-2xl overflow-hidden hover:border-[#D4654C]/30 transition-colors duration-300"
+            >
+              {/* Question Button */}
+              <button
+                onClick={() => toggleFAQ(index)}
+                className="w-full flex items-center justify-between gap-4 p-6 sm:p-8 text-left cursor-pointer"
+              >
+                <h3 className="faq-question-text text-xl sm:text-2xl font-bold text-white/90 transition-colors duration-300 pr-4">
+                  {faq.question}
+                </h3>
+
+                <div className="faq-icon shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#D4654C] group-hover:bg-[#D4654C]/10 group-hover:border-[#D4654C]/30 transition-all duration-300">
+                  {/* Icon rotation is handled via GSAP now, simplified structure */}
+                  <PlusIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+                </div>
+              </button>
+
+              {/* Answer Content */}
+              <div
+                className="faq-answer overflow-hidden"
+                style={{ height: 0, opacity: 0 }}
+              >
+                <div className="px-6 sm:px-8 pb-8 pt-0">
+                  <div className="border-t border-white/10 pt-6">
+                    <p className="text-base sm:text-lg text-white leading-relaxed mb-4">
+                      {faq.answer}
+                    </p>
+
+                    {faq.highlights && faq.highlights.length > 0 && (
+                      <ul className="space-y-3 mt-6">
+                        {faq.highlights.map((highlight, i) => (
+                          <li
+                            key={i}
+                            className="flex items-start gap-3 text-white/80"
+                          >
+                            <span className="shrink-0 mt-1">
+                              <CheckCircleIcon />
+                            </span>
+                            <span className="text-base leading-relaxed">
+                              {highlight}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Hover Glow Effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#D4654C]/0 via-[#D4654C]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-16 sm:mt-20 text-center border-t border-white/10 pt-16">
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
+            Still have questions?
+          </h3>
+          <p className="text-lg text-white/60 mb-8 max-w-2xl mx-auto">
+            Book a free 30-minute call. No sales pitch, just honest conversation
+            about your project and whether we're a good fit.
+          </p>
+
+          <a
+            href="https://wa.me/918437153991"
+            className="group relative inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 bg-[#D4654C] text-white rounded-full overflow-hidden transition-all hover:bg-[#bf5a43] hover:scale-105 hover:shadow-[0_0_40px_rgba(212,101,76,0.4)]"
+          >
+            <span className="relative z-10 font-bold tracking-wide uppercase text-sm">
+              Schedule Free Call
+            </span>
+            <svg
+              className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              />
+            </svg>
+
+            {/* Shimmer Effect */}
+            <div className="absolute inset-0 -translate-x-full group-hover:animate-shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+          </a>
+        </div>
+      </div>
+
+      <style jsx global>{`
+        @keyframes shimmer {
+          100% {
+            transform: translateX(200%);
+          }
+        }
+        .animate-shimmer {
+          animation: shimmer 2s infinite;
+        }
+      `}</style>
+    </section>
   );
 };
 
-export default FAQs;
+export default FAQ;

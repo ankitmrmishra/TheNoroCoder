@@ -16,12 +16,14 @@ import Testimonial from "../components/Testimonial";
 import AgencyTechHero from "../components/ui/MarqueeBanner";
 import ServicesRedesign from "../components/Provide";
 import PhilosophySection from "../components/Philosophy";
+import Process from "../components/Process";
+import TechStack from "../components/TechStack";
 
 // Register the ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-  const container = useRef<HTMLDivElement>(null);
+  // const container = useRef<HTMLDivElement>(null);
 
   // useGSAP(
   //   () => {
@@ -46,7 +48,7 @@ export default function Home() {
   // );
 
   return (
-    <div ref={container} className="min-h-screen ">
+    <div className="min-h-screen ">
       <Navbar />
       {/* 1. HERO: Pinned first. Lowest Z-index. */}
       <div className="pinned-panel relative min-h-screen w-full z-0 bg-white dark:bg-black">
@@ -65,12 +67,14 @@ export default function Home() {
       <div className="pinned-panel relative min-h-screen w-full z-10 bg-white dark:bg-black">
         <PhilosophySection />
       </div>
+      <Process />
+      <TechStack />
       {/* 4. REST OF CONTENT: Continues naturally below Provide */}
       <div className="relative z-20 bg-white dark:bg-black">
-        <Testimonial />
+        {/* <Testimonial /> */}
         <Pricing />
-        <About />
-        <Footer />
+        {/* <About /> */}
+        {/* <Footer /> */}
       </div>
     </div>
   );

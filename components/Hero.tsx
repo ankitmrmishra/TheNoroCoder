@@ -1,8 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, X, Sparkles } from "lucide-react";
-import Cal, { getCalApi } from "@calcom/embed-react";
+import Cal from "@calcom/embed-react";
+
 interface MousePosition {
   x: number;
   y: number;
@@ -53,30 +54,6 @@ const Hero: React.FC = () => {
     };
   }, [isBookingOpen]);
 
-  const FloatingElement: React.FC<FloatingElementProps> = ({
-    delay = 0,
-    duration = 4,
-    children,
-    className = "",
-  }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{
-        opacity: [0.3, 0.6, 0.3],
-        y: [0, -20, 0],
-      }}
-      transition={{
-        duration: duration,
-        delay: delay,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-
   const MagneticButton: React.FC<MagneticButtonProps> = ({
     children,
     onClick,
@@ -98,14 +75,15 @@ const Hero: React.FC = () => {
       setIsHovered(false);
     };
 
+    // Updated button styles for Dark/Terracotta theme
     const baseStyles =
       variant === "primary"
-        ? "bg-black text-white border-black hover:bg-white hover:text-black text-center"
-        : "bg-transparent text-black border-black hover:bg-black hover:text-white";
+        ? "bg-[#D4654C] text-white border-[#D4654C] hover:bg-white hover:text-[#D4654C] hover:border-white text-center"
+        : "bg-transparent text-white border-white/20 hover:bg-white hover:text-black hover:border-white";
 
     return (
       <motion.button
-        className={`relative overflow-hidden border-2 px-8 sm:px-12 py-4 sm:py-5 font-light tracking-wider transition-colors duration-300 group flex justify-center items-center align-middle ${baseStyles} ${className}`}
+        className={`relative overflow-hidden border px-8 sm:px-12 py-4 sm:py-5 font-light tracking-wider transition-colors duration-300 group flex justify-center items-center align-middle rounded-full ${baseStyles} ${className}`}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
@@ -119,7 +97,7 @@ const Hero: React.FC = () => {
           animate={isHovered ? { x: "100%" } : { x: "-100%" }}
           transition={{ duration: 0.6 }}
         />
-        <span className="relative z-10 flex items-center gap-3 text-base sm:text-lg">
+        <span className="relative z-10 flex items-center gap-3 text-base sm:text-lg font-medium">
           {children}
           <motion.span
             animate={isHovered ? { x: 5 } : { x: 0 }}
@@ -133,13 +111,13 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden ">
-      {/* Animated Background Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:4rem_4rem] sm:bg-[size:6rem_6rem] [mask-image:radial-gradient(ellipse_80%_50%_at_100%_10%,#000_100%,transparent_110%)]" />
+    <div className="relative min-h-screen w-full overflow-hidden bg-black text-white">
+      {/* Animated Background Grid - Updated color to white/10 opacity */}
+      {/* <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem] sm:bg-[size:6rem_6rem] [mask-image:radial-gradient(ellipse_80%_50%_at_100%_10%,#000_100%,transparent_110%)]" /> */}
 
-      {/* Cursor Follower */}
+      {/* Cursor Follower - Updated border color */}
       <motion.div
-        className="fixed w-6 h-6 rounded-full border-2 border-black/30 pointer-events-none z-50 hidden lg:block"
+        className="fixed w-6 h-6 rounded-full border-2 border-[#D4654C]/50 pointer-events-none z-50 hidden lg:block mix-blend-difference"
         animate={{
           x: mousePosition.x - 12,
           y: mousePosition.y - 12,
@@ -160,9 +138,9 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-8 sm:mb-12 "
         >
-          <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 border border-black/20 bg-white/50 backdrop-blur-sm">
-            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
-            <span className="text-xs sm:text-sm font-light tracking-widest uppercase">
+          <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 border border-white/20 bg-white/5 backdrop-blur-sm rounded-full">
+            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4654C]" />
+            <span className="text-xs sm:text-sm text-white/80 font-light tracking-widest uppercase">
               Currently Booking Q1 2026
             </span>
           </div>
@@ -170,7 +148,7 @@ const Hero: React.FC = () => {
 
         {/* Main Heading with Stagger Animation */}
         <div className=" min-w-full mb-8 sm:mb-16">
-          <motion.h1 className="text-5xl    sm:text-7xl md:text-8xl lg:text-8xl font-light leading-[0.9] tracking-tight mb-4 sm:mb-6  md:text-center xl:text-start">
+          <motion.h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-8xl font-light leading-[0.9] tracking-tight mb-4 sm:mb-6 md:text-center xl:text-start">
             {["Your Brand Deserves"].map((word: string, i: number) => (
               <motion.span
                 key={i}
@@ -181,7 +159,7 @@ const Hero: React.FC = () => {
                   delay: 0.3 + i * 0.1,
                   ease: [0.33, 1, 0.68, 1],
                 }}
-                className="block font-bold"
+                className="block font-bold text-white"
               >
                 {word}
               </motion.span>
@@ -194,7 +172,8 @@ const Hero: React.FC = () => {
                 delay: 0.6,
                 ease: [0.33, 1, 0.68, 1],
               }}
-              className="block italic text-transparent bg-clip-text bg-gradient-to-r from-black via-zinc-600 to-black"
+              // Updated gradient to use Terracotta
+              className="block italic text-transparent bg-clip-text bg-gradient-to-r from-[#D4654C] via-[#ff9e8a] to-[#D4654C]"
             >
               More Than
             </motion.span>
@@ -206,7 +185,7 @@ const Hero: React.FC = () => {
                 delay: 0.7,
                 ease: [0.33, 1, 0.68, 1],
               }}
-              className="block font-bold"
+              className="block font-bold text-white"
             >
               a Template.
             </motion.span>
@@ -220,11 +199,12 @@ const Hero: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
         >
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light leading-relaxed lg:text-center xl:text-right text-start text-zinc-700 md:text-center ">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light leading-relaxed lg:text-center xl:text-right text-start text-white/60 md:text-center ">
             We design and build digital experiences that feel{" "}
-            <span className="italic">impossible</span>, until they&apos;re live.
+            <span className="italic text-white">impossible</span>, until
+            they&apos;re live.
             <br />
-            <span className="text-base sm:text-lg md:text-xl mt-2 sm:mt-4 block">
+            <span className="text-base sm:text-lg md:text-xl mt-2 sm:mt-4 block text-[#D4654C]">
               For companies ready to lead, not follow.
             </span>
           </p>
@@ -248,30 +228,29 @@ const Hero: React.FC = () => {
           </MagneticButton>
         </motion.div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator - Updated Colors */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.5 }}
           className="absolute bottom-8 sm:bottom-12 left-3 sm:left-12 lg:left-24 xl:left-10 hidden sm:flex flex-col items-center gap-3"
         >
-          <span className="text-xs tracking-widest uppercase rotate-180 [writing-mode:vertical-lr]">
+          <span className="text-xs tracking-widest uppercase rotate-180 [writing-mode:vertical-lr] text-white/40">
             Scroll Down
           </span>
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-[1px] h-16 bg-black"
+            className="w-[1px] h-16 bg-[#D4654C]"
           />
         </motion.div>
       </motion.div>
 
-      {/* Booking Modal */}
+      {/* Booking Modal - Updated for Dark Theme */}
       {isBookingOpen && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-md p-4"
           onClick={(e) => {
-            // Close modal when clicking backdrop
             if (e.target === e.currentTarget) {
               setIsBookingOpen(false);
             }
@@ -281,19 +260,19 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="relative bg-white rounded-lg shadow-2xl w-full max-w-4xl h-[80vh] overflow-hidden"
+            className="relative bg-[#0a0a0a] border border-white/10 rounded-2xl shadow-2xl w-full max-w-4xl h-[80vh] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button
               onClick={() => setIsBookingOpen(false)}
-              className="absolute top-4 right-4 z-[10000] bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
+              className="absolute top-4 right-4 z-[10000] bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-colors"
               aria-label="Close booking modal"
             >
-              <X className="w-6 h-6 text-gray-600" />
+              <X className="w-6 h-6" />
             </button>
 
-            {/* Cal.com Embed */}
+            {/* Cal.com Embed - Updated to Dark Theme config */}
             <div className="w-full h-full relative z-[9999]">
               <Cal
                 namespace="quick-chat"
@@ -307,7 +286,7 @@ const Hero: React.FC = () => {
                 }}
                 config={{
                   layout: "month_view",
-                  theme: "light",
+                  theme: "dark",
                 }}
               />
             </div>
