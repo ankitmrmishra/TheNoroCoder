@@ -9,7 +9,7 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Showcase from "../components/ShowCase";
 import Provide from "../components/Provide";
-import Pricing from "../components/Pricing";
+
 import Footer from "../components/Footer";
 import About from "../components/About";
 import Testimonial from "../components/Testimonial";
@@ -18,6 +18,9 @@ import ServicesRedesign from "../components/Provide";
 import PhilosophySection from "../components/Philosophy";
 import Process from "../components/Process";
 import TechStack from "../components/TechStack";
+import FAQ from "../components/Faqs";
+import Pricing from "../components/Pricing";
+import Team from "../components/Team";
 
 // Register the ScrollTrigger plugin
 // gsap.registerPlugin(ScrollTrigger);
@@ -69,10 +72,13 @@ export default function Home() {
       </div>
       <Process />
       <TechStack />
+      <Pricing />
       {/* 4. REST OF CONTENT: Continues naturally below Provide */}
       <div className="relative z-20 bg-white dark:bg-black">
         {/* <Testimonial /> */}
-        <Pricing />
+        <FAQ />
+
+        <Team />
         {/* <About /> */}
         {/* <Footer /> */}
       </div>

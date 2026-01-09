@@ -387,13 +387,11 @@ const TechStack = () => {
         {/* Heading Section */}
         <div className="max-w-4xl mb-20">
           <div className="flex items-center gap-3 mb-6">
-            <span className="h-[2px] w-12 bg-gradient-to-r from-[#D4654C] to-transparent"></span>
-            <span className="text-[#D4654C] uppercase tracking-[0.25em] text-xs font-semibold flex items-center gap-2">
-              <SparklesIcon />
+            <span className="h-px w-8 sm:w-12 bg-[#D4654C]"></span>
+            <span className="text-[#D4654C] uppercase tracking-[0.2em] text-sm font-medium">
               Technology Stack
             </span>
           </div>
-
           <h2
             ref={headingRef}
             className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.95] mb-8"
