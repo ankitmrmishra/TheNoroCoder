@@ -111,7 +111,7 @@ const Showcase: React.FC = () => {
     offset: ["start start", "end start"],
   });
 
-  const headerOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 1]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -158,9 +158,9 @@ const Showcase: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-white/20 rounded-full">
-            <div className="w-2 h-2 rounded-full bg-[#D4654C] animate-pulse" />
-            <span className="text-sm text-white/70 font-light tracking-widest uppercase">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="h-px w-8 bg-[#D4654C]"></span>
+            <span className="text-[#D4654C] uppercase tracking-[0.2em] text-sm">
               Featured Work
             </span>
           </div>
@@ -274,7 +274,7 @@ const Showcase: React.FC = () => {
                           {project.companyType}
                         </p>
                       </div>
-                      <span className="inline-flex items-center gap-2 max-h-max rounded-full max-w-max border border-white/20 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm text-white/70 whitespace-nowrap">
+                      <span className="inline-flex items-center gap-2 max-h-max rounded-full max-w-max border border-white/20 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm text-white/70 whitespace-nowrap ">
                         <div className="w-2 h-2 rounded-full bg-[#D4654C]" />
                         {project.timeOfwork}
                       </span>
@@ -308,14 +308,14 @@ const Showcase: React.FC = () => {
                     </p>
 
                     {/* CTA Buttons */}
-                    <div className="flex  gap-3 sm:gap-4 absolute bottom-0">
+                    <div className="flex  gap-3 sm:gap-4  bottom-0">
                       <motion.a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="inline-flex items-center justify-center gap-2  bg-[#D4654C] px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold text-white transition-all hover:bg-[#bf5a43] group"
+                        className="inline-flex items-center justify-center  gap-1   bg-[#D4654C] px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold text-white transition-all hover:bg-[#bf5a43] group"
                       >
                         View Case Study
                         <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1" />

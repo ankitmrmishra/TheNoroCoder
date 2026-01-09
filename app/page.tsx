@@ -14,6 +14,8 @@ import Footer from "../components/Footer";
 import About from "../components/About";
 import Testimonial from "../components/Testimonial";
 import AgencyTechHero from "../components/ui/MarqueeBanner";
+import ServicesRedesign from "../components/Provide";
+import PhilosophySection from "../components/Philosophy";
 
 // Register the ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -46,24 +48,23 @@ export default function Home() {
   return (
     <div ref={container} className="min-h-screen ">
       <Navbar />
-
       {/* 1. HERO: Pinned first. Lowest Z-index. */}
       <div className="pinned-panel relative min-h-screen w-full z-0 bg-white dark:bg-black">
         <Hero />
       </div>
       {/* <AgencyTechHero /> */}
-
-      {/* 2. SHOWCASE: Slides over Hero, then Pins. Higher Z-index. */}
-      <div className="pinned-panel relative min-h-screen w-full z-10 bg-white dark:bg-black">
-        <Showcase />
-      </div>
-
       {/* 3. PROVIDE: Slides over Showcase. Normal Scroll starts here. Highest Z-index. */}
       {/* We do not add 'pinned-panel' here so it scrolls normally once in view. */}
       <div className="relative min-h-screen w-full z-20 bg-white dark:bg-black">
-        <Provide />
+        <ServicesRedesign />
       </div>
-
+      {/* 2. SHOWCASE: Slides over Hero, then Pins. Higher Z-index. */}
+      <div className="pinned-panel relative min-h-screen w-full z-10 bg-white dark:bg-black">
+        <Showcase />
+      </div>{" "}
+      <div className="pinned-panel relative min-h-screen w-full z-10 bg-white dark:bg-black">
+        <PhilosophySection />
+      </div>
       {/* 4. REST OF CONTENT: Continues naturally below Provide */}
       <div className="relative z-20 bg-white dark:bg-black">
         <Testimonial />
