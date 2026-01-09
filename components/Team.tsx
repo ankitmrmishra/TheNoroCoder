@@ -208,8 +208,8 @@ const Team = () => {
             Meet the <span className="text-[#D4654C]">Builders.</span>
           </h2>
           <p className="text-lg text-white/60 max-w-2xl">
-            Small team. High output. We don't hire project managers; we hire
-            problem solvers who write production-grade code.
+            Small team. High output. We don&apos;t hire project managers; we
+            hire problem solvers who write production-grade code.
           </p>
         </div>
 
