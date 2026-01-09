@@ -80,7 +80,7 @@ export default function Home() {
 
         <Team />
         {/* <About /> */}
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </div>
   );
