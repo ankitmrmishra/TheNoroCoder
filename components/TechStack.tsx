@@ -407,8 +407,8 @@ const TechStack = () => {
             ref={subheadingRef}
             className="text-lg sm:text-xl text-white/60 max-w-2xl leading-relaxed border-l-2 border-[#D4654C]/30 pl-6"
           >
-            We don't use WordPress, jQuery, or technologies from 2010. Here's
-            our current stack (and why we chose it).
+            We don&apos;t use WordPress, jQuery, or technologies from 2010.
+            Here&apos;s our current stack (and why we chose it).
           </p>
         </div>
 
@@ -492,13 +492,13 @@ const TechStack = () => {
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8 hover:bg-white/10 hover:border-[#D4654C]/30 transition-all duration-300">
             <TerminalIcon />
             <span className="text-sm font-mono text-white/70">
-              Want to talk stack? We're nerds.
+              Want to talk stack? We&apos;re nerds.
             </span>
           </div>
 
           {/* CTA Heading */}
           <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-10 max-w-2xl">
-            Let's discuss your{" "}
+            Let&apos;s discuss your{" "}
             <span className="text-[#D4654C]">technical requirements.</span>
           </h3>
 

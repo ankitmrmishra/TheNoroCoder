@@ -305,7 +305,7 @@ const FAQ = () => {
 
           <p className="text-lg sm:text-xl text-white/60 max-w-2xl leading-relaxed">
             No marketing fluff. Just straightforward answers to help you decide
-            if we're the right fit.
+            if we&apos;re the right fit.
           </p>
         </div>
 
@@ -379,7 +379,7 @@ const FAQ = () => {
           </h3>
           <p className="text-lg text-white/60 mb-8 max-w-2xl mx-auto">
             Book a free 30-minute call. No sales pitch, just honest conversation
-            about your project and whether we're a good fit.
+            about your project and whether we&apos;re a good fit.
           </p>
 
           <a

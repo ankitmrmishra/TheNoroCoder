@@ -171,7 +171,7 @@ const PhaseCardContent = ({ phase }: { phase: Phase }) => {
               </span>
             </div>
             <p className="text-base sm:text-lg text-white/90 italic leading-relaxed bg-white/5 p-6 rounded-2xl border-l-2 border-[#D4654C]">
-              "{phase.realTalk}"
+              &quot;{phase.realTalk}&quot;
             </p>
           </div>
         </div>
@@ -277,8 +277,9 @@ export default function Process() {
             </span>
           </h2>
           <p className="text-lg sm:text-xl text-white/60 max-w-2xl leading-relaxed border-l-2 border-[#D4654C] pl-6 mt-8">
-            Most agencies have a "process" that looks great in a deck and falls
-            apart in reality. Here's what actually happens when you hire us.
+            Most agencies have a &quot;process&quot; that looks great in a deck
+            and falls apart in reality. Here&apos;s what actually happens when
+            you hire us.
           </p>
         </div>
       </div>
