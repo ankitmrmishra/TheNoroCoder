@@ -237,6 +237,7 @@ const PhilosophySection: React.FC = () => {
 
   return (
     <section
+      id="philosophy"
       ref={containerRef}
       className="relative bg-black py-20 sm:py-28 overflow-hidden"
     >

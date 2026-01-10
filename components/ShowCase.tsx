@@ -144,7 +144,7 @@ const Showcase: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative bg-black min-h-screen">
+    <div id="showcase" className="relative bg-black min-h-screen">
       {/* Subtle Background Pattern */}
       <div className="fixed inset-0 z-0 opacity-5 pointer-events-none">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:4rem_4rem]" />

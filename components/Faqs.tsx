@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useRef, useLayoutEffect, useState } from "react";
+import React, { useRef, useLayoutEffect, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import BookingModal from "./ui/BookingModel";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -264,8 +265,22 @@ const FAQ = () => {
     }
   };
 
+  const [isBookingOpen, setIsBookingOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isBookingOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isBookingOpen]);
+
   return (
     <section
+      id="faqs"
       ref={containerRef}
       className="relative bg-[#0a0a0a] text-white py-24 sm:py-32 overflow-hidden"
     >
@@ -377,8 +392,8 @@ const FAQ = () => {
             about your project and whether we&apos;re a good fit.
           </p>
 
-          <a
-            href="https://wa.me/918437153991"
+          <div
+            onClick={() => setIsBookingOpen(true)}
             className="group relative inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 bg-[#D4654C] text-white rounded-full overflow-hidden transition-all hover:bg-[#bf5a43] hover:scale-105 hover:shadow-[0_0_40px_rgba(212,101,76,0.4)]"
           >
             <span className="relative z-10 font-bold tracking-wide uppercase text-sm">
@@ -400,8 +415,12 @@ const FAQ = () => {
 
             {/* Shimmer Effect */}
             <div className="absolute inset-0 -translate-x-full group-hover:animate-shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-          </a>
+          </div>
         </div>
+        <BookingModal
+          isOpen={isBookingOpen}
+          onClose={() => setIsBookingOpen(false)}
+        />
       </div>
 
       <style jsx global>{`

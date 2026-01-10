@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
+import BookingModal from "./ui/BookingModel";
+import { Button } from "./ui/button";
 
 // --- Data ---
 const services = [
@@ -235,8 +237,21 @@ export default function ServicesHorizontal() {
     offset: ["start start", "end end"],
   });
 
+  const [isBookingOpen, setIsBookingOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isBookingOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isBookingOpen]);
+
   return (
-    <section className="bg-[#050505] text-white relative w-full">
+    <section id="Services" className="bg-[#050505] text-white relative w-full">
       {/* --- Grain Texture Overlay --- */}
       {/* <div className="fixed inset-0 z-0 opacity-[0.04] pointer-events-none mix-blend-overlay">
         <div
@@ -280,20 +295,17 @@ export default function ServicesHorizontal() {
           ))}
 
           {/* Mobile CTA */}
-          <div className="w-full bg-[#0a0a0a] border border-white/10 rounded-2xl p-8 mt-6 flex flex-col items-center justify-center text-center">
-            <a href="https://wa.me/918437153991" className="group">
-              <div className="w-20 h-20 rounded-full bg-[#D4654C] flex items-center justify-center mx-auto mb-6 group-active:scale-95 transition-transform">
-                <ArrowUpRight className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-3xl font-bold text-white mb-2">
-                Let&apos;s Talk
-              </h3>
-              <p className="text-white/60 text-sm">
-                Ready to start your project?
-              </p>
-            </a>
-          </div>
+          <Button
+            onClick={() => setIsBookingOpen(true)}
+            className="w-full bg-[#0a0a0a] border border-white/10 rounded-2xl py-7 text-xl mt-6 flex flex-col items-center justify-center text-center"
+          >
+            Start A Project
+          </Button>
         </div>
+        <BookingModal
+          isOpen={isBookingOpen}
+          onClose={() => setIsBookingOpen(false)}
+        />
       </div>
 
       {/* ---------------------------------------------------------
@@ -313,7 +325,7 @@ export default function ServicesHorizontal() {
                 </span>
               </div>
 
-              <h2 className="text-8xl xl:text-9xl font-bold leading-[0.9] mb-8">
+              <h2 className="text-7xl xl:text-9xl font-bold leading-[0.9] mb-8">
                 What We Build
                 <span className="text-[#D4654C] text-6xl">.</span>
               </h2>
@@ -323,13 +335,12 @@ export default function ServicesHorizontal() {
                 that scales revenue.
               </p>
 
-              <a
-                href="https://wa.me/918437153991"
-                className="inline-flex items-center gap-2 mt-12 text-sm font-bold uppercase tracking-wider hover:text-[#D4654C] transition-colors group"
+              <Button
+                onClick={() => setIsBookingOpen(true)}
+                className="w-full bg-[#0a0a0a] hover:bg-[#D4654C] text-xl border border-white/10 rounded-2xl py-7  mt-6 flex flex-col items-center justify-center text-center"
               >
-                Start a Project
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+                Start A Project
+              </Button>
             </div>
           </div>
 
@@ -346,6 +357,11 @@ export default function ServicesHorizontal() {
             <CTACard scrollProgress={scrollYProgress} />
           </div>
         </div>
+
+        <BookingModal
+          isOpen={isBookingOpen}
+          onClose={() => setIsBookingOpen(false)}
+        />
       </div>
 
       <style jsx global>{`

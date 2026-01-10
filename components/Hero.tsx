@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, X, Sparkles } from "lucide-react";
 import Cal from "@calcom/embed-react";
+import BookingModal from "./ui/BookingModel";
+import { useRouter } from "next/navigation";
 
 interface MousePosition {
   x: number;
@@ -109,7 +111,7 @@ const Hero: React.FC = () => {
       </motion.button>
     );
   };
-
+  const router = useRouter();
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-black text-white">
       {/* Animated Background Grid - Updated color to white/10 opacity */}
@@ -139,7 +141,6 @@ const Hero: React.FC = () => {
           className="mb-8 sm:mb-12 "
         >
           <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 border border-white/20 bg-white/5 backdrop-blur-sm rounded-full">
-            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4654C]" />
             <span className="text-xs sm:text-sm text-white/80 font-light tracking-widest uppercase">
               Currently Booking Q1 2026
             </span>
@@ -217,7 +218,10 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 1.2 }}
           className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto text-center"
         >
-          <MagneticButton className="" onClick={() => setIsBookingOpen(true)}>
+          <MagneticButton
+            className=""
+            onClick={() => router.push("/#showcase")}
+          >
             See Our Work
           </MagneticButton>
           <MagneticButton
@@ -247,52 +251,10 @@ const Hero: React.FC = () => {
       </motion.div>
 
       {/* Booking Modal - Updated for Dark Theme */}
-      {isBookingOpen && (
-        <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-md p-4"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              setIsBookingOpen(false);
-            }
-          }}
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            className="relative bg-[#0a0a0a] border border-white/10 rounded-2xl shadow-2xl w-full max-w-4xl h-[80vh] overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close Button */}
-            <button
-              onClick={() => setIsBookingOpen(false)}
-              className="absolute top-4 right-4 z-[10000] bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-colors"
-              aria-label="Close booking modal"
-            >
-              <X className="w-6 h-6" />
-            </button>
-
-            {/* Cal.com Embed - Updated to Dark Theme config */}
-            <div className="w-full h-full relative z-[9999]">
-              <Cal
-                namespace="quick-chat"
-                calLink="worknoro/quick-chat"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  overflow: "auto",
-                  position: "relative",
-                  zIndex: "9999",
-                }}
-                config={{
-                  layout: "month_view",
-                  theme: "dark",
-                }}
-              />
-            </div>
-          </motion.div>
-        </div>
-      )}
+      <BookingModal
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+      />
     </div>
   );
 };

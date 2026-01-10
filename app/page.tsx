@@ -1,19 +1,11 @@
 "use client";
 
-import { useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Showcase from "../components/ShowCase";
-import Provide from "../components/Provide";
 
 import Footer from "../components/Footer";
-import About from "../components/About";
-import Testimonial from "../components/Testimonial";
-import AgencyTechHero from "../components/ui/MarqueeBanner";
+
 import ServicesRedesign from "../components/Provide";
 import PhilosophySection from "../components/Philosophy";
 import Process from "../components/Process";

@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useRef, useLayoutEffect } from "react";
+import React, { useRef, useLayoutEffect, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import BookingModal from "./ui/BookingModel";
+import { Button } from "./ui/button";
 
 // Register GSAP plugin safely
 if (typeof window !== "undefined") {
@@ -192,8 +194,22 @@ const Pricing = () => {
     return () => ctx.revert();
   }, []);
 
+  const [isBookingOpen, setIsBookingOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isBookingOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isBookingOpen]);
+
   return (
     <section
+      id="pricing"
       ref={containerRef}
       className="relative bg-[#0a0a0a] text-white py-24 overflow-hidden"
     >
@@ -258,9 +274,9 @@ const Pricing = () => {
                 ))}
               </ul>
 
-              <a
-                href="https://wa.me/918437153991"
-                className={`flex items-center justify-center gap-2 py-4 rounded-xl text-sm font-semibold transition
+              <Button
+                onClick={() => setIsBookingOpen(true)}
+                className={`flex w-full h-[3rem] items-center justify-center gap-2 py-4 rounded-xl text-sm font-semibold transition
                   ${
                     tier.popular
                       ? "bg-[#D4654C] hover:bg-[#bf5a43]"
@@ -268,11 +284,15 @@ const Pricing = () => {
                   }`}
               >
                 {tier.cta} <ArrowRightIcon />
-              </a>
+              </Button>
             </div>
           ))}
         </div>
       </div>
+      <BookingModal
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+      />
     </section>
   );
 };

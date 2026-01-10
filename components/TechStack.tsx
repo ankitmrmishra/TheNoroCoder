@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useRef, useLayoutEffect } from "react";
+import React, { useRef, useLayoutEffect, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import BookingModal from "./ui/BookingModel";
+import { Button } from "./ui/button";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -364,6 +366,19 @@ const TechStack = () => {
     });
   };
 
+  const [isBookingOpen, setIsBookingOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isBookingOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isBookingOpen]);
+
   return (
     <section
       ref={containerRef}
@@ -501,20 +516,17 @@ const TechStack = () => {
           </h3>
 
           {/* CTA Button */}
-          <a
-            href="https://wa.me/918437153991"
-            className="group relative inline-flex items-center gap-3 px-10 py-5 bg-[#D4654C] text-white rounded-full overflow-hidden transition-all hover:bg-[#bf5a43] hover:scale-105 hover:shadow-[0_0_40px_rgba(212,101,76,0.4)]"
+          <Button
+            onClick={() => setIsBookingOpen(true)}
+            className=" hover:bg-[#D4654C] bg-[#0a0a0a] border border-white/10 rounded-2xl py-7 text-xl mt-6 flex flex-col items-center justify-center text-center"
           >
-            <span className="relative z-10 font-bold tracking-wide uppercase text-sm">
-              Schedule Technical Call
-            </span>
-            <span className="relative z-10">
-              <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </span>
+            Start A Project
+          </Button>
 
-            {/* Shimmer Effect */}
-            <div className="absolute inset-0 -translate-x-full group-hover:animate-shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-          </a>
+          <BookingModal
+            isOpen={isBookingOpen}
+            onClose={() => setIsBookingOpen(false)}
+          />
 
           {/* Subtext */}
           <p className="text-sm text-white/40 mt-6 max-w-md">

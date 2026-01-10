@@ -179,6 +179,7 @@ const Team = () => {
 
   return (
     <section
+      id="about"
       ref={containerRef}
       className="relative bg-[#0a0a0a] text-white py-24 sm:py-32 overflow-hidden"
     >

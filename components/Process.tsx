@@ -248,7 +248,11 @@ export default function Process() {
   }, []);
 
   return (
-    <section ref={containerRef} className="bg-[#050505] text-white w-full">
+    <section
+      id="process"
+      ref={containerRef}
+      className="bg-[#050505] text-white w-full"
+    >
       {/* Texture Overlay */}
       <div className="fixed inset-0 z-0 opacity-[0.04] pointer-events-none mix-blend-overlay">
         <div

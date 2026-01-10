@@ -14,10 +14,11 @@ const Navbar = () => {
 
   const menuItems = [
     { name: "About Me", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Testimonials", href: "#testimonials" },
+    { name: "Services", href: "#Services" },
+    { name: "Our Work", href: "#showcase" },
+    { name: "Our Process", href: "#process" },
     { name: "FAQs", href: "#faqs" },
-    { name: "Services", href: "#service" },
+    { name: "Pricing", href: "#pricing" },
   ];
 
   const menuVariants = {
@@ -109,7 +110,7 @@ const Navbar = () => {
                 initial="closed"
                 animate="open"
                 exit="closed"
-                className="text-6xl lg:text-9xl text-white hover:bg-white transfor font-Galgo700 group sm:border-b border-white w-full px-10   ease-in-out"
+                className="text-8xl  text-white hover:bg-white transfor font-Galgo700 group sm:border-b border-white w-full px-10   ease-in-out"
                 custom={index}
               >
                 <Link
