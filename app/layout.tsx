@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: "%s | NORO.WORK",
   },
   description:
-    "Small team of three senior developers building high-performance websites and web applications. Next.js, React, GSAP animations. Starting at $1,000. Fast turnaround, no corporate overhead.",
+    "Small team of three senior developers building high-performance websites and web applications. Next.js, React, GSAP animations. Starting at $600. Fast turnaround, no corporate overhead.",
   keywords: [
     // Primary Keywords (High Intent)
     "web development agency",
@@ -44,68 +44,56 @@ export const metadata: Metadata = {
     "Tailwind CSS",
     "serverless architecture",
 
-    // Location-Based (if applicable)
+    // Location-Based
     "web development India",
     "Haryana web developers",
   ],
   authors: [
     { name: "NORO.WORK Team" },
-    { name: "Ankit Mishra", url: "https://twitter.com/AnkitMishraexe" },
+    { name: "Ankit Mishra", url: "https://twitter.com/ankitmrmishra" },
   ],
   creator: "NORO.WORK",
   publisher: "NORO.WORK Digital Studio",
 
-  // ✅ CRITICAL: Set your actual production URL
-  metadataBase: new URL("https://noro.work"), // Change this to your actual domain
+  metadataBase: new URL("https://noro.work"),
 
   alternates: {
     canonical: "/",
     languages: {
       "en-US": "/",
-      "en-IN": "/", // If targeting Indian market
+      "en-IN": "/",
     },
   },
 
   openGraph: {
     title: "NORO.WORK | High-Performance Web Development Studio",
     description:
-      "Small team of senior developers building fast, modern websites. Next.js + React + GSAP. $1,000+ projects. 2-4 week turnaround.",
+      "Small team of senior developers building fast, modern websites. Next.js + React + GSAP. Starting at $600. 2-4 week turnaround.",
     url: "https://noro.work",
     siteName: "NORO.WORK",
     images: [
       {
-        url: "/og-image.jpg", // ✅ Create this image (1200x630px)
+        url: "/opengraph-image.png",
         width: 1200,
         height: 630,
         alt: "NORO.WORK - Modern Web Development Studio",
-        type: "image/jpeg",
-      },
-      {
-        url: "/og-image-square.jpg", // ✅ Optional: Square for some platforms
-        width: 1200,
-        height: 1200,
-        alt: "NORO.WORK Logo",
-        type: "image/jpeg",
+        type: "image/png",
       },
     ],
-    locale: "en_IN", // Change to en_US if targeting US market
+    locale: "en_US",
     type: "website",
-    // ✅ Add article type for blog posts
-    // type: "article", // Use on blog post pages
   },
 
-  // ✅ IMPROVED: Better Twitter Cards
   twitter: {
     card: "summary_large_image",
     title: "NORO.WORK | High-Performance Web Development",
     description:
-      "Small team of senior devs. Next.js + React + GSAP. Fast, modern websites starting at $1,000.",
-    images: ["/twitter-image.jpg"], // ✅ Create this (1200x675px for large card)
-    creator: "@AnkitMishraexe",
-    site: "@AnkitMishraexe", // Change to @norowork if you create company account
+      "Small team of senior devs. Next.js + React + GSAP. Fast, modern websites starting at $600.",
+    images: ["/twitter-image.png"],
+    creator: "@ankitmrmishra",
+    site: "@ankitmrmishra",
   },
 
-  // ✅ IMPROVED: More specific robot instructions
   robots: {
     index: true,
     follow: true,
@@ -118,6 +106,14 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+
+  manifest: "/manifest.json",
+
+  verification: {
+    google: "your-google-verification-code", // Add your Google Search Console verification code
+    // yandex: "your-yandex-verification-code",
+    // bing: "your-bing-verification-code",
   },
 };
 export default function RootLayout({
