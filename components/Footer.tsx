@@ -153,20 +153,22 @@ const Footer = () => {
             <h4 className="text-white font-bold mb-6">Services</h4>
             <ul className="space-y-3">
               {[
-                "Brand Elevation",
-                "Digital Products",
-                "Enterprise Platforms",
-                "Ongoing Maintenance",
-                "Performance Audits",
+                { name: "Brand Elevation", href: "https://cal.com/ankitmrmishra" },
+                { name: "Digital Products", href: "https://cal.com/ankitmrmishra" },
+                { name: "Enterprise Platforms", href: "https://cal.com/ankitmrmishra" },
+                { name: "Ongoing Maintenance", href: "https://cal.com/ankitmrmishra" },
+                { name: "Performance Audits", href: "https://cal.com/ankitmrmishra" },
               ].map((item, i) => (
                 <li key={i}>
                   <a
-                    href="#"
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm"
                   >
                     <span className="w-1 h-1 rounded-full bg-[#D4654C] opacity-0 group-hover:opacity-100 transition-opacity" />
                     <span className="group-hover:translate-x-1 transition-transform duration-300">
-                      {item}
+                      {item.name}
                     </span>
                   </a>
                 </li>
@@ -183,21 +185,21 @@ const Footer = () => {
             <h4 className="text-white font-bold mb-6">Resources</h4>
             <ul className="space-y-3">
               {[
-                "Our Work",
-                "Case Studies",
-                "Process",
-                "Technology Stack",
-                "Pricing",
-                "Blog",
+                { name: "Our Work", href: "#showcase" },
+                { name: "Case Studies", href: "#showcase" },
+                { name: "Process", href: "#process" },
+                { name: "Technology Stack", href: "#techstack" },
+                { name: "Pricing", href: "#pricing" },
+                { name: "Blog", href: "#" },
               ].map((item, i) => (
                 <li key={i}>
                   <a
-                    href="#"
+                    href={item.href}
                     className="group flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm"
                   >
                     <span className="w-1 h-1 rounded-full bg-[#D4654C] opacity-0 group-hover:opacity-100 transition-opacity" />
                     <span className="group-hover:translate-x-1 transition-transform duration-300">
-                      {item}
+                      {item.name}
                     </span>
                   </a>
                 </li>
@@ -214,26 +216,28 @@ const Footer = () => {
             <h4 className="text-white font-bold mb-6">Connect</h4>
 
             <a
-              href="mailto:hello@noro.work"
+              href="mailto:ankitmrmishra1118@gmail.com"
               className="block text-xl font-bold text-white hover:text-[#D4654C] transition-colors mb-6"
             >
-              hello@noro.work
+              ankitmrmishra1118@gmail.com
             </a>
 
             {/* Social Icons */}
             <div className="flex gap-4 mb-8">
               {[
-                <TwitterIcon key="tw" />,
-                <LinkedInIcon key="li" />,
-                <GithubIcon key="gh" />,
-                <DribbbleIcon key="dr" />,
-              ].map((icon, i) => (
+                { icon: <TwitterIcon key="tw" />, href: "https://twitter.com/ankitmrmishra" },
+                { icon: <LinkedInIcon key="li" />, href: "https://www.linkedin.com/in/ankitmrmishra/" },
+                { icon: <GithubIcon key="gh" />, href: "https://github.com/ankitmrmishra" },
+                { icon: <DribbbleIcon key="dr" />, href: "https://dribbble.com/ankitmrmishra" },
+              ].map((item, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-[#D4654C] hover:border-[#D4654C] transition-all duration-300"
                 >
-                  {icon}
+                  {item.icon}
                 </a>
               ))}
             </div>

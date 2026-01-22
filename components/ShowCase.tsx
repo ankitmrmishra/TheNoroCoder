@@ -268,14 +268,6 @@ const Showcase: React.FC = () => {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2  bg-[#D4654C] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[#bf5a43]"
-                >
-                  Case Study <ArrowRight className="w-4 h-4" />
-                </a>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2  border border-white/20 bg-transparent px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-white/5"
                 >
                   Live Site <ExternalLink className="w-3 h-3" />
@@ -436,18 +428,6 @@ const Showcase: React.FC = () => {
 
                     {/* CTA Buttons */}
                     <div className="flex gap-4 bottom-0">
-                      <motion.a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="inline-flex items-center justify-center gap-1 bg-[#D4654C] px-8 py-4 text-base font-semibold text-white transition-all hover:bg-[#bf5a43] group"
-                      >
-                        View Case Study
-                        <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                      </motion.a>
-
                       <motion.a
                         href={project.link}
                         target="_blank"
