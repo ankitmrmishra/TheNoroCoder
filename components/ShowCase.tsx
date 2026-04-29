@@ -1,13 +1,8 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useTransform,
-} from "framer-motion";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, ExternalLink, TrendingUp, Users, Zap } from "lucide-react";
 
 // --- Types ---
 interface Project {
@@ -31,11 +26,11 @@ const projects: Project[] = [
     companyType: "Prediction Betting App",
     timeOfwork: "June 2024",
     details:
-      "Turn Your Predictions into Profits. India's first social prediction market where opinions have real value.",
+      "India's first social prediction market where opinions have real value.",
     tags: ["React", "Web3", "Real-time"],
     metrics: [
-      { label: "User Growth", value: "+240%" },
-      { label: "Engagement", value: "4.2x" },
+      { label: "User Growth", value: "+35%" },
+      { label: "Engagement", value: "2.1x" },
     ],
   },
   {
@@ -43,14 +38,14 @@ const projects: Project[] = [
     display:
       "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800",
     link: "https://dcex.vercel.app/",
-    companyType: "Web Based Crypto Wallet",
+    companyType: "Crypto Wallet",
     timeOfwork: "July 2024",
     details:
-      "A web based crypto wallet, BharatWallet makes it easier to use crypto wallets with seamless integration.",
+      "Web-based crypto wallet with seamless integration.",
     tags: ["Blockchain", "Security", "UI/UX"],
     metrics: [
-      { label: "Transactions", value: "50K+" },
-      { label: "Security Score", value: "99.9%" },
+      { label: "Transactions", value: "8K+" },
+      { label: "Security", value: "A+" },
     ],
   },
   {
@@ -58,437 +53,381 @@ const projects: Project[] = [
     display:
       "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800",
     link: "https://jobkonnect.vercel.app/",
-    companyType: "Job Search Platform",
+    companyType: "Job Platform",
     timeOfwork: "August 2024",
     details:
-      "We are your career catalyst, bringing together ambitious professionals and visionary companies.",
-    tags: ["SaaS", "AI Matching", "Platform"],
+      "Career catalyst connecting professionals with opportunities.",
+    tags: ["SaaS", "AI", "Platform"],
     metrics: [
-      { label: "Job Matches", value: "10K+" },
-      { label: "Success Rate", value: "87%" },
-    ],
-  },
-  {
-    title: "LawGical Insights",
-    display:
-      "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800",
-    link: "https://lawgical-insights-page.vercel.app/",
-    companyType: "Legal Platform",
-    timeOfwork: "April 2024",
-    details:
-      "LawGical Insights is a Portfolio Website and a Law info Page designed for legal professionals.",
-    tags: ["Professional", "Content", "Design"],
-    metrics: [
-      { label: "Page Views", value: "15K+" },
-      { label: "Bounce Rate", value: "-45%" },
-    ],
-  },
-  {
-    title: "Kalanamak",
-    display:
-      "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=800",
-    link: "https://kalanamak.vercel.app/",
-    companyType: "E-commerce Platform",
-    timeOfwork: "May 2024",
-    details:
-      "Kalanamak is a specialized e-commerce platform focusing on authentic, high-quality KalaNamak rice.",
-    tags: ["E-commerce", "Payments", "Responsive"],
-    metrics: [
-      { label: "Conversion", value: "+180%" },
-      { label: "Revenue", value: "3.5x" },
+      { label: "Matches", value: "2K+" },
+      { label: "Success", value: "78%" },
     ],
   },
 ];
 
 const Showcase: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  const { scrollYProgress } = useScroll({
-    target: headerRef,
-    offset: ["start start", "end start"],
-  });
-
-  const headerOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 1]);
-
-  useEffect(() => {
-    // Only run the scroll spy logic on desktop where the refs are attached
-    const handleScroll = () => {
-      if (window.innerWidth < 1024) return; // Skip logic for mobile layout
-
-      const container = containerRef.current;
-      if (!container) return;
-
-      const windowHeight = window.innerHeight;
-      const scrollY = window.scrollY;
-
-      imageRefs.current.forEach((ref, index) => {
-        if (!ref) return;
-        const rect = ref.getBoundingClientRect();
-        const elementTop = rect.top + scrollY;
-        const elementMiddle = elementTop + rect.height / 2;
-        const viewportMiddle = scrollY + windowHeight / 2;
-
-        if (Math.abs(elementMiddle - viewportMiddle) < rect.height / 2) {
-          setActiveIndex(index);
-        }
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <div id="showcase" className="relative bg-black min-h-screen">
-      {/* Subtle Background Pattern */}
-      <div className="fixed inset-0 z-0 opacity-5 pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-      </div>
-
-      {/* Header Section (Shared) */}
-      <motion.div
-        ref={headerRef}
-        style={{ opacity: headerOpacity }}
-        className="top-0 z-10 px-6 sm:px-12 lg:px-24 xl:px-32 py-16 sm:py-20 bg-black/80 backdrop-blur-sm border-b border-white/10"
-      >
+    <div id="showcase" className="relative bg-background py-24">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 sm:px-12">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
         >
           <div className="flex items-center gap-3 mb-6">
-            <span className="h-px w-8 bg-[#D4654C]"></span>
-            <span className="text-[#D4654C] uppercase tracking-[0.2em] text-sm">
+            <span className="h-px w-8 bg-primary"></span>
+            <span className="text-primary uppercase tracking-[0.2em] text-sm font-bold">
               Featured Work
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white max-w-5xl leading-tight mb-6">
-            Work That Moved <span className="text-[#D4654C]">Metrics</span>
-          </h1>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-spaceGrotesk font-medium leading-[1.15] tracking-tight text-foreground mb-6">
+            Work That Moved <span className="text-primary">Metrics</span>
+          </h2>
 
-          <p className="text-lg sm:text-xl md:text-2xl font-light text-white/60 max-w-3xl leading-relaxed">
-            Pretty sites are easy. Sites that{" "}
-            <span className="text-white">perform</span> are rare. Here&apos;s
-            what happened when brands trusted us with their most important
-            digital asset.
+          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+            Sites that perform are rare. Here&apos;s what we built.
           </p>
         </motion.div>
-      </motion.div>
 
-      {/* ========================================================= */}
-      {/* MOBILE LAYOUT (Stacked Cards like Philosophy Page)        */}
-      {/* Hidden on Large Screens (lg:hidden)                       */}
-      {/* ========================================================= */}
-      <div className="relative z-20 flex flex-col gap-12 px-6 py-12 lg:hidden">
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            className="group relative  bg-white/5 border border-white/10 overflow-hidden backdrop-blur-sm"
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mb-8">
+          {/* Project 1 - Large Featured (Spans 8 columns) */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="md:col-span-8 group relative bg-card border border-border overflow-hidden hover:shadow-lg transition-all duration-500"
+            style={{ borderRadius: '8px' }}
           >
-            {/* Mobile Image */}
-            <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-white/10">
+            {/* Image */}
+            <div className="relative h-[300px] md:h-[400px] overflow-hidden">
               <img
-                src={project.display}
-                alt={project.title}
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-100 group-hover:scale-105"
+                src={projects[0].display}
+                alt={projects[0].title}
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
               />
-              {/* Overlay Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-
-              {/* Number Badge */}
-              <div className="absolute top-4 left-4 w-10 h-10  border border-white/20 bg-black/50 backdrop-blur-md flex items-center justify-center">
-                <span className="text-sm font-bold text-white">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-              </div>
-            </div>
-
-            {/* Mobile Content */}
-            <div className="p-6 sm:p-8">
-              {/* Title Header */}
-              <div className="flex flex-col gap-2 mb-6">
-                <div className="flex justify-between items-start gap-4">
-                  <h2 className="text-3xl font-bold text-white leading-tight">
-                    {project.title}
-                  </h2>
-                  <span className="text-xs font-mono text-[#D4654C] border border-[#D4654C]/30 bg-[#D4654C]/10 px-2 py-1  whitespace-nowrap">
-                    {project.timeOfwork}
-                  </span>
-                </div>
-                <p className="text-[#D4654C] text-sm font-medium tracking-wide">
-                  {project.companyType}
-                </p>
-              </div>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mb-8">
-                {project.tags?.map((tag, i) => (
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              
+              {/* Tags Overlay */}
+              <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                {projects[0].tags?.map((tag, i) => (
                   <span
                     key={i}
-                    className="px-3 py-1 text-xs text-white/70 bg-white/5 border border-white/10 "
+                    className="px-2 py-1 text-xs bg-black/50 backdrop-blur-md text-white border border-white/20"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
 
-              {/* Metrics Grid */}
-              {project.metrics && (
-                <div className="grid grid-cols-2 gap-4 mb-8">
-                  {project.metrics.map((metric, i) => (
-                    <div
-                      key={i}
-                      className="p-4 rounded-xl bg-black/40 border border-white/10"
-                    >
-                      <p className="text-2xl font-bold text-white mb-1">
-                        {metric.value}
-                      </p>
-                      <p className="text-xs text-white/50 uppercase tracking-wider">
-                        {metric.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* Description */}
-              <p className="text-white/70 leading-relaxed mb-8 text-sm sm:text-base">
-                {project.details}
-              </p>
-
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-3">
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2  border border-white/20 bg-transparent px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-white/5"
-                >
-                  Live Site <ExternalLink className="w-3 h-3" />
-                </a>
+              {/* Time Badge */}
+              <div className="absolute top-4 right-4 px-3 py-1 text-xs bg-black/50 backdrop-blur-md text-white border border-white/20">
+                {projects[0].timeOfwork}
               </div>
             </div>
-          </div>
-        ))}
 
-        {/* More Projects Link - Mobile */}
-        <div className="mt-8 text-center px-4 py-12 border border-white/10 rounded-3xl bg-white/5">
-          <h2 className="text-2xl font-bold text-white mb-4">More Projects</h2>
-          <p className="text-white/60 text-sm mb-6">
-            Check out my open source contributions.
-          </p>
-          <a
-            href="https://github.com/ankitmrmishra"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2  bg-[#D4654C] px-8 py-3 text-sm font-semibold text-white"
-          >
-            GitHub Profile <ArrowRight className="w-4 h-4" />
-          </a>
-        </div>
-      </div>
-
-      {/* ========================================================= */}
-      {/* DESKTOP LAYOUT (Sticky Image + Scroll)                    */}
-      {/* Hidden on Mobile (hidden lg:grid)                         */}
-      {/* ========================================================= */}
-      <div
-        ref={containerRef}
-        className="relative z-20 hidden lg:grid lg:grid-cols-2 gap-8 lg:gap-16 px-6 sm:px-12 lg:px-24 xl:px-32 pb-20 pt-12"
-      >
-        {/* Left Side - Sticky Image Container */}
-        <div className="sticky top-32 h-[75vh] relative z-30 bg-black">
-          <div className="absolute inset-0 overflow-hidden">
-            <AnimatePresence mode="sync">
-              <motion.div
-                key={activeIndex}
-                initial={{ opacity: 1 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1, ease: "easeInOut" }}
-                className="absolute inset-0"
-              >
-                <motion.img
-                  src={projects[activeIndex].display!}
-                  initial={{ opacity: 1, scale: 0.99 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ scale: 0.8, opacity: 0 }}
-                  transition={{ duration: 1, ease: "easeInOut" }}
-                  alt={projects[activeIndex].title}
-                  className="w-full h-full object-cover grayscale sticky top-0"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-
-                {/* Project Number */}
-                <div className="absolute top-8 left-8">
-                  <motion.div
-                    key={`number-${activeIndex}`}
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="w-16 h-16  border-2 border-white/30 backdrop-blur-md bg-black/30 flex items-center justify-center"
-                  >
-                    <span className="text-2xl font-bold text-white">
-                      {String(activeIndex + 1).padStart(2, "0")}
-                    </span>
-                  </motion.div>
-                </div>
-
-                {/* Tags */}
-                <div className="absolute bottom-8 left-8 right-8">
-                  <motion.div
-                    key={`tags-${activeIndex}`}
-                    initial={{ y: 10, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="flex flex-wrap gap-2"
-                  >
-                    {projects[activeIndex].tags?.map((tag, i) => (
-                      <span
-                        key={i}
-                        className="px-3 py-1 text-sm  bg-white/10 backdrop-blur-md text-white border border-white/20"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </motion.div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-
-        {/* Right Side - Scrolling Content */}
-        <div className="space-y-40 pt-8">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              ref={(el) => {
-                imageRefs.current[index] = el;
-              }}
-              className="min-h-[70vh] flex flex-col justify-center"
-            >
-              <AnimatePresence mode="popLayout">
-                {activeIndex === index && (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="space-y-6 flex justify-start flex-col min-h-[60vh] relative"
-                  >
-                    {/* Header */}
-                    <div className="flex justify-between items-start gap-4 mb-6 h-full">
-                      <div>
-                        <h2 className="text-5xl lg:text-6xl font-bold text-white mb-2">
-                          {project.title}
-                        </h2>
-                        <p className="text-xl text-[#D4654C] font-light">
-                          {project.companyType}
-                        </p>
-                      </div>
-                      <span className="inline-flex items-center gap-2  border border-white/20 px-4 py-2 text-sm text-white/70 whitespace-nowrap ">
-                        <div className="w-2 h-2  bg-[#D4654C]" />
-                        {project.timeOfwork}
-                      </span>
-                    </div>
-
-                    {/* Metrics */}
-                    {project.metrics && (
-                      <div className="grid grid-cols-2 gap-4 mb-6">
-                        {project.metrics.map((metric, i) => (
-                          <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 + i * 0.1 }}
-                            className="p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm hover:border-[#D4654C]/50 transition-colors"
-                          >
-                            <p className="text-3xl lg:text-4xl font-bold text-white mb-1">
-                              {metric.value}
-                            </p>
-                            <p className="text-sm text-white/50 font-light">
-                              {metric.label}
-                            </p>
-                          </motion.div>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Description */}
-                    <p className="text-lg lg:text-xl text-white/70 leading-relaxed mb-8">
-                      {project.details}
-                    </p>
-
-                    {/* CTA Buttons */}
-                    <div className="flex gap-4 bottom-0">
-                      <motion.a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="inline-flex items-center justify-center gap-2 border-2 border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/10 hover:border-white/30 group"
-                      >
-                        Live Site
-                        <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                      </motion.a>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
-
-          {/* Final Section - More Projects Desktop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="min-h-[70vh] flex flex-col justify-center"
-          >
-            <div className="text-center py-20 px-6 border border-white/10 rounded-3xl bg-white/5 backdrop-blur-sm">
-              <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-white/20 ">
-                <div className="w-2 h-2  bg-[#D4654C] animate-pulse" />
-                <span className="text-sm text-white/70 font-light tracking-widest uppercase">
-                  Open Source
-                </span>
-              </div>
-
-              <h2 className="text-5xl lg:text-7xl font-bold text-white mb-6">
-                More Projects
-              </h2>
-              <p className="text-xl lg:text-2xl text-white/60 mb-10 max-w-2xl mx-auto px-4">
-                Explore the rest of my open source work and contributions to the
-                developer community.
+            {/* Content */}
+            <div className="p-6">
+              <h3 className="text-2xl font-bold text-foreground mb-2">
+                {projects[0].title}
+              </h3>
+              <p className="text-sm text-primary font-medium mb-3">
+                {projects[0].companyType}
+              </p>
+              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                {projects[0].details}
               </p>
 
-              <motion.a
-                href="https://github.com/ankitmrmishra"
+              {/* Metrics */}
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                {projects[0].metrics?.map((metric, i) => (
+                  <div key={i} className="p-3 bg-muted border border-border">
+                    <p className="text-xl font-bold text-foreground">{metric.value}</p>
+                    <p className="text-xs text-muted-foreground uppercase">{metric.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA */}
+              <a
+                href={projects[0].link}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3  bg-[#D4654C] px-10 py-5 text-lg font-semibold text-white transition-all hover:bg-[#bf5a43] group"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-primary transition-colors"
               >
-                View GitHub Profile
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </motion.a>
+                View Project <ExternalLink className="w-4 h-4" />
+              </a>
             </div>
           </motion.div>
 
-          <div className="mt-16 text-center">
-            <p className="text-sm text-white/40 max-w-2xl mx-auto leading-relaxed">
-              We work best with funded startups, ambitious founders, and teams who've outgrown templates. Not the right fit if you need something live in 48 hours, want WordPress, or have a budget under $800.
-            </p>
+          {/* Right Column: Metrics + Small Project (Spans 4 columns) */}
+          <div className="md:col-span-4 flex flex-col gap-4">
+            {/* Overall Metrics Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 border border-primary/20 p-5"
+              style={{ borderRadius: '8px' }}
+            >
+              <div className="w-10 h-10 bg-primary/10 border border-primary/20 flex items-center justify-center mb-3">
+                <TrendingUp className="w-5 h-5 text-primary" />
+              </div>
+              <h3 className="text-lg font-bold text-foreground mb-1">
+                Overall Impact
+              </h3>
+              <p className="text-xs text-muted-foreground mb-4">
+                Measurable results
+              </p>
+
+              <div className="space-y-3">
+                <div className="flex items-center justify-between pb-2 border-b border-border">
+                  <div className="flex items-center gap-2">
+                    <Users className="w-3 h-3 text-primary" />
+                    <span className="text-xs text-muted-foreground">Users</span>
+                  </div>
+                  <span className="text-base font-bold text-foreground">12K+</span>
+                </div>
+                <div className="flex items-center justify-between pb-2 border-b border-border">
+                  <div className="flex items-center gap-2">
+                    <TrendingUp className="w-3 h-3 text-primary" />
+                    <span className="text-xs text-muted-foreground">Growth</span>
+                  </div>
+                  <span className="text-base font-bold text-foreground">+65%</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Zap className="w-3 h-3 text-primary" />
+                    <span className="text-xs text-muted-foreground">Score</span>
+                  </div>
+                  <span className="text-base font-bold text-foreground">92</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Small Project Showcase - Project 4 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="group relative bg-card border border-border overflow-hidden hover:shadow-lg transition-all duration-500 flex-1"
+              style={{ borderRadius: '8px' }}
+            >
+              {/* Small Image */}
+              <div className="relative h-[140px] overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800"
+                  alt="LawGical Insights"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                
+                {/* Tag */}
+                <div className="absolute bottom-2 left-2">
+                  <span className="px-2 py-0.5 text-xs bg-black/50 backdrop-blur-md text-white border border-white/20">
+                    Legal
+                  </span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-4">
+                <h3 className="text-base font-bold text-foreground mb-1">
+                  LawGical Insights
+                </h3>
+                <p className="text-xs text-primary font-medium mb-2">
+                  Legal Platform
+                </p>
+                <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
+                  Portfolio website for legal professionals.
+                </p>
+
+                {/* Metrics */}
+                <div className="grid grid-cols-2 gap-2 mb-3">
+                  <div className="p-2 bg-muted border border-border">
+                    <p className="text-sm font-bold text-foreground">3K+</p>
+                    <p className="text-xs text-muted-foreground">Views</p>
+                  </div>
+                  <div className="p-2 bg-muted border border-border">
+                    <p className="text-sm font-bold text-foreground">-28%</p>
+                    <p className="text-xs text-muted-foreground">Bounce</p>
+                  </div>
+                </div>
+
+                <a
+                  href="https://lawgical-insights-page.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-foreground hover:text-primary transition-colors"
+                >
+                  View <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </motion.div>
           </div>
+
+          {/* Project 2 - Medium (Spans 5 columns) */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="md:col-span-5 group relative bg-card border border-border overflow-hidden hover:shadow-lg transition-all duration-500"
+            style={{ borderRadius: '8px' }}
+          >
+            {/* Image */}
+            <div className="relative h-[200px] overflow-hidden">
+              <img
+                src={projects[1].display}
+                alt={projects[1].title}
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              
+              {/* Tags */}
+              <div className="absolute bottom-3 left-3 flex flex-wrap gap-1">
+                {projects[1].tags?.slice(0, 2).map((tag, i) => (
+                  <span
+                    key={i}
+                    className="px-2 py-0.5 text-xs bg-black/50 backdrop-blur-md text-white border border-white/20"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-5">
+              <h3 className="text-xl font-bold text-foreground mb-1">
+                {projects[1].title}
+              </h3>
+              <p className="text-xs text-primary font-medium mb-2">
+                {projects[1].companyType}
+              </p>
+              <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
+                {projects[1].details}
+              </p>
+
+              {/* Metrics Inline */}
+              <div className="flex gap-4 mb-3">
+                {projects[1].metrics?.map((metric, i) => (
+                  <div key={i}>
+                    <p className="text-lg font-bold text-foreground">{metric.value}</p>
+                    <p className="text-xs text-muted-foreground">{metric.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href={projects[1].link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-semibold text-foreground hover:text-primary transition-colors"
+              >
+                View <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Project 3 - Medium (Spans 7 columns) */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="md:col-span-7 group relative bg-card border border-border overflow-hidden hover:shadow-lg transition-all duration-500"
+            style={{ borderRadius: '8px' }}
+          >
+            {/* Image */}
+            <div className="relative h-[200px] overflow-hidden">
+              <img
+                src={projects[2].display}
+                alt={projects[2].title}
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              
+              {/* Tags */}
+              <div className="absolute bottom-3 left-3 flex flex-wrap gap-1">
+                {projects[2].tags?.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="px-2 py-0.5 text-xs bg-black/50 backdrop-blur-md text-white border border-white/20"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-5">
+              <h3 className="text-xl font-bold text-foreground mb-1">
+                {projects[2].title}
+              </h3>
+              <p className="text-xs text-primary font-medium mb-2">
+                {projects[2].companyType}
+              </p>
+              <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
+                {projects[2].details}
+              </p>
+
+              {/* Metrics Inline */}
+              <div className="flex gap-4 mb-3">
+                {projects[2].metrics?.map((metric, i) => (
+                  <div key={i}>
+                    <p className="text-lg font-bold text-foreground">{metric.value}</p>
+                    <p className="text-xs text-muted-foreground">{metric.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href={projects[2].link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-semibold text-foreground hover:text-primary transition-colors"
+              >
+                View <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+          </motion.div>
+
+          {/* More Projects CTA (Spans full width) */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="md:col-span-12 bg-card border border-border p-8 flex flex-col md:flex-row items-center justify-between gap-6"
+            style={{ borderRadius: '8px' }}
+          >
+            <div>
+              <h3 className="text-xl font-bold text-foreground mb-2">
+                More Projects
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                Open source work and contributions on GitHub
+              </p>
+            </div>
+            <a
+              href="https://github.com/ankitmrmishra"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 text-sm font-bold uppercase tracking-wider hover:bg-primary/90 transition-colors"
+              style={{ borderRadius: '6px' }}
+            >
+              View GitHub <ArrowRight className="w-4 h-4" />
+            </a>
+          </motion.div>
         </div>
       </div>
     </div>

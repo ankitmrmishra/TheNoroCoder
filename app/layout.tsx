@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Poppins, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "../components/ui/SmoothScroll";
 
@@ -7,6 +7,12 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "600"],
   variable: "--font-poppins",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500", "700"],
+  variable: "--font-space-grotesk",
 });
 export const metadata: Metadata = {
   title: {
@@ -123,7 +129,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} antialiased bg-[#F5F5F5]`}>
+      <body className={`${poppins.variable} ${spaceGrotesk.variable} antialiased bg-[#F5F5F5]`}>
         <SmoothScroll>
           {" "}
           <main>{children}</main>

@@ -208,7 +208,7 @@ const FinalCTA = () => {
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#D4654C]/10 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#D4654C]/10 rounded-full blur-[150px] pointer-events-none" />
 
-      <div className="relative z-10 px-6 sm:px-12 lg:px-24 xl:px-32 max-w-7xl mx-auto">
+      <div className="relative z-10 px-6 sm:px-12 max-w-5xl mx-auto">
         {/* Heading Section */}
         <div ref={headingRef} className="mb-16 sm:mb-20 text-start">
           <div className="flex items-center gap-3 mb-6">
@@ -218,18 +218,14 @@ const FinalCTA = () => {
             </span>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[0.95] mb-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-spaceGrotesk font-medium leading-[1.15] tracking-tight mb-8">
             Ready to Build Something
             <br />
             <span className="text-[#D4654C]">That Actually Performs?</span>
           </h2>
 
           <p className="text-lg sm:text-xl text-white/60 max-w-3xl  leading-relaxed">
-            We&apos;re a small team of three who pour everything into every
-            project.
-            <br className="hidden sm:block" />
-            No corporate overhead. No junior devs. Just senior talent focused on
-            your success.
+            Small team. Senior talent. Your success.
           </p>
         </div>
 
@@ -371,8 +367,7 @@ const FinalCTA = () => {
 
               {/* Privacy Note */}
               <p className="text-xs text-white/40 text-center">
-                We respond within 24 hours. No spam, no sales calls unless you
-                ask for one.
+                24-hour response. No spam.
               </p>
             </form>
           </div>

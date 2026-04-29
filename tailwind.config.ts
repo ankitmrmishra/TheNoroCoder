@@ -28,6 +28,7 @@ const config = {
     },
     extend: {
       fontFamily: {
+        spaceGrotesk: ["var(--font-space-grotesk)"],
         raleaway500: ["Raleway500"],
         NeueMachina: ["NeueMachina"],
         GalgoCondesed: ["GalgoCondensed"],

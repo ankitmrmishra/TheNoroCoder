@@ -10,72 +10,75 @@ import Footer from "../components/Footer";
 import ServicesRedesign from "../components/Provide";
 import PhilosophySection from "../components/Philosophy";
 import Process from "../components/Process";
-import TechStack from "../components/TechStack";
 import FAQ from "../components/Faqs";
+import QuickCallWidget from "../components/QuickCallWidget";
 import Pricing from "../components/Pricing";
 import Team from "../components/Team";
 
-// Register the ScrollTrigger plugin
-// gsap.registerPlugin(ScrollTrigger);
-
 export default function Home() {
-  // const container = useRef<HTMLDivElement>(null);
-
-  // useGSAP(
-  //   () => {
-  //     // Select the sections intended to be pinned
-  //     // Note: We do NOT include Provide in this list because
-  //     // it shouldn't get pinned itself, it just covers the stack.
-  //     const panels = gsap.utils.toArray(".pinned-panel");
-
-  //     panels.forEach((panel: any) => {
-  //       ScrollTrigger.create({
-  //         trigger: panel,
-  //         start: "top top",
-  //         // The pinning lasts until the footer/end of the page content
-  //         // but visually it effectively works as an infinite pin
-  //         // until covered by the next layer.
-  //         pin: true,
-  //         pinSpacing: false, // Allows the next section to slide UP underneath/over
-  //       });
-  //     });
-  //   },
-  //   { scope: container }
-  // );
-
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen bg-background text-foreground relative">
+      {/* Left vertical lines */}
+      <div className="hidden lg:block fixed left-[15%] bg-primary/10 w-[1px] h-[100vh] top-0 z-[100]"></div>
+      <div className="hidden lg:block fixed left-[13%] bg-primary/10 w-[1px] h-[100vh] top-0 z-[100]"></div>
+      
+      {/* Horizontal lines SVG between left vertical lines */}
+      <div 
+        className="hidden lg:block fixed left-[13%] top-0 h-[100vh] z-[99] overflow-hidden pointer-events-none opacity-30"
+        style={{ width: 'calc(15% - 13%)' }}
+      >
+        <img 
+          src="/linehorizontal2.svg" 
+          alt="" 
+          className="w-full h-full object-cover"
+         
+        />
+      </div>
+      
+      {/* Right vertical lines */}
+      <div className="hidden lg:block fixed right-[15%] bg-primary/10 w-[1px] h-[100vh] top-0 z-[100]"></div>
+      <div className="hidden lg:block fixed right-[13%] bg-primary/10 w-[1px] h-[100vh] top-0 z-[100]"></div>
+      
+      {/* Horizontal lines SVG between right vertical lines */}
+      <div 
+        className="hidden lg:block fixed right-[13%] top-0 h-[100vh] z-[99] overflow-hidden pointer-events-none opacity-30"
+        style={{ width: 'calc(15% - 13%)' }}
+      >
+        <img 
+          src="/linehorizontal2.svg" 
+          alt="" 
+          className="w-full h-full object-cover"
+          
+        />
+      </div>
       <Navbar />
       {/* 1. HERO: Pinned first. Lowest Z-index. */}
-      <div className="pinned-panel relative min-h-screen w-full z-0 bg-white dark:bg-black">
+      <div className="pinned-panel relative min-h-screen w-full z-0 bg-background">
         <Hero />
       </div>
-      <SocialProofStrip />
-      {/* <AgencyTechHero /> */}
+      {/* <SocialProofStrip /> */}
+      
       {/* 3. PROVIDE: Slides over Showcase. Normal Scroll starts here. Highest Z-index. */}
       {/* We do not add 'pinned-panel' here so it scrolls normally once in view. */}
-      <div className="relative min-h-screen w-full z-20 bg-white dark:bg-black">
+      <div className="relative min-h-screen w-full z-20 bg-background">
         <ServicesRedesign />
       </div>
       {/* 2. SHOWCASE: Slides over Hero, then Pins. Higher Z-index. */}
-      <div className="pinned-panel relative min-h-screen w-full z-10 bg-white dark:bg-black">
+      <div className="pinned-panel relative min-h-screen w-full z-10 bg-background">
         <Showcase />
       </div>{" "}
-      <div className="pinned-panel relative min-h-screen w-full z-10 bg-white dark:bg-black">
+      <div className="pinned-panel relative min-h-screen w-full z-10 bg-background">
         <PhilosophySection />
       </div>
       <Process />
-      <TechStack />
       <Pricing />
       {/* 4. REST OF CONTENT: Continues naturally below Provide */}
-      <div className="relative z-20 bg-white dark:bg-black">
-        {/* <Testimonial /> */}
+      <div className="relative z-20 bg-background">
         <FAQ />
-
         <Team />
-        {/* <About /> */}
         <Footer />
       </div>
+      <QuickCallWidget />
     </div>
   );
 }

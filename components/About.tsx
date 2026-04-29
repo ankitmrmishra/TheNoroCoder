@@ -26,7 +26,7 @@ const About = () => {
           Who is<span className="text-mainColour"> this?</span>
         </h2>
       </div>
-      <div className="flex justify-center align-middle items-center max-w-6xl  p-10 gap-7 ">
+      <div className="flex justify-center align-middle items-center max-w-5xl mx-auto p-10 gap-7 ">
         <div className="image md:flex hidden">
           <Image
             src={MyImage}

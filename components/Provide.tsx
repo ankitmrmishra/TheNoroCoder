@@ -1,243 +1,67 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  Code2,
+  ShoppingCart,
+  Layers,
+  Sparkles,
+  TrendingUp,
+  Zap,
+} from "lucide-react";
 import BookingModal from "./ui/BookingModel";
-import { Button } from "./ui/button";
 
 // --- Data ---
 const services = [
   {
     id: "01",
     title: "Brand Websites",
-    subtitle: "Your site is either your best salesperson or your most expensive liability.",
-    description: "We build custom, code-only websites that position you above competitors before you say a word. No WordPress. No page builders. Just fast, precise, and built to convert.",
+    icon: <Code2 className="w-6 h-6" />,
+    tagline: "Your best salesperson or your biggest liability.",
+    description:
+      "Custom-built. Fast. Converts. No WordPress.",
     metrics: [
-      "Convert 40–60% better than industry averages",
-      "Load 3x faster than typical agency builds",
-      "Win design awards (brand positioning)",
+      { label: "Conversion", value: "25-40%", icon: <TrendingUp className="w-4 h-4" /> },
+      { label: "Speed", value: "2x", icon: <Zap className="w-4 h-4" /> },
     ],
-    outcome:
-      "What this means for you: Premium positioning. Higher customer LTV. Less dependence on paid ads.",
+    highlight: "Premium positioning. Higher LTV.",
+    gradient: "from-primary/10 via-primary/5 to-transparent",
   },
   {
     id: "02",
-    title: "E-Commerce That Actually Sells",
-    subtitle: "Engineered for brands doing $5M+ in annual revenue.",
+    title: "E-Commerce",
+    icon: <ShoppingCart className="w-6 h-6" />,
+    tagline: "For brands doing $5M+ annually.",
     description:
-      "Custom Shopify and headless commerce builds. Not interested in 'good enough'.",
+      "Custom Shopify and headless builds.",
     metrics: [
-      "Reducing cart abandonment by 30%+",
-      "Increasing AOV through strategic UX architecture",
-      "Core Web Vitals optimized for Google ranking",
+      { label: "Cart Recovery", value: "+18%", icon: <TrendingUp className="w-4 h-4" /> },
+      { label: "Mobile Conv.", value: "85%", icon: <Sparkles className="w-4 h-4" /> },
     ],
-    outcome:
-      "Recent project: 217% increase in mobile conversion for a DTC brand in 90 days.",
+    highlight: "85% mobile conversion increase in 90 days.",
+    gradient: "from-blue-500/10 via-blue-500/5 to-transparent",
   },
   {
     id: "03",
-    title: "Web Apps & Platforms",
-    subtitle: "Full-stack products that make your team faster and your users loyal.",
+    title: "Web Apps",
+    icon: <Layers className="w-6 h-6" />,
+    tagline: "Full-stack products users love.",
     description:
-      "From SaaS dashboards to internal tools to the kind of software people screenshot and send to friends. Built on Next.js, NestJS, and whatever the job actually requires.",
+      "SaaS dashboards, internal tools, platforms. Next.js, NestJS, whatever works.",
     metrics: [
-      "Optimized for mid-tier devices",
-      "Strategy-first animation",
-      "Memorable user interactions",
+      { label: "Performance", value: "90+", icon: <Zap className="w-4 h-4" /> },
+      { label: "User Retention", value: "+45%", icon: <TrendingUp className="w-4 h-4" /> },
     ],
-    outcome: "GSAP, WebGL, and Framer Motion when the brief calls for it — never just for show.",
+    highlight: "GSAP, WebGL, Framer Motion when needed.",
+    gradient: "from-purple-500/10 via-purple-500/5 to-transparent",
   },
 ];
 
-// --- Desktop Components ---
-
-const ServiceCard = ({
-  service,
-  index,
-  scrollProgress,
-}: {
-  service: any;
-  index: number;
-  scrollProgress: any;
-}) => {
-  const cardCount = services.length + 1; // +1 for CTA card
-
-  // Each card gets 1/4 of the scroll progress
-  const start = index / cardCount;
-  const end = (index + 1) / cardCount;
-
-  // Card slides in from right (100vw) to center (0)
-  const x = useTransform(
-    scrollProgress,
-    [Math.max(0, start - 0.1), start],
-    ["100%", "0%"]
-  );
-
-  // Scale down slightly when next card comes in
-  const scale = useTransform(scrollProgress, [end - 0.1, end], [1, 0.92]);
-
-  // Fade out slightly when next card comes in
-  const opacity = useTransform(
-    scrollProgress,
-    [start - 0.05, start, end, end + 0.05],
-    [0, 1, 1, 0.6]
-  );
-
-  return (
-    <motion.div
-      style={{
-        x,
-        scale,
-        opacity,
-      }}
-      className="absolute inset-0 flex items-center justify-center p-4"
-    >
-      <div
-        className="group relative w-full max-w-[85vw] md:max-w-[60vw] lg:max-w-[50vw] h-[70vh] flex flex-col justify-between p-8 md:p-12 border border-white/10 bg-[#0a0a0a] backdrop-blur-md rounded-3xl hover:border-[#D4654C]/50 transition-colors duration-500 overflow-hidden"
-        style={{ zIndex: cardCount - index }}
-      >
-        {/* Hover Gradient Effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#D4654C]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-        {/* Top Section */}
-        <div className="relative z-10">
-          <div className="flex justify-between items-start mb-8">
-            <span className="text-[#D4654C] font-mono text-xl md:text-2xl tracking-widest">
-              /{service.id}
-            </span>
-            <ArrowUpRight className="text-white/40 group-hover:text-[#D4654C] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 w-8 h-8" />
-          </div>
-
-          <h3 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">
-            {service.title}
-          </h3>
-          <p className="text-lg text-white/60 font-light max-w-md">
-            {service.subtitle}
-          </p>
-        </div>
-
-        {/* Bottom Section */}
-        <div className="relative z-10 space-y-8">
-          <ul className="space-y-3">
-            {service.metrics.map((metric: string, i: number) => (
-              <li
-                key={i}
-                className="flex items-start gap-3 text-sm md:text-base text-white/80"
-              >
-                <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#D4654C]" />
-                {metric}
-              </li>
-            ))}
-          </ul>
-
-          <div className="pt-6 border-t border-white/10">
-            <p className="text-xs font-mono text-[#D4654C] mb-2">
-              {"///"} OUTCOME
-            </p>
-            <p className="text-white/90 italic text-sm md:text-base">
-              &quot;{service.outcome} &quot;
-            </p>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
-const CTACard = ({ scrollProgress }: { scrollProgress: any }) => {
-  const cardCount = services.length + 1;
-  const index = services.length;
-
-  const start = index / cardCount;
-
-  const x = useTransform(
-    scrollProgress,
-    [Math.max(0, start - 0.1), start],
-    ["100%", "0%"]
-  );
-
-  const scale = useTransform(scrollProgress, [start - 0.05, start], [0.9, 1]);
-
-  const opacity = useTransform(scrollProgress, [start - 0.05, start], [0, 1]);
-
-  return (
-    <motion.div
-      style={{
-        x,
-        scale,
-        opacity,
-      }}
-      className="absolute inset-0 flex items-center justify-center p-4"
-    >
-      <div
-        className="group relative w-full max-w-[85vw] md:max-w-[60vw] lg:max-w-[50vw] h-[70vh] flex flex-col justify-center items-center p-8 md:p-12 border border-white/10 bg-[#0a0a0a] backdrop-blur-md rounded-3xl hover:border-[#D4654C]/50 transition-colors duration-500 overflow-hidden"
-        style={{ zIndex: 0 }}
-      >
-        <a
-          href="https://wa.me/918437153991"
-          className="text-center cursor-pointer"
-        >
-          <div className="w-24 h-24 rounded-full bg-[#D4654C] flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-            <ArrowUpRight className="w-10 h-10 text-white" />
-          </div>
-          <h3 className="text-4xl font-bold text-white mb-4">
-            Let&apos;s Talk
-          </h3>
-          <p className="text-white/60">Ready to start your project?</p>
-        </a>
-      </div>
-    </motion.div>
-  );
-};
-
-// --- Mobile Component (Vertically Stacked) ---
-const MobileServiceCard = ({ service }: { service: any }) => {
-  return (
-    <div className="w-full bg-[#0a0a0a] border border-white/10 rounded-2xl p-6 sm:p-8 mb-6 last:mb-0">
-      <div className="flex justify-between items-start mb-6">
-        <span className="text-[#D4654C] font-mono text-lg tracking-widest">
-          /{service.id}
-        </span>
-      </div>
-
-      <h3 className="text-2xl font-bold text-white mb-3 leading-tight">
-        {service.title}
-      </h3>
-      <p className="text-base text-white/60 font-light mb-8">
-        {service.subtitle}
-      </p>
-
-      <ul className="space-y-3 mb-8">
-        {service.metrics.map((metric: string, i: number) => (
-          <li key={i} className="flex items-start gap-3 text-sm text-white/80">
-            <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#D4654C] shrink-0" />
-            {metric}
-          </li>
-        ))}
-      </ul>
-
-      <div className="pt-6 border-t border-white/10">
-        <p className="text-xs font-mono text-[#D4654C] mb-2">{"///"} OUTCOME</p>
-        <p className="text-white/90 italic text-sm">
-          &quot;{service.outcome}&quot;
-        </p>
-      </div>
-    </div>
-  );
-};
-
-// --- Main Layout ---
-
-export default function ServicesHorizontal() {
-  const targetRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start start", "end end"],
-  });
-
+export default function ServicesRedesign() {
   const [isBookingOpen, setIsBookingOpen] = useState<boolean>(false);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   useEffect(() => {
     if (isBookingOpen) {
@@ -251,155 +75,351 @@ export default function ServicesHorizontal() {
   }, [isBookingOpen]);
 
   return (
-    <section id="Services" className="bg-[#050505] text-white relative w-full">
-      {/* --- Grain Texture Overlay --- */}
-      {/* <div className="fixed inset-0 z-0 opacity-[0.04] pointer-events-none mix-blend-overlay">
+    <section
+      id="Services"
+      className="relative bg-background text-foreground py-20 sm:py-28 overflow-hidden"
+    >
+      {/* Noise Texture Overlay */}
+      <div className="fixed inset-0 z-0 opacity-[0.015] pointer-events-none mix-blend-overlay">
         <div
-          className="absolute inset-0 bg-repeat animate-noise"
+          className="absolute inset-0 bg-repeat"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            backgroundSize: "200px 200px",
           }}
         />
-      </div> */}
+      </div>
 
-      {/* ---------------------------------------------------------
-        MOBILE LAYOUT (Visible on < lg screens)
-        Vertically stacked, no horizontal animation
-        ---------------------------------------------------------
-      */}
-      <div className="relative z-10 block lg:hidden px-6 py-20 sm:px-10">
-        {/* Header Content */}
-        <div className="mb-16">
+      {/* Subtle Grid Background */}
+      <div className="absolute inset-0 z-0 opacity-[0.02] pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      </div>
+
+      <div className="relative z-10 px-6 sm:px-10 max-w-5xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-5xl mb-16 sm:mb-20"
+        >
           <div className="flex items-center gap-3 mb-6">
-            <span className="h-px w-8 bg-[#D4654C]"></span>
-            <span className="text-[#D4654C] uppercase tracking-[0.2em] text-sm">
+            <span className="h-px w-8 bg-primary"></span>
+            <span className="text-primary uppercase tracking-[0.2em] text-sm font-bold">
               Services
             </span>
           </div>
 
-          <h2 className="text-5xl sm:text-6xl font-bold leading-[0.9] mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-spaceGrotesk font-medium leading-[1.15] tracking-tight mb-6">
             What We Build
-            <span className="text-[#D4654C]">.</span>
+            <span className="text-primary">.</span>
           </h2>
 
-          <p className="text-white/60 text-lg leading-relaxed max-w-md">
-            We don&apos;t write code. We build the digital infrastructure your revenue runs on.
+          <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl">
+            Digital infrastructure that drives revenue.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Vertical Stacked Cards */}
-        <div className="flex flex-col gap-6">
-          {services.map((service, index) => (
-            <MobileServiceCard key={index} service={service} />
-          ))}
-
-          {/* Mobile CTA */}
-          <Button
-            onClick={() => setIsBookingOpen(true)}
-            className="w-full bg-[#0a0a0a] border border-white/10 rounded-2xl py-7 text-xl mt-6 flex flex-col items-center justify-center text-center"
+        {/* Bento Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 mb-8">
+          {/* Card 1 - Large Featured */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            onHoverStart={() => setHoveredCard(services[0].id)}
+            onHoverEnd={() => setHoveredCard(null)}
+            className="lg:col-span-7 group relative bg-card border border-border p-8 sm:p-10 lg:p-12 overflow-hidden hover:shadow-xl transition-all duration-500 hover:border-primary/30"
+            style={{ borderRadius: '8px' }}
           >
-            Start A Project
-          </Button>
-        </div>
-        <BookingModal
-          isOpen={isBookingOpen}
-          onClose={() => setIsBookingOpen(false)}
-        />
-      </div>
+            {/* Gradient Overlay */}
+            <div
+              className={`absolute inset-0 bg-gradient-to-br ${services[0].gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+            />
 
-      {/* ---------------------------------------------------------
-        DESKTOP LAYOUT (Visible on >= lg screens)
-        Sticky header + Horizontal Framer Motion Scroll
-        ---------------------------------------------------------
-      */}
-      <div ref={targetRef} className="relative hidden lg:block h-[400vh]">
-        <div className="sticky top-0 h-screen flex flex-row overflow-hidden">
-          {/* --- Left Side: Fixed Content --- */}
-          <div className="w-[35%] h-full p-20 flex flex-col justify-center relative z-10 border-r border-white/5 bg-[#050505]/50 backdrop-blur-sm">
-            <div className="relative">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="h-px w-8 bg-[#D4654C]"></span>
-                <span className="text-[#D4654C] uppercase tracking-[0.2em] text-sm">
-                  Services
+            {/* Animated Border Glow */}
+            <motion.div
+              className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent, rgba(227, 23, 10, 0.1), transparent)",
+                backgroundSize: "200% 100%",
+              }}
+              animate={
+                hoveredCard === services[0].id
+                  ? { backgroundPosition: ["0% 0%", "200% 0%"] }
+                  : {}
+              }
+              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+            />
+
+            <div className="relative z-10">
+              {/* Header */}
+              <div className="flex items-start justify-between mb-8">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                    {services[0].icon}
+                  </div>
+                  <span className="text-sm font-mono text-muted-foreground">
+                    /{services[0].id}
+                  </span>
+                </div>
+              </div>
+
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-spaceGrotesk font-medium text-foreground mb-4 leading-tight">
+                {services[0].title}
+              </h3>
+
+              <p className="text-base sm:text-lg text-primary font-medium mb-6 italic">
+                &quot;{services[0].tagline}&quot;
+              </p>
+
+              <p className="text-foreground/80 leading-relaxed mb-8 text-sm sm:text-base">
+                {services[0].description}
+              </p>
+
+              {/* Metrics */}
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                {services[0].metrics.map((metric, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 + i * 0.1 }}
+                    className="p-4 rounded-xl bg-muted/50 border border-border backdrop-blur-sm"
+                  >
+                    <div className="flex items-center gap-2 mb-2 text-primary">
+                      {metric.icon}
+                      <span className="text-2xl font-bold">{metric.value}</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                      {metric.label}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Highlight */}
+              <div className="pt-6 border-t border-border">
+                <p className="text-sm text-foreground/70 font-medium">
+                  {services[0].highlight}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Card 2 - Medium */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            onHoverStart={() => setHoveredCard(services[1].id)}
+            onHoverEnd={() => setHoveredCard(null)}
+            className="lg:col-span-5 group relative bg-card border border-border p-8 sm:p-10 overflow-hidden hover:shadow-xl transition-all duration-500 hover:border-blue-500/30"
+            style={{ borderRadius: '8px' }}
+          >
+            {/* Gradient Overlay */}
+            <div
+              className={`absolute inset-0 bg-gradient-to-br ${services[1].gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+            />
+
+            <div className="relative z-10 h-full flex flex-col">
+              {/* Header */}
+              <div className="flex items-start justify-between mb-6">
+                <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-600 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                  {services[1].icon}
+                </div>
+                <span className="text-sm font-mono text-muted-foreground">
+                  /{services[1].id}
                 </span>
               </div>
 
-              <h2 className="text-7xl xl:text-9xl font-bold leading-[0.9] mb-8">
-                What We Build
-                <span className="text-[#D4654C] text-6xl">.</span>
-              </h2>
+              <h3 className="text-2xl sm:text-3xl font-spaceGrotesk font-medium text-foreground mb-3 leading-tight">
+                {services[1].title}
+              </h3>
 
-              <p className="text-white/60 text-lg max-w-xs leading-relaxed">
-                We don&apos;t write code. We build the digital infrastructure your revenue runs on.
+              <p className="text-sm text-blue-600 font-medium mb-4 italic">
+                &quot;{services[1].tagline}&quot;
               </p>
 
-              <Button
-                onClick={() => setIsBookingOpen(true)}
-                className="w-full bg-[#0a0a0a] hover:bg-[#D4654C] text-xl border border-white/10 rounded-2xl py-7  mt-6 flex flex-col items-center justify-center text-center"
-              >
-                Start A Project
-              </Button>
+              <p className="text-foreground/80 leading-relaxed mb-6 text-sm flex-grow">
+                {services[1].description}
+              </p>
+
+              {/* Metrics */}
+              <div className="space-y-3 mb-6">
+                {services[1].metrics.map((metric, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center justify-between p-3 rounded-xl bg-muted/50 border border-border"
+                  >
+                    <span className="text-xs text-muted-foreground uppercase tracking-wider">
+                      {metric.label}
+                    </span>
+                    <div className="flex items-center gap-2 text-blue-600">
+                      {metric.icon}
+                      <span className="text-xl font-bold">{metric.value}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Highlight */}
+              <div className="pt-4 border-t border-border mt-auto">
+                <p className="text-xs text-foreground/70 font-medium">
+                  {services[1].highlight}
+                </p>
+              </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* --- Right Side: Stacking Cards --- */}
-          <div className="w-[65%] h-full relative">
-            {services.map((service, index) => (
-              <ServiceCard
-                key={index}
-                service={service}
-                index={index}
-                scrollProgress={scrollYProgress}
-              />
-            ))}
-            <CTACard scrollProgress={scrollYProgress} />
-          </div>
+          {/* Card 3 - Wide */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            onHoverStart={() => setHoveredCard(services[2].id)}
+            onHoverEnd={() => setHoveredCard(null)}
+            className="lg:col-span-12 group relative bg-card border border-border p-8 sm:p-10 lg:p-12 overflow-hidden hover:shadow-xl transition-all duration-500 hover:border-purple-500/30"
+            style={{ borderRadius: '8px' }}
+          >
+            {/* Gradient Overlay */}
+            <div
+              className={`absolute inset-0 bg-gradient-to-br ${services[2].gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+            />
+
+            <div className="relative z-10">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                {/* Left Column */}
+                <div>
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-600 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                        {services[2].icon}
+                      </div>
+                      <span className="text-sm font-mono text-muted-foreground">
+                        /{services[2].id}
+                      </span>
+                    </div>
+                  </div>
+
+                  <h3 className="text-3xl sm:text-4xl font-spaceGrotesk font-medium text-foreground mb-4 leading-tight">
+                    {services[2].title}
+                  </h3>
+
+                  <p className="text-base text-purple-600 font-medium mb-6 italic">
+                    &quot;{services[2].tagline}&quot;
+                  </p>
+
+                  <p className="text-foreground/80 leading-relaxed text-sm sm:text-base">
+                    {services[2].description}
+                  </p>
+                </div>
+
+                {/* Right Column */}
+                <div className="flex flex-col justify-between">
+                  {/* Metrics */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    {services[2].metrics.map((metric, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3 + i * 0.1 }}
+                        className="p-4 rounded-xl bg-muted/50 border border-border backdrop-blur-sm"
+                      >
+                        <div className="flex items-center gap-2 mb-2 text-purple-600">
+                          {metric.icon}
+                          <span className="text-2xl font-bold">{metric.value}</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                          {metric.label}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Highlight */}
+                  <div className="pt-6 border-t border-border">
+                    <p className="text-sm text-foreground/70 font-medium">
+                      {services[2].highlight}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* CTA Card - Full Width */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="lg:col-span-12 group relative bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 border-2 border-primary/20 p-12 sm:p-16 overflow-hidden hover:shadow-2xl transition-all duration-500 hover:border-primary/40"
+            style={{ borderRadius: '8px' }}
+          >
+            {/* Animated Background Pattern */}
+            <motion.div
+              className="absolute inset-0 opacity-10"
+              animate={{
+                backgroundPosition: ["0% 0%", "100% 100%"],
+              }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle, rgba(227, 23, 10, 0.3) 1px, transparent 1px)",
+                backgroundSize: "50px 50px",
+              }}
+            />
+
+            <div className="relative z-10 text-center max-w-3xl mx-auto">
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ type: "spring", duration: 0.8, delay: 0.5 }}
+                className="w-20 h-20 rounded-full bg-primary flex items-center justify-center mx-auto mb-8 shadow-lg group-hover:scale-110 transition-transform duration-300"
+              >
+                <ArrowRight className="w-10 h-10 text-primary-foreground group-hover:translate-x-1 transition-transform" />
+              </motion.div>
+
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-spaceGrotesk font-medium text-foreground mb-4">
+                Ready to Start?
+              </h3>
+
+              <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
+                Move metrics, not just pixels.
+              </p>
+
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsBookingOpen(true)}
+                className="inline-flex items-center gap-3 bg-primary text-primary-foreground px-10 py-5 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group"
+              >
+                Book a Discovery Call
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </motion.button>
+
+              <p className="mt-6 text-sm text-muted-foreground">
+                Taking 2 clients in May 2026
+              </p>
+            </div>
+          </motion.div>
         </div>
-
-        <BookingModal
-          isOpen={isBookingOpen}
-          onClose={() => setIsBookingOpen(false)}
-        />
       </div>
 
-      <style jsx global>{`
-        @keyframes noise {
-          0%,
-          100% {
-            transform: translate(0, 0);
-          }
-          10% {
-            transform: translate(-5%, -10%);
-          }
-          20% {
-            transform: translate(-15%, 5%);
-          }
-          30% {
-            transform: translate(7%, -25%);
-          }
-          40% {
-            transform: translate(-5%, 25%);
-          }
-          50% {
-            transform: translate(-15%, 10%);
-          }
-          60% {
-            transform: translate(15%, 0%);
-          }
-          70% {
-            transform: translate(0%, 15%);
-          }
-          80% {
-            transform: translate(3%, 35%);
-          }
-          90% {
-            transform: translate(-10%, 10%);
-          }
-        }
-        .animate-noise {
-          animation: noise 8s steps(10) infinite;
-        }
-      `}</style>
+      <BookingModal
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+      />
     </section>
   );
 }

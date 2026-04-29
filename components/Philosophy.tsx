@@ -33,45 +33,45 @@ interface PhilosophyItem {
 const philosophyData: PhilosophyItem[] = [
   {
     id: "strategy",
-    icon: <BrainCircuit className="w-7 h-7 text-[#D4654C]" />,
-    headline: "We start with your revenue,\nnot your color palette.",
-    subHeadline: "We Don't Start With Design. We Start With Why.",
+    icon: <BrainCircuit className="w-7 h-7 text-primary" />,
+    headline: "Revenue first.\nDesign second.",
+    subHeadline: "Data-Driven Strategy",
     body: [
-      "Most agencies open Figma on Day 1.",
-      "We spend the first week in your analytics,",
-      "your competitors' websites, and customer reviews.",
-      "Design decisions follow the data.",
+      "Analytics before aesthetics",
+      "Competitor research",
+      "Customer insights",
+      "Then we design",
     ],
-    statCallout: "of projects launch on time due to discovery.",
-    statConfig: { value: 87, suffix: "%" },
+    statCallout: "projects launch on time",
+    statConfig: { value: 78, suffix: "%" },
   },
   {
     id: "performance",
-    icon: <Zap className="w-7 h-7 text-[#D4654C]" />,
-    headline: "We write code like we're\nthe ones maintaining it.",
-    subHeadline: "Your Site Loads in 3 Seconds. It Should Load in 1.2.",
+    icon: <Zap className="w-7 h-7 text-primary" />,
+    headline: "Fast code.\nClean architecture.",
+    subHeadline: "Built for Speed",
     body: [
-      "TypeScript end-to-end.",
-      "Component architecture.",
-      "Zero WordPress.",
-      "Your codebase won't scare away the next developer you hire.",
+      "TypeScript end-to-end",
+      "Component-based",
+      "Zero WordPress",
+      "Production-ready",
     ],
-    statCallout: "conversion lift from speed updates alone.",
-    statConfig: { prefix: "+", value: 40, suffix: "%" },
+    statCallout: "conversion lift from speed",
+    statConfig: { prefix: "+", value: 25, suffix: "%" },
   },
   {
     id: "craft",
-    icon: <Trophy className="w-7 h-7 text-[#D4654C]" />,
-    headline: "Small team. Direct line.\nZero account managers.",
-    subHeadline: "We Don't Follow Trends. We Set Them.",
+    icon: <Trophy className="w-7 h-7 text-primary" />,
+    headline: "Small team.\nDirect access.",
+    subHeadline: "No Middlemen",
     body: [
-      "When you message us, a developer reads it.",
-      "When we push a commit, a designer reviewed it.",
-      "This is the actual advantage of working",
-      "with a studio over an agency.",
+      "Talk to developers directly",
+      "Designer-reviewed code",
+      "Fast decisions",
+      "Studio quality",
     ],
-    statCallout: "higher prices via premium positioning.",
-    statConfig: { value: 2.5, suffix: "x", decimals: 1 },
+    statCallout: "higher prices via positioning",
+    statConfig: { value: 1.8, suffix: "x", decimals: 1 },
   },
 ];
 
@@ -239,62 +239,65 @@ const PhilosophySection: React.FC = () => {
     <section
       id="philosophy"
       ref={containerRef}
-      className="relative bg-black py-20 sm:py-28 overflow-hidden"
+      className="relative bg-background py-20 sm:py-28 overflow-hidden"
     >
       {/* Background grid */}
 
-      <div className="relative z-10 px-6 sm:px-10 lg:px-24 xl:px-32">
+      <div className="relative z-10 max-w-5xl mx-auto">
         {/* Header */}
-        <div className="max-w-4xl mb-20">
+        <div ref={headerRef} className="max-w-4xl mb-20 px-6">
           <div className="flex items-center gap-3 mb-6">
-            <span className="h-px w-8 bg-[#D4654C]" />
-            <span className="uppercase tracking-[0.2em] text-sm text-[#D4654C]">
+            <span className="h-px w-8 bg-primary" />
+            <span className="uppercase tracking-[0.2em] text-sm text-primary font-bold">
               Why Us
             </span>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight">
-            Three things we do{" "}
-            <span className="block text-white/40">differently.</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-spaceGrotesk font-medium leading-[1.15] tracking-tight text-foreground">
+            Three things we do
+           
+          </h2><h2 className="text-3xl sm:text-4xl md:text-5xl font-spaceGrotesk font-medium leading-[1.15] tracking-tight text-foreground">
+          
+            <span className="text-muted-foreground">differently.</span>
           </h2>
 
-          <p className="mt-6 text-lg sm:text-xl text-white/60 max-w-2xl">
-            We focus on what actually matters:{" "}
-            <span className="text-white">measurable results.</span>
+          <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl">
+            <span className="text-foreground font-medium">Measurable results.</span> That&apos;s it.
           </p>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 w-full">
           {philosophyData.map((item, i) => (
             <div
               key={item.id}
               ref={(el) => {
                 cardsRef.current[i] = el;
               }}
-              className="group relative p-8 sm:p-10 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md"
+              className="group relative p-8 sm:p-10 bg-card border border-border backdrop-blur-md shadow-sm hover:shadow-md transition-shadow"
+              style={{ borderRadius: '8px' }}
             >
-              <div className="mb-8 w-14 h-14 rounded-full flex items-center justify-center bg-black border border-white/10">
+              {/* <div className="mb-8 w-14 h-14 rounded-full flex items-center justify-center bg-muted border border-border">
                 {item.icon}
-              </div>
+              </div> */}
 
-              <h3 className="text-2xl font-bold text-white whitespace-pre-line mb-4">
+              <h3 className="text-2xl font-bold text-foreground whitespace-pre-line mb-4">
                 {item.headline}
               </h3>
 
-              <p className="italic text-[#D4654C] mb-6">“{item.subHeadline}”</p>
+              <p className="italic text-primary font-medium mb-6">“{item.subHeadline}”</p>
 
               <ul className="space-y-3 mb-10">
                 {item.body.map((line, idx) => (
-                  <li key={idx} className="flex gap-3 text-white/60 text-sm">
-                    <ArrowRight className="w-4 h-4 text-[#D4654C]" />
+                  <li key={idx} className="flex gap-3 text-muted-foreground text-sm">
+                    <ArrowRight className="w-4 h-4 text-primary shrink-0" />
                     {line}
                   </li>
                 ))}
               </ul>
 
-              <div className="pt-6 border-t border-white/10">
-                <div className="flex items-baseline gap-1 text-white">
+              <div className="pt-6 border-t border-border">
+                <div className="flex items-baseline gap-1 text-foreground">
                   <span className="text-4xl font-bold">
                     {item.statConfig.prefix}
                   </span>
@@ -310,7 +313,7 @@ const PhilosophySection: React.FC = () => {
                     {item.statConfig.suffix}
                   </span>
                 </div>
-                <p className="mt-2 text-xs uppercase tracking-wider text-white/40">
+                <p className="mt-2 text-xs uppercase tracking-wider text-muted-foreground font-medium">
                   {item.statCallout}
                 </p>
               </div>

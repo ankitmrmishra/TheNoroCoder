@@ -4,12 +4,14 @@ import React, { useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Check, ArrowRight, AlertCircle, Clock } from "lucide-react";
+import Image from "next/image";
 
 // --- Types ---
 interface Phase {
   id: string;
   title: string;
   timeline: string;
+  illustration: string;
   whatHappens: string[];
   whatYouGet: string[];
   realTalk: string;
@@ -21,159 +23,130 @@ const phases: Phase[] = [
     id: "01",
     title: "Discovery & Strategy",
     timeline: "Week 1–2",
+    illustration: "/ilst1process.png",
     whatHappens: [
-      "Stakeholder interviews (we talk to your team)",
-      "Analytics audit (where users drop off)",
-      "Competitor analysis & positioning",
-      "Technical assessment & architecture",
-      "Goal alignment & success metrics",
+      "Stakeholder interviews",
+      "Analytics audit",
+      "Competitor analysis",
     ],
     whatYouGet: [
-      "Strategic brief (20–30 pages)",
-      "User personas and journey maps",
-      "Competitive positioning report",
-      "Technical architecture proposal",
-      "Project timeline with milestones",
+      "Strategic brief",
+      "User personas",
+      "Competitive report",
     ],
     realTalk:
-      "This phase feels slow. That's intentional. We're eliminating the \"can you just...\" requests that derail projects 3 months in.",
+      "Deep dive into your business goals, target audience, and competitive landscape. We map out the strategy before touching design.",
   },
   {
     id: "02",
     title: "Design & Prototyping",
     timeline: "Week 3–6",
+    illustration: "/ilst2process.png",
     whatHappens: [
-      "Wireframing (structure before aesthetics)",
-      "Style exploration (3–5 directions)",
-      "High-fidelity mockups (all devices)",
-      "Interactive prototype (clickable)",
-      "User testing (real feedback)",
+      "Wireframing",
+      "Style exploration",
+      "High-fidelity mockups",
     ],
     whatYouGet: [
-      "Complete design system",
+      "Design system",
       "Desktop + mobile designs",
-      "Interactive Figma prototype",
-      "Motion design specifications",
-      "User testing report",
+      "Figma prototype",
     ],
     realTalk:
-      "You'll see 3–5 strategic directions, not 50 variations of the same homepage. We're exploring concepts, not pixel-pushing.",
+      "Strategic design directions that align with your brand. Interactive prototypes you can click through and test with real users.",
   },
   {
     id: "03",
     title: "Development & Animation",
     timeline: "Week 7–12",
+    illustration: "/ilst3process.png",
     whatHappens: [
-      "Component-based architecture",
-      "GSAP animations (smooth, purposeful)",
-      "CMS integration (you control content)",
-      "Performance optimization",
-      "SEO foundation & Schema markup",
-      "Accessibility testing (WCAG AA)",
+      "Component architecture",
+      "GSAP animations",
+      "CMS integration",
     ],
     whatYouGet: [
-      "Production-ready codebase",
-      "Headless CMS setup",
-      "Custom physics-based animations",
-      "Performance report (Lighthouse 95+)",
-      "SEO & Accessibility audit",
+      "Production codebase",
+      "Headless CMS",
+      "Custom animations",
     ],
     realTalk:
-      "We don't ship until every animation is timed to the millisecond and every page scores 95+ on Lighthouse.",
+      "Clean, scalable code built with modern frameworks. Every animation timed to perfection. Performance optimized from day one.",
   },
   {
     id: "04",
     title: "Testing & Launch",
     timeline: "Week 13–14",
+    illustration: "/ilst4process.png",
     whatHappens: [
-      "QA testing (12+ devices)",
-      "Load testing & Security audit",
-      "Analytics setup (GA4, Hotjar)",
-      "DNS migration (zero downtime)",
-      "Post-launch monitoring (24/7)",
+      "QA testing",
+      "Security audit",
+      "Analytics setup",
     ],
     whatYouGet: [
-      "Fully tested site",
+      "Tested site",
       "Analytics dashboard",
-      "Launch checklist completed",
-      "30 days of monitoring",
-      "Training session & Documentation",
+      "30 days monitoring",
     ],
     realTalk:
-      "Launch day is just the beginning. We stick around for 30 days to fix bugs and optimize conversions.",
+      "Rigorous testing across devices and browsers. Zero-downtime launch. 30 days of post-launch support to ensure everything runs smoothly.",
   },
 ];
 
 // --- Sub-Component: The Card Content ---
 const PhaseCardContent = ({ phase }: { phase: Phase }) => {
   return (
-    <div className="h-full flex flex-col">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4 border-b border-white/10 pb-6">
-        <div className="flex items-center gap-4">
-          <span className="text-[#D4654C] font-mono text-xl sm:text-2xl tracking-widest">
-            /{phase.id}
-          </span>
-          <h3 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white">
-            {phase.title}
-          </h3>
-        </div>
-        <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-white/5 border border-white/10 shrink-0">
-          <Clock className="w-4 h-4 text-[#D4654C]" />
-          <span className="text-xs sm:text-sm font-mono text-white/70">
+    <div className="h-full max-h-[30rem] flex flex-col lg:flex-row gap-8 lg:gap-12">
+      {/* Left Side - Content */}
+      <div className="flex-1 flex flex-col justify-center">
+        {/* Phase Number & Timeline */}
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 bg-primary/10 border border-primary/20 flex items-center justify-center font-bold text-primary text-lg">
+            {phase.id}
+          </div>
+          <div className="flex items-center gap-2 px-2.5 py-1 bg-muted border border-border text-xs font-mono text-muted-foreground">
+            <Clock className="w-3 h-3 text-primary" />
             {phase.timeline}
-          </span>
+          </div>
+        </div>
+
+        {/* Title */}
+        <h3 className="text-2xl lg:text-3xl font-spaceGrotesk font-medium text-foreground mb-3 leading-tight">
+          {phase.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
+          {phase.realTalk}
+        </p>
+
+        {/* Features List */}
+        <div className="space-y-2.5">
+          {phase.whatHappens.map((item, i) => (
+            <div
+              key={i}
+              className="flex items-center gap-3 text-xs text-foreground/80 font-medium"
+            >
+              <div className="w-7 h-7 bg-muted border border-border flex items-center justify-center shrink-0">
+                <ArrowRight className="w-3.5 h-3.5 text-primary" />
+              </div>
+              <span>{item}</span>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Columns */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 flex-grow overflow-y-auto custom-scrollbar pr-2">
-        {/* Left: What Happens */}
-        <div>
-          <h4 className="text-sm font-bold uppercase tracking-wider text-white/40 mb-6">
-            What Happens
-          </h4>
-          <ul className="space-y-4">
-            {phase.whatHappens.map((item, i) => (
-              <li
-                key={i}
-                className="flex items-start gap-3 text-sm sm:text-base text-white/70"
-              >
-                <ArrowRight className="w-5 h-5 text-[#D4654C] shrink-0 mt-0.5" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Right: What You Get */}
-        <div className="flex flex-col h-full">
-          <h4 className="text-sm font-bold uppercase tracking-wider text-white/40 mb-6">
-            What You Get
-          </h4>
-          <ul className="space-y-4 mb-10">
-            {phase.whatYouGet.map((item, i) => (
-              <li
-                key={i}
-                className="flex items-start gap-3 text-sm sm:text-base text-white font-medium"
-              >
-                <Check className="w-5 h-5 text-[#D4654C] shrink-0 mt-0.5" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-auto pt-8 border-t border-dashed border-white/20">
-            <div className="flex items-center gap-2 mb-3 text-[#D4654C]">
-              <AlertCircle className="w-5 h-5" />
-              <span className="text-sm font-bold uppercase tracking-widest">
-                Real Talk
-              </span>
-            </div>
-            <p className="text-base sm:text-lg text-white/90 italic leading-relaxed bg-white/5 p-6 rounded-2xl border-l-2 border-[#D4654C]">
-              &quot;{phase.realTalk}&quot;
-            </p>
-          </div>
+      {/* Right Side - Visual Area */}
+      <div className="flex-1 border-primary/20 p-4 sm:p-6 flex items-center justify-center min-h-[200px] sm:min-h-[280px] lg:min-h-0 relative overflow-hidden">
+        <div className="relative w-full h-full flex items-center justify-center">
+          <Image
+            src={phase.illustration}
+            alt={phase.title}
+            width={600}
+            height={600}
+            className="w-full h-full max-w-[400px] max-h-[400px] object-contain"
+            priority
+          />
         </div>
       </div>
     </div>
@@ -251,39 +224,37 @@ export default function Process() {
     <section
       id="process"
       ref={containerRef}
-      className="bg-[#050505] text-white w-full"
+      className="bg-background text-foreground w-full"
     >
       {/* Texture Overlay */}
-      <div className="fixed inset-0 z-0 opacity-[0.04] pointer-events-none mix-blend-overlay">
+      {/* <div className="fixed inset-0 z-0 opacity-[0.04] pointer-events-none mix-blend-overlay">
         <div
           className="absolute inset-0 bg-repeat animate-noise"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           }}
         />
-      </div>
+      </div> */}
 
       {/* HEADER SECTION (Normal Flow)
         This scrolls away naturally before the cards pin.
       */}
-      <div className="relative z-10 w-full pt-20 pb-16 px-6 sm:px-12 lg:px-24 xl:px-32">
+      <div className="relative z-10 w-full pt-20 pb-16 px-6 sm:px-12 max-w-5xl mx-auto">
         <div className="max-w-5xl">
           <div className="flex items-center gap-3 mb-6">
-            <span className="h-px w-8 sm:w-12 bg-[#D4654C]"></span>
-            <span className="text-[#D4654C] uppercase tracking-[0.2em] text-sm font-medium">
+            <span className="h-px w-8 sm:w-12 bg-primary"></span>
+            <span className="text-primary uppercase tracking-[0.2em] text-sm font-bold">
               Our Process
             </span>
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.95] text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-spaceGrotesk font-medium leading-[1.15] tracking-tight text-foreground mb-6">
             How We Work
-            <span className="block text-white/40 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mt-2 lg:mt-4">
+            <span className="block text-muted-foreground text-xl sm:text-2xl md:text-3xl font-medium mt-2 lg:mt-4">
               (The Truth, Not the Sales Pitch)
             </span>
           </h2>
-          <p className="text-lg sm:text-xl text-white/60 max-w-2xl leading-relaxed border-l-2 border-[#D4654C] pl-6 mt-8">
-            Most agencies have a &quot;process&quot; that looks great in a deck
-            and falls apart in reality. Here&apos;s what actually happens when
-            you hire us.
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed border-l-2 border-primary pl-6 mt-8 font-medium">
+            What actually happens when you hire us.
           </p>
         </div>
       </div>
@@ -292,9 +263,9 @@ export default function Process() {
        */}
       <div
         ref={cardsContainerRef}
-        className="hidden lg:flex flex-col h-screen relative z-10 perspective-[1000px] items-center justify-center overflow-hidden "
+        className="hidden lg:flex flex-col h-screen relative z-10 perspective-[1000px] items-center justify-center overflow-hidden"
       >
-        <div className="relative w-full max-w-7xl h-[95vh] flex items-center justify-center">
+        <div className="relative w-full max-w-5xl h-[35rem] max-h-[32rem] flex items-center justify-center  sm:px-12 ">
           {phases.map((phase, index) => (
             <div
               key={index}
@@ -306,11 +277,11 @@ export default function Process() {
               style={{ zIndex: index + 1 }}
             >
               {/* Card Container - Solid BG to cover previous card */}
-              <div className="w-full h-full bg-[#0A0A0A] border border-white/10 rounded-[2rem] p-10 xl:p-14 shadow-2xl flex flex-col relative overflow-hidden">
-                {/* Decorative Glow */}
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#D4654C]/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none z-0" />
+              <div className="w-full h-full bg-card border border-border shadow-lg flex flex-col relative overflow-hidden" style={{ borderRadius: '8px' }}>
+                {/* Subtle corner accent */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-3xl pointer-events-none" />
 
-                <div className="relative z-10 h-full">
+                <div className="relative z-10 h-full p-8 lg:p-12">
                   <PhaseCardContent phase={phase} />
                 </div>
               </div>
@@ -321,64 +292,33 @@ export default function Process() {
 
       {/* MOBILE CARDS (Vertical Stack)
        */}
-      <div className="lg:hidden relative z-10 px-4 sm:px-8 pb-24 space-y-6">
+      <div className="lg:hidden relative z-10 px-4 sm:px-8 pb-24 space-y-6 max-w-5xl mx-auto">
         {phases.map((phase, index) => (
           <div
             key={index}
-            className="group border border-white/10 bg-[#0a0a0a] rounded-2xl p-6 sm:p-8 relative overflow-hidden"
+            className="group border border-border bg-card shadow-sm p-6 sm:p-8 relative overflow-hidden hover:shadow-md transition-shadow"
+            style={{ borderRadius: '8px' }}
           >
-            <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-[#D4654C]/5 rounded-full blur-[50px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 blur-2xl pointer-events-none" />
             <PhaseCardContent phase={phase} />
           </div>
         ))}
       </div>
 
       <style jsx global>{`
-        @keyframes noise {
-          0%,
-          100% {
-            transform: translate(0, 0);
-          }
-          10% {
-            transform: translate(-5%, -10%);
-          }
-          20% {
-            transform: translate(-15%, 5%);
-          }
-          30% {
-            transform: translate(7%, -25%);
-          }
-          40% {
-            transform: translate(-5%, 25%);
-          }
-          50% {
-            transform: translate(-15%, 10%);
-          }
-          60% {
-            transform: translate(15%, 0%);
-          }
-          70% {
-            transform: translate(0%, 15%);
-          }
-          80% {
-            transform: translate(3%, 35%);
-          }
-          90% {
-            transform: translate(-10%, 10%);
-          }
-        }
-        .animate-noise {
-          animation: noise 8s steps(10) infinite;
-        }
         .custom-scrollbar::-webkit-scrollbar {
-          width: 4px;
+          width: 6px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.05);
+          background: rgba(0, 0, 0, 0.05);
+          border-radius: 20px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(255, 255, 255, 0.2);
+          background: rgba(0, 0, 0, 0.15);
           border-radius: 20px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: rgba(0, 0, 0, 0.25);
         }
       `}</style>
     </section>

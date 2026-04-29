@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useRef, useLayoutEffect, useState } from "react";
+import React, { useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Ankit from "../app/assets/MyImage.jpg";
-import Yash from "../public/Yash.jpeg";
-import Harsh from "../public/tiwari.jpeg";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -43,7 +41,7 @@ const UsersIcon = () => (
 
 const CodeIcon = () => (
   <svg
-    className="w-3 h-3"
+    className="w-3 h-3 text-primary"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -57,47 +55,16 @@ const CodeIcon = () => (
   </svg>
 );
 
-// --- Types ---
-interface TeamMember {
-  name: string;
-  role: string;
-  focus: string;
-  image: StaticImageData;
-  linkedin: string;
-  stack: string[];
-  bio: string;
-}
-
 // --- Data ---
-const teamMembers: TeamMember[] = [
-  {
-    name: "Ankit Mishra",
-    role: "Full Stack Developer",
-    focus: "System Architecture",
-    image: Ankit, // Placeholder
-    linkedin: "https://www.linkedin.com/in/ankitmrmishra/",
-    stack: ["Next.js", "System Design", "Cloud"],
-    bio: "Obsessed with scalable architecture and clean code patterns. Turns complex problems into elegant solutions.",
-  },
-  {
-    name: "Harsh Tiwari",
-    role: "Full Stack Developer",
-    focus: "Backend & Security",
-    image: Harsh, // Placeholder
-    linkedin: "#", // Add link
-    stack: ["Node.js", "PostgreSQL", "Auth"],
-    bio: "The engine room. Ensures data integrity, API performance, and that the server never misses a beat.",
-  },
-  {
-    name: "Yash Singh",
-    role: "Full Stack Developer",
-    focus: "Creative Frontend",
-    image: Yash, // Placeholder
-    linkedin: "#", // Add link
-    stack: ["React", "GSAP", "WebGL"],
-    bio: "Bridges the gap between design and code. Crafts pixel-perfect interfaces with smooth, physics-based interactions.",
-  },
-];
+const founder = {
+  name: "Ankit Mishra",
+  role: "Founder, Designer & Developer",
+  focus: "Design, Development & Architecture",
+  image: Ankit,
+  linkedin: "https://www.linkedin.com/in/ankitmishra1106/",
+  stack: ["UI/UX Design", "Next.js", "React", "Node.js", "PostgreSQL", "Full Stack Development"],
+  bio: "Clean design. Scalable architecture. High-performance applications. Frontend to backend.",
+};
 
 // --- Sub-Component: Magnetic Button ---
 const MagneticButton = ({ href }: { href: string }) => {
@@ -134,7 +101,7 @@ const MagneticButton = ({ href }: { href: string }) => {
       rel="noopener noreferrer"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-[#0077b5] hover:border-[#0077b5] transition-colors duration-300 z-20"
+      className="relative w-10 h-10 rounded-full border border-border bg-card shadow-sm flex items-center justify-center text-muted-foreground hover:text-white hover:bg-[#0077b5] hover:border-[#0077b5] transition-colors duration-300 z-20"
     >
       <LinkedinIcon />
     </a>
@@ -181,65 +148,113 @@ const Team = () => {
     <section
       id="about"
       ref={containerRef}
-      className="relative bg-[#0a0a0a] text-white py-24 sm:py-32 overflow-hidden"
+      className="relative bg-background text-foreground py-24 sm:py-32 overflow-hidden"
     >
       {/* --- Background Assets --- */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
+      {/* <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
         <div
           className="absolute inset-0 bg-repeat"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           }}
         />
-      </div>
+      </div> */}
 
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-[#D4654C]/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
 
-      <div className="relative z-10 px-6 sm:px-12 lg:px-24 xl:px-32 max-w-[1600px]">
+      <div className="relative z-10 px-6 sm:px-12 max-w-5xl mx-auto">
         {/* --- Heading --- */}
-        <div ref={headingRef} className="text-start mb-20 sm:mb-24">
-          <div className="inline-flex items-center gap-2 px-4 py-2  mb-6">
-            <span className="h-px w-8 sm:w-12 bg-[#D4654C]"></span>
-            <span className="text-xs font-bold uppercase tracking-widest text-[#D4654C]">
-              The Engineers
+        <div ref={headingRef} className="text-start mb-16 sm:mb-24">
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6">
+            <span className="h-px w-8 sm:w-12 bg-primary"></span>
+            <span className="text-xs font-bold uppercase tracking-widest text-primary">
+              The Founder
             </span>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6">
-            Meet the <span className="text-[#D4654C]">Builders.</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-spaceGrotesk font-medium leading-[1.15] tracking-tight mb-6 text-foreground">
+            Meet the <span className="text-primary">Builder.</span>
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl">
-            Small team. High output. We don&apos;t hire project managers; we
-            hire problem solvers who write production-grade code.
+          <p className="text-lg text-muted-foreground font-medium max-w-2xl">
+            Solo engineer. High output. Solutions that scale.
           </p>
         </div>
 
-        {/* --- Team Grid --- */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
-          {teamMembers.map((member, index) => (
-            <div
-              key={index}
-              className="group relative bg-[#050505] border border-white/10 rounded-3xl overflow-hidden hover:border-[#D4654C]/40 transition-all duration-500"
-            >
-              {/* Image Section */}
-              <div className="relative h-80 sm:h-96 w-full overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent z-10" />
+        {/* --- Founder Layout --- */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+          {/* Image Section - Left */}
+          <div
+            ref={(el) => {
+              if (el) cardsRef.current[0] = el;
+            }}
+            className="w-full lg:w-5/12 group relative overflow-hidden border border-border bg-card hover:border-primary/40 shadow-sm hover:shadow-md transition-all duration-500"
+            style={{ borderRadius: '8px' }}
+          >
+            <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] w-full overflow-hidden bg-muted">
+              <Image
+                src={Ankit}
+                alt={founder.name}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
+                className="object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-105"
+                priority
+              />
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent opacity-60 pointer-events-none" />
+              {/* Card Hover Glow */}
+              <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-500" />
+            </div>
+          </div>
 
-                {/* Image grayscale to color on hover */}
-                <Image
-                  width={500}
-                  height={500}
-                  src={member.image!}
-                  alt={member.name}
-                  className="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-105"
-                />
+          {/* Content Section - Right */}
+          <div
+            ref={(el) => {
+              if (el) cardsRef.current[1] = el;
+            }}
+            className="w-full lg:w-7/12 flex flex-col"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-border pb-8 mb-8 gap-4">
+              <div>
+                <h3 className="text-4xl sm:text-5xl font-bold text-foreground mb-2">
+                  {founder.name}
+                </h3>
+                <p className="text-lg font-mono text-primary font-bold uppercase tracking-wide">
+                  {founder.role}
+                </p>
+              </div>
+              <div className="self-start sm:self-center">
+                <MagneticButton href={founder.linkedin} />
+              </div>
+            </div>
 
-                {/* Tech Stack Floating Tags */}
-                <div className="absolute bottom-4 left-4 right-4 z-20 flex flex-wrap gap-2 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
-                  {member.stack.map((tech, i) => (
+            <div className="space-y-8">
+              <div>
+                <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-4">
+                  Core Focus
+                </h4>
+                <p className="text-xl text-foreground/90 font-medium">
+                  {founder.focus}
+                </p>
+              </div>
+
+              <div>
+                <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-4">
+                  Philosophy
+                </h4>
+                <p className="text-lg text-muted-foreground font-medium leading-relaxed">
+                  {founder.bio}
+                </p>
+              </div>
+
+              <div>
+                <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-4">
+                  Tech Stack
+                </h4>
+                <div className="flex flex-wrap gap-3">
+                  {founder.stack.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-2 py-1 text-[10px] uppercase font-bold tracking-wider bg-black/60 backdrop-blur-md border border-white/10 rounded-md text-white/80 flex items-center gap-1"
+                      className="px-4 py-2 text-sm uppercase font-bold tracking-wider bg-muted border border-border shadow-sm rounded-lg text-foreground/80 flex items-center gap-2 hover:border-primary/50 hover:bg-primary/10 transition-colors duration-300"
                     >
                       <CodeIcon />
                       {tech}
@@ -247,45 +262,8 @@ const Team = () => {
                   ))}
                 </div>
               </div>
-
-              {/* Content Section */}
-              <div className="p-8 relative">
-                {/* Name & LinkedIn Row */}
-                <div className="flex items-start justify-between mb-2">
-                  <div>
-                    <h3 className="text-2xl font-bold text-white group-hover:text-[#D4654C] transition-colors duration-300">
-                      {member.name}
-                    </h3>
-                    <p className="text-sm font-mono text-white/40 uppercase tracking-wide mt-1">
-                      {member.role}
-                    </p>
-                  </div>
-                  <MagneticButton href={member.linkedin} />
-                </div>
-
-                {/* Divider */}
-                <div className="w-12 h-[1px] bg-[#D4654C] my-4 opacity-50" />
-
-                {/* Focus Area */}
-                <p className="text-xs font-bold text-[#D4654C] uppercase tracking-widest mb-2">
-                  Focus: {member.focus}
-                </p>
-
-                {/* Bio */}
-                <p className="text-sm text-white/60 leading-relaxed">
-                  {member.bio}
-                </p>
-
-                {/* Corner Decoration */}
-                <div className="absolute bottom-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="w-2 h-2 bg-[#D4654C] rounded-full" />
-                </div>
-              </div>
-
-              {/* Card Hover Glow */}
-              <div className="absolute inset-0 bg-gradient-to-b from-[#D4654C]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-500" />
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

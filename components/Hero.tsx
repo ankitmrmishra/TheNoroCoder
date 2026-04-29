@@ -1,254 +1,94 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, X, Sparkles } from "lucide-react";
-import Cal from "@calcom/embed-react";
-import BookingModal from "./ui/BookingModel";
+import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import InfiniteCarousel from "./InfiniteCarousel";
 
-interface MousePosition {
-  x: number;
-  y: number;
-}
-
-interface FloatingElementProps {
-  delay?: number;
-  duration?: number;
-  children: React.ReactNode;
-  className?: string;
-}
-
-interface MagneticButtonProps {
-  children: React.ReactNode;
-  onClick?: () => void;
-  className?: string;
-  variant?: "primary" | "secondary";
-}
-
-interface ButtonPosition {
-  x: number;
-  y: number;
-}
-
-const Hero: React.FC = () => {
-  const [isBookingOpen, setIsBookingOpen] = useState<boolean>(false);
-  const [mousePosition, setMousePosition] = useState<MousePosition>({
-    x: 0,
-    y: 0,
-  });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent): void => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
-  useEffect(() => {
-    if (isBookingOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isBookingOpen]);
-
-  const MagneticButton: React.FC<MagneticButtonProps> = ({
-    children,
-    onClick,
-    className = "",
-    variant = "primary",
-  }) => {
-    const [position, setPosition] = useState<ButtonPosition>({ x: 0, y: 0 });
-    const [isHovered, setIsHovered] = useState<boolean>(false);
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>): void => {
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      setPosition({ x: x * 0.3, y: y * 0.3 });
-    };
-
-    const handleMouseLeave = (): void => {
-      setPosition({ x: 0, y: 0 });
-      setIsHovered(false);
-    };
-
-    // Updated button styles for Dark/Terracotta theme
-    const baseStyles =
-      variant === "primary"
-        ? "bg-[#D4654C] text-white border-[#D4654C] hover:bg-white hover:text-[#D4654C] hover:border-white text-center"
-        : "bg-transparent text-white border-white/20 hover:bg-white hover:text-black hover:border-white";
-
-    return (
-      <motion.button
-        className={`relative overflow-hidden border px-8 sm:px-12 py-4 sm:py-5 font-light tracking-wider transition-colors duration-300 group flex justify-center items-center align-middle rounded-full ${baseStyles} ${className}`}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={handleMouseLeave}
-        onClick={onClick}
-        animate={{ x: position.x, y: position.y }}
-        transition={{ type: "spring", stiffness: 150, damping: 15 }}
-      >
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-          initial={{ x: "-100%" }}
-          animate={isHovered ? { x: "100%" } : { x: "-100%" }}
-          transition={{ duration: 0.6 }}
-        />
-        <span className="relative z-10 flex items-center gap-3 text-base sm:text-lg font-medium">
-          {children}
-          <motion.span
-            animate={isHovered ? { x: 5 } : { x: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <ArrowRight className="w-5 h-5" />
-          </motion.span>
-        </span>
-      </motion.button>
-    );
-  };
+const Hero = () => {
   const router = useRouter();
+
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-black text-white">
-      {/* Animated Background Grid - Updated color to white/10 opacity */}
-      {/* <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem] sm:bg-[size:6rem_6rem] [mask-image:radial-gradient(ellipse_80%_50%_at_100%_10%,#000_100%,transparent_110%)]" /> */}
+    <section className="relative min-h-screen w-full flex flex-col items-center justify-center px-4 sm:px-6 pt-24 pb-16 sm:pb-12 overflow-hidden bg-background max-w-5xl mx-auto">
+      
+      {/* Light Grid Background for texture */}
+      <div className="absolute inset-0 z-0 pointer-events-none bg-grid-small-black/[0.04] [mask-image:linear-gradient(to_bottom,white,transparent)]" />
 
-      {/* Cursor Follower - Updated border color */}
-      <motion.div
-        className="fixed w-6 h-6 rounded-full border-2 border-[#D4654C]/50 pointer-events-none z-50 hidden lg:block mix-blend-difference"
-        animate={{
-          x: mousePosition.x - 12,
-          y: mousePosition.y - 12,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 500,
-          damping: 28,
-        }}
-      />
-
-      {/* Main Content */}
-      <motion.div className="relative z-10 flex flex-col xl:items-start lg:items-center md:items-center justify-center min-h-screen px-6 sm:px-12 lg:px-24 xl:px-32 py-20 sm:py-24 ">
-        {/* Top Badge */}
+      {/* Content Container */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto text-center flex flex-col items-center">
+        
+        {/* Badge */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-8 sm:mb-12 "
+          transition={{ duration: 0.5 }}
+          className="mb-6 sm:mb-8"
         >
-          <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 border border-white/20 bg-white/5 backdrop-blur-sm rounded-full">
-            <span className="text-xs sm:text-sm text-white/80 font-light tracking-widest uppercase">
-              Taking on 2 new projects in May 2026
-            </span>
+          <div className="px-4 sm:px-5 py-1.5 border border-primary bg-primary/10 rounded-full text-xs font-semibold tracking-wider uppercase text-muted-foreground shadow-sm">
+            Taking 2 clients in May 2026
           </div>
         </motion.div>
 
-        {/* Main Heading with Stagger Animation */}
-        <div className=" min-w-full mb-8 sm:mb-16">
-          <motion.h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-8xl font-light leading-[0.9] tracking-tight mb-4 sm:mb-6 md:text-center xl:text-start">
-            {["We Build Websites"].map((word: string, i: number) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 100 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.3 + i * 0.1,
-                  ease: [0.33, 1, 0.68, 1],
-                }}
-                className="block font-bold text-white"
-              >
-                {word}
-              </motion.span>
-            ))}
-            <motion.span
-              initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.8,
-                delay: 0.6,
-                ease: [0.33, 1, 0.68, 1],
-              }}
-              className="block italic text-transparent bg-clip-text bg-gradient-to-r from-[#D4654C] via-[#ff9e8a] to-[#D4654C]"
-            >
-              That Actually
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.8,
-                delay: 0.7,
-                ease: [0.33, 1, 0.68, 1],
-              }}
-              className="block font-bold text-white"
-            >
-              Convert.
-            </motion.span>
-          </motion.h1>
-        </div>
+        {/* Heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-4xl font-spaceGrotesk font-medium leading-[1.15] tracking-tight text-foreground px-4"
+        >
+          We build{" "}
+          <span className="text-primary">
+            high-performance
+          </span>{" "}
+          websites that convert.
+        </motion.h1>
 
-        {/* Subheading with Parallax */}
-        <motion.div
-          className=" mb-12 sm:mb-20 ml-0 sm:ml-auto"
+        {/* Subheading */}
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          className="mt-6 sm:mt-8 max-w-2xl text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed px-4"
         >
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light leading-relaxed lg:text-center xl:text-right text-start text-white/60 md:text-center ">
-            Not templates. Not drag-and-drop. Custom-coded digital products that load in under 1.2s and turn visitors into revenue.
-          </p>
-        </motion.div>
+          Fast, custom-built, revenue-focused.
+        </motion.p>
 
         {/* CTA Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto text-center"
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-12 sm:mb-16 w-full sm:w-auto px-4"
         >
-          <MagneticButton
-            className=""
+          {/* Primary */}
+          <button
+            onClick={() => router.push("/contact")}
+            className="w-full sm:w-auto group px-6 sm:px-7 py-3 rounded-full bg-primary text-white text-sm font-medium shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2"
+          >
+            Start a Project
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+          </button>
+
+          {/* Secondary */}
+          <button
             onClick={() => router.push("/#showcase")}
+            className="w-full sm:w-auto px-6 sm:px-7 py-3 rounded-full border border-border bg-background text-foreground text-sm font-medium hover:bg-muted transition-all duration-300 shadow-sm"
           >
-            See Our Work
-          </MagneticButton>
-          <MagneticButton
-            onClick={() => setIsBookingOpen(true)}
-            variant="secondary"
-          >
-            Start A Project
-          </MagneticButton>
+            Explore our work
+          </button>
         </motion.div>
 
-        {/* Scroll Indicator - Updated Colors */}
+        {/* Infinite Carousel */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.5 }}
-          className="absolute bottom-8 sm:bottom-12 left-3 sm:left-12 lg:left-24 xl:left-10 hidden sm:flex flex-col items-center gap-3"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          className="w-full px-0"
         >
-          <span className="text-xs tracking-widest uppercase rotate-180 [writing-mode:vertical-lr] text-white/40 whitespace-nowrap">
-            5 Projects Delivered. 3 Brands Transformed.
-          </span>
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-[1px] h-16 bg-[#D4654C]"
-          />
+          <InfiniteCarousel />
         </motion.div>
-      </motion.div>
-
-      {/* Booking Modal - Updated for Dark Theme */}
-      <BookingModal
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-      />
-    </div>
+      </div>
+    </section>
   );
 };
 

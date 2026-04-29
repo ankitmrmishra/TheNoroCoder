@@ -90,31 +90,31 @@ const Footer = () => {
   return (
     <footer
       ref={containerRef}
-      className="relative bg-[#050505] text-white pt-24 pb-12 overflow-hidden"
+      className="relative bg-background text-foreground pt-24 pb-12 overflow-hidden"
     >
       {/* --- Background Assets --- */}
       {/* Noise Texture */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
+      {/* <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
         <div
           className="absolute inset-0 bg-repeat"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           }}
         />
-      </div>
+      </div> */}
 
       {/* Massive Watermark Behind Content */}
       <div
         ref={watermarkRef}
-        className="absolute bottom-[-10vw] left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none opacity-[0.03] select-none z-0"
+        className="absolute bottom-[-10vw] left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none opacity-[0.05] select-none z-0"
       >
-        <Image src="/logo.svg" alt="Background Logo" width={800} height={550} className="w-[80vw] max-w-[1000px] h-auto" />
+        <Image src="/logo.svg" alt="Background Logo" width={800} height={550} className="w-[80vw] max-w-[1000px] h-auto grayscale" />
       </div>
 
       {/* Top Gradient Line */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      
 
-      <div className="relative z-10 px-6 sm:px-12 lg:px-24 xl:px-32 max-w-[1600px] mx-auto">
+      <div className="relative z-10 px-6 sm:px-12 max-w-5xl mx-auto">
         {/* --- Main 4-Column Grid --- */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
           {/* Column 1: Company Info */}
@@ -129,16 +129,16 @@ const Footer = () => {
             >
               <Image src="/logo.svg" alt="Noro Work Logo" width={96} height={66} className="w-24 h-auto" />
             </Link>
-            <p className="text-white/60 text-sm leading-relaxed mb-8 max-w-[250px]">
+            <p className="text-muted-foreground font-medium text-sm leading-relaxed mb-8 max-w-[250px]">
               We design and build digital experiences that feel impossible,
               until they&apos;re live.
             </p>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#D4654C]/30 bg-[#D4654C]/5">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/5">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4654C] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D4654C]"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
-              <span className="text-xs font-mono text-[#D4654C] uppercase tracking-wider">
+              <span className="text-xs font-mono text-primary font-bold uppercase tracking-wider">
                 Now Booking: May 2026
               </span>
             </div>
@@ -150,7 +150,7 @@ const Footer = () => {
               columnsRef.current[1] = el;
             }}
           >
-            <h4 className="text-white font-bold mb-6">Services</h4>
+            <h4 className="text-foreground font-bold mb-6">Services</h4>
             <ul className="space-y-3">
               {[
                 { name: "Brand Elevation", href: "https://cal.com/ankitmrmishra" },
@@ -164,9 +164,9 @@ const Footer = () => {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm"
+                    className="group flex items-center gap-2 text-muted-foreground hover:text-foreground font-medium transition-colors text-sm"
                   >
-                    <span className="w-1 h-1 rounded-full bg-[#D4654C] opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="w-1 h-1 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                     <span className="group-hover:translate-x-1 transition-transform duration-300">
                       {item.name}
                     </span>
@@ -182,22 +182,20 @@ const Footer = () => {
               columnsRef.current[2] = el;
             }}
           >
-            <h4 className="text-white font-bold mb-6">Resources</h4>
+            <h4 className="text-foreground font-bold mb-6">Resources</h4>
             <ul className="space-y-3">
               {[
                 { name: "Our Work", href: "#showcase" },
                 { name: "Case Studies", href: "#showcase" },
                 { name: "Process", href: "#process" },
-                { name: "Technology Stack", href: "#techstack" },
                 { name: "Pricing", href: "#pricing" },
-                { name: "Blog", href: "#" },
               ].map((item, i) => (
                 <li key={i}>
                   <a
                     href={item.href}
-                    className="group flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm"
+                    className="group flex items-center gap-2 text-muted-foreground hover:text-foreground font-medium transition-colors text-sm"
                   >
-                    <span className="w-1 h-1 rounded-full bg-[#D4654C] opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="w-1 h-1 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                     <span className="group-hover:translate-x-1 transition-transform duration-300">
                       {item.name}
                     </span>
@@ -213,11 +211,11 @@ const Footer = () => {
               columnsRef.current[3] = el;
             }}
           >
-            <h4 className="text-white font-bold mb-6">Connect</h4>
+            <h4 className="text-foreground font-bold mb-6">Connect</h4>
 
             <a
               href="mailto:ankitmrmishra1118@gmail.com"
-              className="block text-xl font-bold text-white hover:text-[#D4654C] transition-colors mb-6"
+              className="block text-base font-bold text-foreground hover:text-primary transition-colors mb-6"
             >
               ankitmrmishra1118@gmail.com
             </a>
@@ -225,17 +223,17 @@ const Footer = () => {
             {/* Social Icons */}
             <div className="flex gap-4 mb-8">
               {[
-                { icon: <TwitterIcon key="tw" />, href: "https://twitter.com/ankitmrmishra" },
-                { icon: <LinkedInIcon key="li" />, href: "https://www.linkedin.com/in/ankitmrmishra/" },
+                { icon: <TwitterIcon key="tw" />, href: "https://twitter.com/ankitmishraexe" },
+                { icon: <LinkedInIcon key="li" />, href: "https://www.linkedin.com/in/ankitmishra1106/" },
                 { icon: <GithubIcon key="gh" />, href: "https://github.com/ankitmrmishra" },
-                { icon: <DribbbleIcon key="dr" />, href: "https://dribbble.com/ankitmrmishra" },
+                
               ].map((item, i) => (
                 <a
                   key={i}
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-[#D4654C] hover:border-[#D4654C] transition-all duration-300"
+                  className="w-10 h-10 rounded-full bg-muted border border-border flex items-center justify-center text-foreground/60 hover:text-primary-foreground hover:bg-primary hover:border-primary transition-all duration-300 shadow-sm"
                 >
                   {item.icon}
                 </a>
@@ -244,21 +242,21 @@ const Footer = () => {
 
             {/* Newsletter */}
             <div>
-              <p className="text-xs text-white/40 uppercase tracking-widest mb-2">
+              <p className="text-xs text-muted-foreground font-bold uppercase tracking-widest mb-2">
                 Newsletter
               </p>
-              <p className="text-sm text-white/60 mb-4 leading-relaxed max-w-[250px]">
-                Monthly: what we shipped, what we learned, and one web design take you didn't ask for.
+              <p className="text-sm text-muted-foreground font-medium mb-4 leading-relaxed max-w-[250px]">
+                Monthly: what we shipped, what we learned, and one web design take you didn&apos;t ask for.
               </p>
               <form className="flex gap-2">
                 <input
                   type="email"
                   placeholder="Email address"
-                  className="w-full bg-transparent border-b border-white/20 py-2 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#D4654C] transition-colors"
+                  className="w-full bg-transparent border-b border-border py-2 text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-colors"
                 />
                 <button
                   type="button"
-                  className="text-sm font-bold text-white hover:text-[#D4654C] transition-colors"
+                  className="text-sm font-bold text-foreground hover:text-primary transition-colors"
                 >
                   Subscribe
                 </button>
@@ -268,23 +266,23 @@ const Footer = () => {
         </div>
 
         {/* --- Bottom Bar --- */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs text-white/40">
+        <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs text-muted-foreground font-medium">
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-6">
             <span>&copy; 2026 NORO.WORK</span>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="#" className="hover:text-foreground font-bold transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="#" className="hover:text-foreground font-bold transition-colors">
               Terms of Service
             </a>
           </div>
 
           <div className="flex items-center gap-1">
             <span>Built with Next.js, GSAP, and an unhealthy amount of</span>
-            <span className="text-[#D4654C] line-through decoration-white/40">
+            <span className="text-primary decoration-muted-foreground line-through">
               caffeine
             </span>
-            <span className="text-white">passion.</span>
+            <span className="text-foreground font-bold">passion.</span>
           </div>
         </div>
       </div>

@@ -12,22 +12,9 @@ if (typeof window !== "undefined") {
 }
 
 // ---------------- ICONS ----------------
-const TagIcon = () => (
-  <svg
-    className="w-3 h-3"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-  >
-    <path d="M12 2H2v10l9.29 9.29a2.4 2.4 0 0 0 3.42 0l6.58-6.58a2.4 2.4 0 0 0 0-3.42L12 2Z" />
-    <path d="M7 7h.01" />
-  </svg>
-);
-
 const CheckIcon = () => (
   <svg
-    className="w-4 h-4"
+    className="w-4 h-4 text-primary"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -40,109 +27,6 @@ const CheckIcon = () => (
     />
   </svg>
 );
-
-const RocketIcon = () => (
-  <svg
-    className="w-8 h-8"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path strokeWidth="2" d="M4.5 16.5s-1.5 1.5-2 5c3.5-.5 5-2 5-2" />
-    <path
-      strokeWidth="2"
-      d="M12 15l-3-3c1-4 2-6 2-6s3 2 7 2c0 2 2 5 2 7 0 4-4 6-9 6-1-3-2-6-2-6l3-3Z"
-    />
-  </svg>
-);
-
-const LayersIcon = () => (
-  <svg
-    className="w-8 h-8"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <polygon strokeWidth="2" points="12 2 2 7 12 12 22 7 12 2" />
-    <polyline strokeWidth="2" points="2 12 12 17 22 12" />
-    <polyline strokeWidth="2" points="2 17 12 22 22 17" />
-  </svg>
-);
-
-const CodeIcon = () => (
-  <svg
-    className="w-8 h-8"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <polyline strokeWidth="2" points="16 18 22 12 16 6" />
-    <polyline strokeWidth="2" points="8 6 2 12 8 18" />
-  </svg>
-);
-
-const ArrowRightIcon = () => (
-  <svg
-    className="w-4 h-4"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      strokeWidth={2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M14 5l7 7-7 7M21 12H3"
-    />
-  </svg>
-);
-
-// ---------------- DATA ----------------
-const pricingTiers = [
-  {
-    title: "Landing Pages",
-    price: "$800 – $1,200",
-    description: "Perfect for startups needing fast validation.",
-    features: [
-      "Custom Design (Figma)",
-      "Next.js Development",
-      "Mobile Responsive",
-      "Basic SEO",
-      "1–2 Week Delivery",
-    ],
-    cta: "Start Landing Page",
-    icon: <RocketIcon />,
-  },
-  {
-    title: "Business Sites",
-    price: "$2,000 – $3,500",
-    description: "Multi-page websites to build authority.",
-    features: [
-      "5–10 Pages",
-      "CMS Integration",
-      "GSAP Animations",
-      "Analytics",
-      "Speed Optimized",
-    ],
-    cta: "Build Business Site",
-    icon: <LayersIcon />,
-    popular: true,
-  },
-  {
-    title: "Web Applications",
-    price: "Starting at $5,000",
-    description: "Complex platforms with custom logic.",
-    features: [
-      "Full-Stack",
-      "Auth & Database",
-      "API Integrations",
-      "Scalable Infra",
-      "Maintenance",
-    ],
-    cta: "Discuss Requirements",
-    icon: <CodeIcon />,
-  },
-];
 
 // ---------------- COMPONENT ----------------
 const Pricing = () => {
@@ -211,82 +95,214 @@ const Pricing = () => {
     <section
       id="pricing"
       ref={containerRef}
-      className="relative bg-[#0a0a0a] text-white py-24 overflow-hidden"
+      className="relative bg-background text-foreground py-24 overflow-hidden"
     >
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 ">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 sm:px-12">
         {/* Heading */}
-        <div ref={headingRef} className="mb-20 text-left max-w-3xl ">
-          <div className="flex justify-start items-center gap-3 mb-6">
-            <span className="h-px w-12 bg-[#D4654C]" />
-            <span className="text-[#D4654C] uppercase tracking-[0.25em] text-xs flex items-center gap-2">
-              Investment
+        <div ref={headingRef} className="mb-16 text-start max-w-3xl">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="h-px w-8 bg-primary"></span>
+            <span className="text-primary uppercase tracking-[0.2em] text-sm font-bold">
+              Pricing
             </span>
           </div>
-
-          <h2 className="text-5xl lg:text-7xl font-bold leading-tight mb-6">
-            Transparent Pricing.
-            <br />
-            <span className="text-[#D4654C]">Direct to Code.</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-spaceGrotesk font-medium leading-[1.15] tracking-tight mb-6">
+            Straightforward, one-time pricing.
           </h2>
-
-          <p className="text-white/60 text-lg  pr-6">
-            No agency overhead. Your budget goes straight into design and code.
+          <p className="text-lg text-muted-foreground">
+            No subscriptions. No hidden fees. Just honest pricing.
           </p>
         </div>
 
-        {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {pricingTiers.map((tier, i) => (
-            <div
-              key={i}
-              ref={(el) => {
-                cardsRef.current[i] = el;
-              }}
-              className={`relative bg-[#050505] border rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2
-                ${
-                  tier.popular
-                    ? "border-[#D4654C]/40 shadow-xl"
-                    : "border-white/10"
-                }`}
-            >
-              {tier.popular && (
-                <span className="absolute top-4 right-4 bg-[#D4654C] text-xs px-3 py-1 rounded-full">
-                  Popular
-                </span>
-              )}
-
-              <div className="mb-6 text-[#D4654C]">{tier.icon}</div>
-              <h3 className="text-2xl font-bold mb-2">{tier.title}</h3>
-              <p className="text-white/60 mb-6">{tier.description}</p>
-
-              <div className="mb-6">
-                <p className="text-4xl font-bold">{tier.price}</p>
+        {/* Single Page Website - $895 */}
+        <div 
+          ref={(el) => { cardsRef.current[0] = el; }}
+          className="bg-card border border-border mb-6" 
+          style={{ borderRadius: '8px' }}
+        >
+          {/* Header */}
+          <div className="p-8 border-b border-border">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <div>
+                <h3 className="text-2xl font-bold mb-2">Single Page Website</h3>
+                <p className="text-sm text-muted-foreground max-w-md">
+                  Perfect for startups and small businesses that need a converting landing page.
+                </p>
               </div>
-
-              <ul className="space-y-3 mb-8">
-                {tier.features.map((f, idx) => (
-                  <li
-                    key={idx}
-                    className="flex items-center gap-3 text-sm text-white/80"
-                  >
-                    <CheckIcon /> {f}
-                  </li>
-                ))}
-              </ul>
-
-              <Button
-                onClick={() => setIsBookingOpen(true)}
-                className={`flex w-full h-[3rem] items-center justify-center gap-2 py-4 rounded-xl text-sm font-semibold transition
-                  ${
-                    tier.popular
-                      ? "bg-[#D4654C] hover:bg-[#bf5a43]"
-                      : "bg-white/5 hover:bg-[#D4654C]"
-                  }`}
-              >
-                {tier.cta} <ArrowRightIcon />
-              </Button>
+              <div className="flex items-baseline gap-1">
+                <span className="text-4xl font-bold">$895</span>
+                <span className="text-sm text-muted-foreground ml-2">one-time</span>
+              </div>
             </div>
-          ))}
+          </div>
+
+          {/* Features */}
+          <div className="p-8">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>Single Page Landing</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>Design & Development</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>Next.js / React / Tailwind</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>Limited Revisions</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>24-hour support response</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>Private communication</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>Negotiable delivery time</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>CMS integration</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>Hosting & Deployment</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>SEO Optimization</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* CTA */}
+          <div className="p-6 border-t border-border">
+            <Button
+              onClick={() => setIsBookingOpen(true)}
+              className="w-full sm:w-auto px-8 h-12 bg-primary text-primary-foreground hover:bg-primary/90 text-sm font-bold uppercase tracking-wider"
+              style={{ borderRadius: '6px' }}
+            >
+              Get Single Page
+            </Button>
+          </div>
+        </div>
+
+        {/* Multi Page Website - $2,099 */}
+        <div 
+          ref={(el) => { cardsRef.current[1] = el; }}
+          className="bg-card border-2 border-primary/30 mb-6 relative" 
+          style={{ borderRadius: '8px' }}
+        >
+          {/* Popular Badge */}
+          <div className="absolute -top-3 left-8">
+            <span className="bg-primary text-primary-foreground px-4 py-1 text-xs font-bold uppercase tracking-wider">
+              Popular
+            </span>
+          </div>
+
+          {/* Header */}
+          <div className="p-8 border-b border-border">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <div>
+                <h3 className="text-2xl font-bold mb-2">Multi Page Website</h3>
+                <p className="text-sm text-muted-foreground max-w-md">
+                  For businesses that need authority, scale, and multiple pages.
+                </p>
+              </div>
+              <div className="flex flex-col items-start sm:items-end">
+                <span className="text-xs text-muted-foreground mb-1">Starting at</span>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-4xl font-bold">$2,099</span>
+                  <span className="text-sm text-muted-foreground ml-2">one-time</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Features */}
+          <div className="p-8">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>Multi-Page Website</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>Design & Development</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>Next.js / React / Tailwind</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>Unlimited Revisions</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>24-hour support response</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>Private communication</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>Negotiable delivery time</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>CMS integration</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>Hosting & Deployment</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <CheckIcon />
+                <span>SEO Optimization</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* CTA */}
+          <div className="p-6 border-t border-border">
+            <Button
+              onClick={() => setIsBookingOpen(true)}
+              className="w-full sm:w-auto px-8 h-12 bg-primary text-primary-foreground hover:bg-primary/90 text-sm font-bold uppercase tracking-wider"
+              style={{ borderRadius: '6px' }}
+            >
+              Get Multi Page
+            </Button>
+          </div>
+        </div>
+
+        {/* Custom Web Apps Section */}
+        <div 
+          ref={(el) => { cardsRef.current[2] = el; }}
+          className="bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 border border-primary/20 p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6" 
+          style={{ borderRadius: '8px' }}
+        >
+          <div>
+            <h3 className="text-xl font-bold mb-2">Custom Web Apps</h3>
+            <p className="text-sm text-muted-foreground max-w-xl">
+              SaaS platforms, internal tools, and bespoke applications. Tailored for your workflows.
+            </p>
+          </div>
+          <Button
+            onClick={() => setIsBookingOpen(true)}
+            className="shrink-0 px-8 py-3 bg-foreground text-background hover:bg-foreground/90 text-sm font-bold uppercase tracking-wider"
+            style={{ borderRadius: '6px' }}
+          >
+            Talk to us
+          </Button>
         </div>
       </div>
       <BookingModal
