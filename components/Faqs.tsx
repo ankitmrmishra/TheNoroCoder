@@ -89,11 +89,11 @@ const faqs: FAQ[] = [
     id: "pricing",
     question: "How much does a website cost?",
     answer:
-      "Every project is different, but we believe in transparent pricing. Our projects typically start around $1,000. We don't have the overhead of a big agency, so your budget goes directly into the code and design.",
+      "Every project is different, but we believe in transparent pricing. Our projects typically start around $800. We don't have the overhead of a big agency, so your budget goes directly into the code and design.",
     highlights: [
-      "Landing Pages: ~$1,000 - $1,500",
-      "Multi-page Business Sites: $2,500+",
-      "Custom Web Applications: Custom Quote",
+      "Landing Pages: $800 – $1,200",
+      "Business Websites: $2,000 – $3,500",
+      "Web Applications: Starting at $5,000",
     ],
   },
   {
@@ -152,6 +152,18 @@ const faqs: FAQ[] = [
     question: "Do you work with early-stage startups?",
     answer:
       "Absolutely. That's our sweet spot. We love helping founders get their MVP or first marketing site off the ground quickly without burning their entire runway.",
+  },
+  {
+    id: "international",
+    question: "Do you work with clients outside India?",
+    answer:
+      "Yes. Most of our projects are scoped and communicated async, which works well across timezones. We're IST-based and available for US and UK timezone projects. We've worked with remote-first teams from day one.",
+  },
+  {
+    id: "scope",
+    question: "What if my project goes over scope?",
+    answer:
+      "Scope creep is the #1 reason projects go sideways. That's exactly why we invest 2 weeks in discovery before writing a line of code. If something genuinely new comes up, we discuss it openly before any additional work begins — never a surprise invoice.",
   },
 ];
 

@@ -2,6 +2,7 @@
 
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
+import SocialProofStrip from "../components/SocialProofStrip";
 import Showcase from "../components/ShowCase";
 
 import Footer from "../components/Footer";
@@ -49,6 +50,7 @@ export default function Home() {
       <div className="pinned-panel relative min-h-screen w-full z-0 bg-white dark:bg-black">
         <Hero />
       </div>
+      <SocialProofStrip />
       {/* <AgencyTechHero /> */}
       {/* 3. PROVIDE: Slides over Showcase. Normal Scroll starts here. Highest Z-index. */}
       {/* We do not add 'pinned-panel' here so it scrolls normally once in view. */}

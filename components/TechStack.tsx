@@ -256,21 +256,7 @@ const techStack: TechCategory[] = [
     ],
     whyMatters:
       "Global load times under 1.2s. 99.99% uptime. Auto-scaling during spikes. Zero maintenance.",
-  },
-  {
-    id: "ai-agents",
-    title: "AI Agent Building",
-    icon: <BrainIcon />,
-    technologies: [
-      "Mastra (TypeScript AI framework)",
-      "LangChain (Agent orchestration)",
-      "OpenAI/Anthropic APIs",
-      "Vector databases (Pinecone)",
-      "Streaming & real-time responses",
-    ],
-    whyMatters:
-      "Build intelligent agents with workflows, memory, and tracing. Interactive playground for testing. Production-ready AI applications.",
-  },
+  }
 ];
 
 const TechStack = () => {
@@ -535,14 +521,14 @@ const TechStack = () => {
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8 hover:bg-white/10 hover:border-[#D4654C]/30 transition-all duration-300">
             <TerminalIcon />
             <span className="text-sm font-mono text-white/70">
-              Want to talk stack? We&apos;re nerds.
+              Stack questions are the best questions.
             </span>
           </div>
 
           {/* CTA Heading */}
           <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-10 max-w-2xl">
-            Let&apos;s discuss your{" "}
-            <span className="text-[#D4654C]">technical requirements.</span>
+            Let's talk architecture before you commit to a{" "}
+            <span className="text-[#D4654C]">single line of code.</span>
           </h3>
 
           {/* CTA Button */}
@@ -550,7 +536,7 @@ const TechStack = () => {
             onClick={() => setIsBookingOpen(true)}
             className=" hover:bg-[#D4654C] bg-[#0a0a0a] border border-white/10 rounded-2xl py-7 text-xl mt-6 flex flex-col items-center justify-center text-center"
           >
-            Start A Project
+            Book a Technical Call
           </Button>
 
           <BookingModal
@@ -560,8 +546,8 @@ const TechStack = () => {
 
           {/* Subtext */}
           <p className="text-sm text-white/40 mt-6 max-w-md">
-            Free 30-minute call. No sales pitch. Just technical conversation
-            about your project.
+            Free 30-minute call. No pitch. Just honest technical conversation
+            about what you're building.
           </p>
         </div>
       </div>

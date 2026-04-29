@@ -101,7 +101,7 @@ const ArrowRightIcon = () => (
 const pricingTiers = [
   {
     title: "Landing Pages",
-    price: "$600 – $700",
+    price: "$800 – $1,200",
     description: "Perfect for startups needing fast validation.",
     features: [
       "Custom Design (Figma)",
@@ -115,7 +115,7 @@ const pricingTiers = [
   },
   {
     title: "Business Sites",
-    price: "$1,000 – $1,500",
+    price: "$2,000 – $3,500",
     description: "Multi-page websites to build authority.",
     features: [
       "5–10 Pages",
@@ -130,7 +130,7 @@ const pricingTiers = [
   },
   {
     title: "Web Applications",
-    price: "Custom Quote",
+    price: "Starting at $5,000",
     description: "Complex platforms with custom logic.",
     features: [
       "Full-Stack",

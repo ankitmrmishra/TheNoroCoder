@@ -10,9 +10,9 @@ import { Button } from "./ui/button";
 const services = [
   {
     id: "01",
-    title: "Digital Brand Experiences",
-    subtitle: "Your website is your highest-leverage sales asset.",
-    description: "We design interfaces that convert better and load faster.",
+    title: "Brand Websites",
+    subtitle: "Your site is either your best salesperson or your most expensive liability.",
+    description: "We build custom, code-only websites that position you above competitors before you say a word. No WordPress. No page builders. Just fast, precise, and built to convert.",
     metrics: [
       "Convert 40–60% better than industry averages",
       "Load 3x faster than typical agency builds",
@@ -37,16 +37,16 @@ const services = [
   },
   {
     id: "03",
-    title: "Creative Development",
-    subtitle: "WebGL, Shaders, and Physics-driven interfaces.",
+    title: "Web Apps & Platforms",
+    subtitle: "Full-stack products that make your team faster and your users loyal.",
     description:
-      "The stuff that makes users text their friends a link to your site. Built on Three.js, GSAP, and Framer Motion.",
+      "From SaaS dashboards to internal tools to the kind of software people screenshot and send to friends. Built on Next.js, NestJS, and whatever the job actually requires.",
     metrics: [
       "Optimized for mid-tier devices",
       "Strategy-first animation",
       "Memorable user interactions",
     ],
-    outcome: "But only when it serves the strategy. Never for its own sake.",
+    outcome: "GSAP, WebGL, and Framer Motion when the brief calls for it — never just for show.",
   },
 ];
 
@@ -283,8 +283,7 @@ export default function ServicesHorizontal() {
           </h2>
 
           <p className="text-white/60 text-lg leading-relaxed max-w-md">
-            We don&apos;t just write code. We build digital infrastructure that
-            scales revenue.
+            We don&apos;t write code. We build the digital infrastructure your revenue runs on.
           </p>
         </div>
 
@@ -331,8 +330,7 @@ export default function ServicesHorizontal() {
               </h2>
 
               <p className="text-white/60 text-lg max-w-xs leading-relaxed">
-                We don&apos;t just write code. We build digital infrastructure
-                that scales revenue.
+                We don&apos;t write code. We build the digital infrastructure your revenue runs on.
               </p>
 
               <Button

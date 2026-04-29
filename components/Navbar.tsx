@@ -5,6 +5,7 @@ import { Ghost } from "lucide-react";
 import { Button } from "./ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "../lib/utils";
 
 const Navbar = () => {
@@ -52,10 +53,10 @@ const Navbar = () => {
         isOpen && ""
       )}
     >
-      <div className="Logo   w-full px-[7%]">
-        <span className="font-GalgoCondesed text-5xl sm:text-6xl lg:text-8xl ml-2 text-white">
-          NORO<span className="text-secondary-foreground">.</span>WORK
-        </span>
+      <div className="Logo w-full px-[7%] flex items-center">
+        <Link href="/">
+          <Image src="/logo.svg" alt="Noro Work Logo" width={96} height={66} className="w-16 sm:w-20 lg:w-24 h-auto" />
+        </Link>
       </div>
 
       {/* Menu Button - Now visible on all screen sizes */}

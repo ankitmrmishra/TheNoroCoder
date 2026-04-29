@@ -3,6 +3,8 @@
 import React, { useRef, useLayoutEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
+import Link from "next/link";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -104,11 +106,9 @@ const Footer = () => {
       {/* Massive Watermark Behind Content */}
       <div
         ref={watermarkRef}
-        className="absolute bottom-[-10vw] left-1/2 -translate-x-1/2 w-full text-center pointer-events-none opacity-[0.03] select-none z-0"
+        className="absolute bottom-[-10vw] left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none opacity-[0.03] select-none z-0"
       >
-        <h1 className="text-[25vw] font-bold leading-none tracking-tighter text-white">
-          NORO
-        </h1>
+        <Image src="/logo.svg" alt="Background Logo" width={800} height={550} className="w-[80vw] max-w-[1000px] h-auto" />
       </div>
 
       {/* Top Gradient Line */}
@@ -123,12 +123,12 @@ const Footer = () => {
               columnsRef.current[0] = el;
             }}
           >
-            <a
+            <Link
               href="/"
-              className="inline-block text-2xl font-bold tracking-tighter mb-6 hover:text-[#D4654C] transition-colors"
+              className="inline-block mb-6 hover:opacity-80 transition-opacity"
             >
-              NORO.WORK
-            </a>
+              <Image src="/logo.svg" alt="Noro Work Logo" width={96} height={66} className="w-24 h-auto" />
+            </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-8 max-w-[250px]">
               We design and build digital experiences that feel impossible,
               until they&apos;re live.
@@ -139,7 +139,7 @@ const Footer = () => {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D4654C]"></span>
               </span>
               <span className="text-xs font-mono text-[#D4654C] uppercase tracking-wider">
-                Booking: Q1 2026
+                Now Booking: May 2026
               </span>
             </div>
           </div>
@@ -244,8 +244,11 @@ const Footer = () => {
 
             {/* Newsletter */}
             <div>
-              <p className="text-xs text-white/40 uppercase tracking-widest mb-3">
+              <p className="text-xs text-white/40 uppercase tracking-widest mb-2">
                 Newsletter
+              </p>
+              <p className="text-sm text-white/60 mb-4 leading-relaxed max-w-[250px]">
+                Monthly: what we shipped, what we learned, and one web design take you didn't ask for.
               </p>
               <form className="flex gap-2">
                 <input

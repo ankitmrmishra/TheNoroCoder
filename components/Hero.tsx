@@ -142,7 +142,7 @@ const Hero: React.FC = () => {
         >
           <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 border border-white/20 bg-white/5 backdrop-blur-sm rounded-full">
             <span className="text-xs sm:text-sm text-white/80 font-light tracking-widest uppercase">
-              Currently Booking Q1 2026
+              Taking on 2 new projects in May 2026
             </span>
           </div>
         </motion.div>
@@ -150,7 +150,7 @@ const Hero: React.FC = () => {
         {/* Main Heading with Stagger Animation */}
         <div className=" min-w-full mb-8 sm:mb-16">
           <motion.h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-8xl font-light leading-[0.9] tracking-tight mb-4 sm:mb-6 md:text-center xl:text-start">
-            {["Your Brand Deserves"].map((word: string, i: number) => (
+            {["We Build Websites"].map((word: string, i: number) => (
               <motion.span
                 key={i}
                 initial={{ opacity: 0, y: 100 }}
@@ -173,10 +173,9 @@ const Hero: React.FC = () => {
                 delay: 0.6,
                 ease: [0.33, 1, 0.68, 1],
               }}
-              // Updated gradient to use Terracotta
               className="block italic text-transparent bg-clip-text bg-gradient-to-r from-[#D4654C] via-[#ff9e8a] to-[#D4654C]"
             >
-              More Than
+              That Actually
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 100 }}
@@ -188,7 +187,7 @@ const Hero: React.FC = () => {
               }}
               className="block font-bold text-white"
             >
-              a Template.
+              Convert.
             </motion.span>
           </motion.h1>
         </div>
@@ -201,13 +200,7 @@ const Hero: React.FC = () => {
           transition={{ duration: 1, delay: 1 }}
         >
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light leading-relaxed lg:text-center xl:text-right text-start text-white/60 md:text-center ">
-            We design and build digital experiences that feel{" "}
-            <span className="italic text-white">impossible</span>, until
-            they&apos;re live.
-            <br />
-            <span className="text-base sm:text-lg md:text-xl mt-2 sm:mt-4 block text-[#D4654C]">
-              For companies ready to lead, not follow.
-            </span>
+            Not templates. Not drag-and-drop. Custom-coded digital products that load in under 1.2s and turn visitors into revenue.
           </p>
         </motion.div>
 
@@ -239,8 +232,8 @@ const Hero: React.FC = () => {
           transition={{ duration: 1, delay: 1.5 }}
           className="absolute bottom-8 sm:bottom-12 left-3 sm:left-12 lg:left-24 xl:left-10 hidden sm:flex flex-col items-center gap-3"
         >
-          <span className="text-xs tracking-widest uppercase rotate-180 [writing-mode:vertical-lr] text-white/40">
-            Scroll Down
+          <span className="text-xs tracking-widest uppercase rotate-180 [writing-mode:vertical-lr] text-white/40 whitespace-nowrap">
+            5 Projects Delivered. 3 Brands Transformed.
           </span>
           <motion.div
             animate={{ y: [0, 10, 0] }}

@@ -320,8 +320,8 @@ const FinalCTA = () => {
                   <option value="" className="bg-[#0a0a0a]">
                     Select your budget
                   </option>
-                  <option value="1000-2000" className="bg-[#0a0a0a]">
-                    $1,000–$2,000
+                  <option value="800-2000" className="bg-[#0a0a0a]">
+                    $800–$2,000
                   </option>
                   <option value="2000-5000" className="bg-[#0a0a0a]">
                     $2,000–$5,000
@@ -460,7 +460,7 @@ const FinalCTA = () => {
                 </span>
               </div>
               <p className="text-sm text-white/60">
-                Taking new projects • Next slot: February 2026
+                Taking on 2 new projects in May 2026
               </p>
             </div>
           </div>

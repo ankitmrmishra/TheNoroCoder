@@ -483,6 +483,12 @@ const Showcase: React.FC = () => {
               </motion.a>
             </div>
           </motion.div>
+
+          <div className="mt-16 text-center">
+            <p className="text-sm text-white/40 max-w-2xl mx-auto leading-relaxed">
+              We work best with funded startups, ambitious founders, and teams who've outgrown templates. Not the right fit if you need something live in 48 hours, want WordPress, or have a budget under $800.
+            </p>
+          </div>
         </div>
       </div>
     </div>

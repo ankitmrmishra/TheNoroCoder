@@ -34,13 +34,13 @@ const philosophyData: PhilosophyItem[] = [
   {
     id: "strategy",
     icon: <BrainCircuit className="w-7 h-7 text-[#D4654C]" />,
-    headline: "Strategy-First\nDevelopment",
+    headline: "We start with your revenue,\nnot your color palette.",
     subHeadline: "We Don't Start With Design. We Start With Why.",
     body: [
-      "Analytics deep-dive & audit",
-      "Competitor positioning analysis",
-      "Technical debt assessment",
-      "Revenue-model alignment",
+      "Most agencies open Figma on Day 1.",
+      "We spend the first week in your analytics,",
+      "your competitors' websites, and customer reviews.",
+      "Design decisions follow the data.",
     ],
     statCallout: "of projects launch on time due to discovery.",
     statConfig: { value: 87, suffix: "%" },
@@ -48,13 +48,13 @@ const philosophyData: PhilosophyItem[] = [
   {
     id: "performance",
     icon: <Zap className="w-7 h-7 text-[#D4654C]" />,
-    headline: "Performance-Obsessed\nEngineering",
+    headline: "We write code like we're\nthe ones maintaining it.",
     subHeadline: "Your Site Loads in 3 Seconds. It Should Load in 1.2.",
     body: [
-      "Advanced image optimization",
-      "Code splitting & lazy loading",
-      "Edge CDN architecture",
-      "Zero layout shift (CLS 0)",
+      "TypeScript end-to-end.",
+      "Component architecture.",
+      "Zero WordPress.",
+      "Your codebase won't scare away the next developer you hire.",
     ],
     statCallout: "conversion lift from speed updates alone.",
     statConfig: { prefix: "+", value: 40, suffix: "%" },
@@ -62,13 +62,13 @@ const philosophyData: PhilosophyItem[] = [
   {
     id: "craft",
     icon: <Trophy className="w-7 h-7 text-[#D4654C]" />,
-    headline: "Award-Winning\nCraft",
+    headline: "Small team. Direct line.\nZero account managers.",
     subHeadline: "We Don't Follow Trends. We Set Them.",
     body: [
-      "Guide attention to CTAs",
-      "Reduce cognitive load",
-      "Intuitive interactions",
-      "Memorable brand moments",
+      "When you message us, a developer reads it.",
+      "When we push a commit, a designer reviewed it.",
+      "This is the actual advantage of working",
+      "with a studio over an agency.",
     ],
     statCallout: "higher prices via premium positioning.",
     statConfig: { value: 2.5, suffix: "x", decimals: 1 },
@@ -249,13 +249,13 @@ const PhilosophySection: React.FC = () => {
           <div className="flex items-center gap-3 mb-6">
             <span className="h-px w-8 bg-[#D4654C]" />
             <span className="uppercase tracking-[0.2em] text-sm text-[#D4654C]">
-              The Philosophy
+              Why Us
             </span>
           </div>
 
           <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight">
-            Why Brands Choose Us Over{" "}
-            <span className="block text-white/40">Template Builders.</span>
+            Three things we do{" "}
+            <span className="block text-white/40">differently.</span>
           </h2>
 
           <p className="mt-6 text-lg sm:text-xl text-white/60 max-w-2xl">
