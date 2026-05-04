@@ -153,11 +153,11 @@ const Footer = () => {
             <h4 className="text-foreground font-bold mb-6">Services</h4>
             <ul className="space-y-3">
               {[
-                { name: "Brand Elevation", href: "https://cal.com/ankitmrmishra" },
-                { name: "Digital Products", href: "https://cal.com/ankitmrmishra" },
-                { name: "Enterprise Platforms", href: "https://cal.com/ankitmrmishra" },
-                { name: "Ongoing Maintenance", href: "https://cal.com/ankitmrmishra" },
-                { name: "Performance Audits", href: "https://cal.com/ankitmrmishra" },
+                { name: "Brand Elevation", href: "https://cal.com/worknoro/quick-chat" },
+                { name: "Digital Products", href: "https://cal.com/worknoro/quick-chat" },
+                { name: "Enterprise Platforms", href: "https://cal.com/worknoro/quick-chat" },
+                { name: "Ongoing Maintenance", href: "https://cal.com/worknoro/quick-chat" },
+                { name: "Performance Audits", href: "https://cal.com/worknoro/quick-chat" },
               ].map((item, i) => (
                 <li key={i}>
                   <a
